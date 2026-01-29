@@ -1,0 +1,407 @@
+/* ---------- Font Imports ---------- */
+/* Body / UI */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
+
+/* Brand / Accent */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap');
+
+
+* {
+  box-sizing: border-box;
+}  
+
+
+:root {
+  --bg-main: #3f4042e4;        /* soft black */
+  --bg-surface: #16191c; 
+  --bg-secondary:#2b6875 ;    /* card surface */
+  --bg-muted: #1e2226;       /* subtle contrast */
+  --text-main: #e6e6e6;
+  --text-muted: #b5b5b5;
+
+  --brand-pink: #e06aa3;
+  --brand-green: #6fbf8f;
+
+  --border-soft: rgba(255,255,255,0.08);
+  --shadow-soft: 0 8px 20px rgba(0,0,0,0.4);
+}  
+
+
+/* Desktop layout */
+@media (min-width: 769px) {
+  html, body{
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+  }  
+
+  .hamburger-icon,.navigation-menu{
+    display: none;
+  }  
+  #top-nav{
+    display: unset;
+  }  
+  /*header styles*/
+header {
+  
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}  
+header h1{
+ 
+  justify-self: center;
+  padding: 1px;
+  border-radius: 10px;
+}  
+
+footer{
+  align-items: center;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 4px;
+
+}  
+
+
+}
+
+/* Mobile layout */
+@media (max-width: 768px) {
+  html, body{
+    overflow-x: hidden;
+    padding: 2px;
+  }  
+#top-nav{
+  display: none;
+}  
+.logo {
+  display: flex;
+}  
+
+
+}
+
+
+
+/* Base styles (shared) */
+
+html, body{
+  background-color:var(--bg-secondary);
+  min-height: 100vh;
+  max-width: min(98%, );
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 16px;
+  line-height: 1.7;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  margin: 0;
+}  
+
+a {
+  color: var(--brand-green);
+  text-decoration: none;
+}  
+
+a:hover {
+  color: var(--brand-pink);
+}  
+
+
+button {
+  background-color: transparent;
+  color: var(--text-main);
+  border: 1px solid var(--border-soft);
+  padding: 0.5rem 1rem;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}  
+
+button:hover {
+  border-color: var(--brand-green);
+  color: var(--brand-green);
+}  
+header{
+  background-color:var(--bg-main);
+  width: 100%;
+  padding: 7px;
+  border-bottom: 2px solid var(--brand-green);
+}  
+
+main {
+  gap: 1.5rem;
+  padding: 3rem 2rem;
+}  
+figure {
+  margin: 0.75rem 0;
+}  
+
+
+#top-nav {
+ 
+  margin-right: 3px;
+
+}  
+#top-nav a{
+  color: var(--text-muted);
+  border-radius: 8px;
+  padding: 5px;
+  text-align: center;
+  width: 60px;
+  height: 30px;
+  
+}  
+#top-nav a:hover{
+  color: var(--brand-pink);
+  font-weight: bolder;
+}  
+
+
+.bvn-logobar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}  
+
+
+.logo {
+  width: 100px;
+  align-items: center;
+  gap: 4px;
+}  
+
+.logo img {
+  height: 100px;
+}  
+
+
+.hamburger-icon {
+  background: none;
+  border-radius: 4px; 
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+
+}  
+
+
+.navigation-menu li { 
+display: flex;  
+flex-direction: row;
+  list-style: none;
+  background-color: #f7f7f7; 
+  border: 2px solid #014038; 
+  border-radius: 6px; 
+  font-size: 18px; 
+  font-weight: bold; 
+  font-family: Arial, sans-serif;
+  margin: 2px;
+  padding: 2px 1px; 
+  transition: all 0.15s ease-in-out; 
+}   
+
+.navigation-menu li:hover { 
+  background-color: #96BAA0; 
+  transform: scale(1.05); 
+}   
+
+
+
+
+.navigation-menu{ 
+ 
+  text-decoration: none; 
+   display: none;
+  flex-direction: row;  
+  position: absolute;  
+  top: 100px;  
+  right: 10px;  
+  background-color:transparent;  
+
+}   
+.hidden{
+  display: none;
+}  
+.show { 
+  display: flex; 
+  flex-direction: row;
+}   
+
+footer {
+  background-color: var(--bg-surface);
+  border-top: 1px solid var(--border-soft);
+  margin-top: 3rem;
+  padding: 2rem;
+  clear: both;
+  border: solid 3px #00231C;
+  height: fit-content;
+  width: 90vw;
+}  
+footer a {
+  color: var(--text-muted);
+}  
+footer a:hover {
+  color: var(--brand-pink);
+}  
+.subscribe-btn{
+  background-color:var(--brand-green);
+    border-radius: 10px;
+    box-shadow: 3px 3px 5px  #f7f7f7;
+    color: #014038;
+    font-size: 16px;
+    font-family: 'Arial';
+    font-weight: bold;
+    margin-bottom: 30px;
+    padding: 8px, 10px;
+    text-decoration: none;
+  }  
+  .subscribe-btn:hover {
+    background-color:var(--brand-pink);
+    border-color: #014038;
+
+  }  
+
+    /*hours table/ footer*/
+    #hours {
+      
+      background-color: #BDD4DA;
+      border: solid 2px #F0C06D;
+      border-collapse: collapse;
+      float: left;
+      margin: 5px;
+      margin-left: 10px;
+      width: 100%;
+      max-width: 200px;
+  }    
+
+  #hours td {
+    border: 1px solid  #00231C;
+    display: table-cell;
+    padding: 2px;
+    text-align: left;
+  }  
+  #hours th {
+    background-color: #BDD4DA;
+    color: #00231C;
+    font-weight: bold;
+  }  
+  #hours tr:nth-child(even) {
+    background-color: #f8f9fa;
+  }  
+  
+  #social {
+    align-items: flex-end;
+    float: right;
+    text-decoration: none;
+  
+  }  
+  #social-links img{
+    width: 40px;
+    }
+
+    /* fonts and headings*/
+    
+
+
+h1, h2, h3, h4 {
+  color: var(--brand-pink);
+  letter-spacing: 0.04em;
+  font-weight: 500;
+}
+
+/* ---------- Headings ---------- */
+h1{
+  font-family:  Georgia, 'Times New Roman', Times, serif;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  line-height: 1.2;
+  margin-bottom: 0.75rem;
+}
+
+h2 {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  line-height: 1.2;
+  margin-bottom: 0.75rem;
+}
+
+h3{
+  font-family:  'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  line-height: 1.3;
+  margin-bottom: 0.5rem;
+}
+
+h4 {
+  font-family:  fantasy;
+  font-weight: 300;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  line-height: 1.4;
+  margin-bottom: 0.5rem;
+}
+
+h5{
+
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: normal;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  line-height: 1.4;
+  margin-bottom: 0.5rem;
+}
+
+h6{
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform:  none;
+  line-height: 1.5;
+  margin-bottom: 0.4rem;
+}
+
+
+/* ---------- Specific Scale ---------- */
+h1 {
+  font-size: clamp(2.2rem, 3vw, 2.8rem);
+}
+
+h2 {
+  font-size: clamp(1.8rem, 2.5vw, 2.2rem);
+}
+
+h3 {
+  font-size: 1rem;
+}
+
+h4 {
+  font-size: 0.9rem;
+}
+h4 {
+  font-size: 16px;
+}
+
+h5{
+  font-size: 16px;
+}
+
+h6{
+  font-size: 15px;
+}
+
+/* ---------- Paragraphs & Captions ---------- */
+p {
+  font-size: 0.95rem;
+  line-height: 1.75;
+  max-width: 65ch;
+}
+
+figcaption {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  line-height: 1.4;
+  text-align: center;
+}

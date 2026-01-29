@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Its Sew Regina - home</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="css/index.css" rel="stylesheet">
+  <script type="module" src="scripts/index.js" defer></script>
+  <style>
+  
+  
+</style>
+</head>
+<body>
+  <!-- Live region for announcements -->
+<div id="status-region" role="status" aria-live="polite" class="visually-hidden"></div>
+
+<header>
+    
+<div class="bvn-logobar">
+<a href="/" class="logo">
+  <img src="images/itssewlogo.png"alt="Its Sew Regina Home" >
+</a>
+<!--Business Name-->
+<h1 >Its Sew Regina</h1>
+<button 
+class="hamburger-icon" 
+aria-label="Navigation menu" 
+aria-controls="main-menu">
+</button>
+   </div>
+
+   <nav aria-label="Main navigation" class="menu-mobile">
+   
+   <!--navigation list items-->
+   <ul class="navigation-menu" id="main-menu" >
+   <li><a href="index.html">Home</a></li>
+   <li><a href="gallery.html">Gallery</a></li>
+   <li><a href="aboutus.html">About Us</a></li>
+   <li><a href="foru.html">For You</a></li>
+  </ul>
+
+  <ol id="top-nav" >
+  <a href="index.html">Home</a>
+  <a href="gallery.html">Gallery</a>
+  <a href="aboutus.html">About Us</a>
+  <a href="foru.html">For you</a>
+  
+  </ol>
+</nav>
+
+</header>
+<main>
+    <!-- Cart Modal -->
+    <div id="users-card">
+   
+    <button id="open-cart" aria-haspopup="dialog" aria-controls="cart-modal">
+Open Cart
+</button>
+    <!-- Cart Modal -->
+    <div id="modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+
+      <div class="modal-content" role="group">
+        <button id="close-modal" class="close" aria-label="Close Modal">&times;</button>
+        <h2 id="modal-title" tabindex="-1"></h2>
+        <div id="modal-status-region" role="status" aria-live="polite" class="visually-hidden"></div>
+        <div id="modal-view-container" role="region" aria-labelledby="modal-title">
+        </div>
+        <div class="modal-actions">
+        </div>
+      </div>
+    </div>
+    <div id="cart-total"></div>
+  </div>
+
+
+  <div class="special-card" id="promo-bundle">
+    <h3 id="special-header">New to Gardening?</h3>
+    <h4> Try Our First time Bundle</h4>
+    <div class="special-items-container">
+      <figure class="special-product">
+        <figcaption>Potting Soil</figcaption>
+        <img src="images/purse1.png" alt="potting soil"  >
+      </figure>
+      <figure class="special-product">
+        <figcaption>Watering Can</figcaption>
+        <img src="images/purse2.jpg" alt="watering can" >
+      </figure>
+    </div>
+
+    
+    
+    <a href="gallery.html" id="linkgallery">see More</a>
+    <button class="add-bundle" data-id="bundle-special"><i class="fa-solid fa-cart-plus"></i>Add to cart</button>
+    <span class="price" id="special-price">$21.02</span>
+  </div>
+
+
+  <section>
+
+
+    <div class="starterpackage">
+      <h3>Starter's Package </h3>
+    <div id="duo">
+      <div class="bundle">
+
+        <figure class="bundle-deal">
+          <figcaption>Potting Soil +</figcaption>
+          <img src="images/purse3.jpg"
+                alt="potting soil" width="200px">
+        </figure>
+        
+        <figure class="bundle-deal">
+          <figcaption>Watering Can +</figcaption>
+          <img src="images/purse3.jpg"
+                alt="watering can" width="200px">
+
+        </figure>
+      </div>
+        <figure class="bundle-deal">
+          <figcaption>Aloe Plant</figcaption>
+          <img src="images/purse3.jpg"
+                alt="aloe plant" width="200px">
+
+        </figure>
+
+      </div>
+      <button class="add-starter-package" data-id="bundle-starter"><i class="fa-solid fa-cart-plus"></i>Add to cart</button>
+      <span class="price" id="starter-price" alt="Starter package price">$29.99</span>
+    </div>
+
+    <p id="discount"><strong>Members Discount !!</strong><br>Existing members get a 30% discount on forth in-store visit
+    </p>
+  </section>
+
+  <div class="aside-article-container">
+
+    <article>
+      <div class="carousel">
+        <div class="carousel-track">
+
+          <div class="slide">
+            <div class="carousel-card-header">
+              <h3 id="topic">Spring sell</h3>
+            </div>
+            <div class="carousel-card-body ">
+              <p class="carousel-card-text">"We picked up a few aloe vera and spider plants during the nursery's spring
+                sale. The staff helped us choose beginner-friendly plants, and now our kitchen is full of life <br>-Neighborhood Resident-
+              </p>
+            </div>
+          </div>
+
+
+          <div class="slide">
+            <div class="carousel-card-header">
+              <h3>Day At The Park</h3>
+            </div>
+            <div class="carousel-card-body">
+              <p class="carousel-card-text">"Every spring, [Nursery Name] co-hosts a free plant swap and garden day in
+                the park. They bring extra seedlings, free soil scoops, and host a 'Repotting 101' workshop for all
+                ages."<br>— Lina Chen, Local Volunteer Organize</p>
+            </div>
+          </div>
+
+
+          <div class="slide">
+            <div class="carousel-card-header">
+              <h3>Free Plant Swap</h3>
+            </div>
+            <div class="carousel-card-body">
+              <p class="carousel-card-text">donated herbs, succulents, and soil for our indoor gardening program. Our
+                seniors love tending to the plants and learning how to use herbs like rosemary and mint in tea."<br>— — Darla Nguyen, Program Director
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+        <button class="carousel-btn prev" >&#10094;</button>
+        <button class="carousel-btn next">&#10095;</button>
+      </div>
+    </article>
+    <aside>
+      <div class="gallery-product-category">
+        <h3 class="topic">Growing In The Garden</h3>
+        <p>Press a selection to view by category</p>
+        <div class="default-category" id="default-selection">
+          <button class="main-category-select" id="show-equipment-category">
+    Equipment
+  </button>
+          <button class="main-category-select" id="show-tree-category">
+     Trees
+    </button>
+          <button class="main-category-select" id="show-plant-category">
+    Plants
+  </div>
+  <button id="close-category" >Close</button>
+          <div class="category">
+            <a
+              href="gallery.html"><img class="tree-category" src="images/purse1.png" alt="click here for birch tree description"></a>
+            <a
+              href="gallery.html"><img class="tree-category" src="images/purse1.png" alt="click here for maple trees description"></a>
+            <a href="gallery.html"><img  class="tree-category" src="images/purse1.png" alt="click here for apple trees description"></a>
+          </div>
+          <div class="category">
+            <a
+              href="gallery.html"><img class="plant-category" src="images/purse1.png" alt="click here for string of peerls plant description"></a>
+            <a
+              href="gallery.html"><img class="plant-category" src="images/purse1.png" alt="click here for the spider plant description"></a>
+            <a
+              href="gallery.html"><img class="plant-category" src="images/purse1.png" alt="click here for aloe plants description"></a>
+          </div>
+          <div class="category">
+            <a
+              href="gallery.html"><img class="equipment-category" src="images/purse1.png" alt="click here for wwatering can description"></a>
+            <a
+              href="gallery.html"><img class="equipment-category" src="images/purse1.png" alt="click here for birdhouse's description"></a>
+            <a
+              href="gallery.html"><img class="equipment-category" src="images/purse1.png" alt="click here for potting soil description"></a>
+          </div>
+          <button id="category-gallery"><a href="gallery.html">see gallery</a></button>
+
+        </div>
+    </aside>
+  </div>
+</main>
+<footer>
+  <table id="hours">
+    <tr>
+      <th colspan="3">Hours of Operation</th>
+    </tr>
+    <tr>
+      <th>Days</th>
+      <th>Open</th>
+      <th>Close</th>
+    </tr>
+    <tr>
+      <td>Mon-Friday</td>
+      <td>9 a.m</td>
+      <td>6 p.m</td>
+    </tr>
+    <tr>
+      <td>Sat-Sun</td>
+      <td>10 a.m</td>
+      <td>5 p.m</td>
+    </tr>
+  </table>
+  <div id="social-links">
+    <a
+      href="http://facebook.com/html"><img aria-label="follow us on face book page"  class="social1" src="images/SVG/facebook.svg"></a>
+    <a
+      href="http://linkedin.com/html"><img aria-label="connect to our linked in profile "class="social2" src="images/SVG/linkedin.svg"></a>
+    <a
+      href="http://pinterest.com/html"><img aria-label="click here to find our pinterest account " class="social3" src="images/SVG/pinterest.svg"></a>
+  </div>
+  <nav class="footer-nav">
+    <ol>
+      <a href="index.html">Home</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="aboutus.html">About Us</a>
+      <a href="foru.html">For you</a>
+    </ol>
+    <form class="footer-subscribe" action="">
+      <input type="email" name="email" id="emailToSubscribe" autocomplete="off" />
+      <input class="subscribe-btn" type="submit" for="submit" name="submit"_parent>
+    </form>
+  </nav>
+</footer>
+</div>
+<script src="scripts/cart.js"></script>
+<script src="scripts/carousel.js" media="print"></script>
+<script src="scripts/modal.js" media="print"></script>
+<script src="scripts/main.js"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://kit.fontawesome.com/668995576d.js" crossorigin="anonymous"></script>
+</body>
+
+</html>

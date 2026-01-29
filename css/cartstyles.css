@@ -1,0 +1,181 @@
+
+/*region for screen reader announcements*/
+.sr-only {
+  height: 1px;
+  left: -9999px;
+  position: absolute;
+  width: 1px;
+  overflow: hidden;
+}
+/*Cart view/ summary */
+#users-card{
+  background-color: #96BAA0;
+  border: #F0C06D 2px solid;
+  padding: 10px;
+  margin: 3px;
+  max-width: fit-content;
+  border-radius: 10px;
+  justify-self: end;
+
+  
+}
+
+/*Modal/ hidden */
+.modal {
+ display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  inset: 0;
+  background: #01362c8a;
+  transition: opacity 0.2s ease;
+  z-index: 9999;
+}
+
+
+.modal.hidden {
+  display: none;
+}
+
+
+.modal-content {
+ animation: ease-in-out;
+ border-radius: 8px;
+ box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+ background: white;
+ outline: none;
+ position: relative;
+ padding: 20px;
+ text-align: center;
+ width: 320px;
+}
+
+#modal-view-container{
+ 
+  border: solid 2px #000;
+   border-radius: 15px;
+   display: inline-block;
+
+   margin-left: 2px;
+   margin-right: 2px;
+   overflow: auto;
+   padding: 2px;
+   padding-left: 5px;
+   padding-right: 5px;
+   width: fit-content;
+ }
+
+ .cart-view-modal{
+  border: solid 2px #000;
+   border-radius: 15px;
+   display: inline-block;
+ 
+   margin-left: 2px;
+   margin-right: 2px;
+   overflow: auto;
+   padding: 2px;
+   padding-left: 5px;
+   padding-right: 5px;
+   width: fit-content;
+
+ }
+
+ .product-modal{
+  border: solid 2px rgb(212, 25, 25);
+  border-radius: 15px;
+
+ 
+  overflow: auto;
+
+  width: fit-content;
+ }
+ #cart-title{
+color: #00231C;
+margin: 1px;
+padding: 1px;
+
+ }
+
+
+ #cart-total p{
+   display: block;
+   font-weight: bold;
+   margin: 1px;
+   color: #00231C;
+ }
+ 
+ .clear-cart{
+   background-color:#BDD4DA;
+   border-radius: 10px;
+   box-shadow: 2px #96BAA0;
+   color: #00231C;
+   font-weight: bold;
+   margin: 2px 1px;
+   padding: 1px 2px 1px 2px;
+ 
+ 
+ }
+ .order-now:hover{
+   background-color: #96BAA0;
+   color:  #00231C;
+ 
+ }
+ .order-now{
+   background-color: #BDD4DA;
+   border-radius: 10px;
+   box-shadow: 2px #96BAA0;
+   font-weight: bold;
+   margin: 2px 1px;
+   padding: 1px 3px 1px 3px;
+ }
+ 
+ 
+
+ .close {
+   font-size: 1.0rem;
+   cursor: pointer;
+   color: #00231C;
+   position: absolute;
+   right: 10px;
+   top: 10px;
+ }
+ 
+ 
+ 
+ #open-cart {
+   background:#F0C06D;
+   border: none;
+   border-radius: 6px;
+   color: #00231C;
+   cursor: pointer;
+   font-size: 1rem;
+   margin: 1px 2px;
+   max-width: fit-content;
+   padding: 2px 2px;
+ }
+ 
+ #open-cart:hover {
+   background: #BDD4DA;
+ }
+ 
+ button:focus, .close:focus {
+   outline: 2px solid #00231C;
+   outline-offset: 2px;
+ }
+ 
+ 
+
+ /*Galery card add to crt button  (appended)*/
+ .add-to-cart{
+  border: 0px;
+  max-width: fit-content;
+ }
+ 
+ .add-to-cart button:hover{
+ background-color: #BDD4DA;
+ 
+ 
+ }
+ 
+ 
+ 

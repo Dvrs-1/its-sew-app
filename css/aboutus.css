@@ -1,0 +1,39 @@
+
+
+
+
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+
+
+main {
+  gap: 10px;
+  max-width: 1200px;
+  padding: 2rem;
+  display:grid;
+  grid-template-columns: auto;
+}
+
+
+
+
+#aboutus::first-letter {
+initial-letter: 3;
+padding-top: 4px;
+padding-right: 4px;
+padding-left: 4px;
+}
+
+#subToNewsletter{
+border: solid #014038 5px;
+padding: 20px;
+margin: 10px 20px 15px 15px;
+}
+
+
+

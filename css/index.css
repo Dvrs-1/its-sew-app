@@ -1,0 +1,187 @@
+/* Desktop layout */
+@media (min-width: 769px) {
+  
+  main{
+    display: grid;
+    grid-template-columns: 2fr 2fr 1fr;
+  }
+  
+  .starterpackage { 
+    grid-column: 2;
+  }
+  #duo{
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: row;
+  border-radius: 10px;  
+}
+aside{
+  grid-column: 3;
+}
+
+}
+
+/* Mobile layout */
+@media (max-width: 768px) {
+  .special-items-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  }
+  .bundle{
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  }
+  .aside-article-container{
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  }
+  aside{
+  float: right;
+  }
+}
+
+    /* Base styles (shared) */
+    main{
+      gap: 1.5rem;
+      padding: 3rem 2rem;
+      max-width: 1200px;
+    }
+
+      
+  img {
+    max-width: 100%;
+    height: auto;
+    
+  }
+
+  .price{
+    margin: 1px;
+    border-radius: 999px;
+    font-weight: bold;
+    background-color: transparent;
+    color: var(--brand-green);
+    border: 1px solid var(--brand-green);
+    padding: 0.4rem 0.75rem;
+    font-size: 1.2rem;
+  }
+
+  /*First time Bundle*/
+
+.special-card{
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-soft);
+  box-shadow: var(--shadow-soft);
+  border-radius: 18px;
+  grid-column: 1;
+  margin-left: 2px;
+  max-width: 90vw; 
+  padding: 1.4rem; 
+ 
+}
+#special-header{
+  margin: 1px;
+}
+.special-items-container{
+  background-color: #BDD4DA;
+  border-radius: 10px;
+  margin: 2px 3px;
+  justify-content: center;
+}
+
+.special-product img{
+  border-radius: 10px;
+  width:90vw;
+}
+
+figcaption {
+  
+  font-style: normal;
+  font-family: 'Courier New', Courier, monospace;
+  text-align:  center;
+  margin: 2px;
+  font-weight: bold;
+  color:  #00231C;
+}
+
+section{
+  justify-content: center;
+}
+.bundle{
+  background-color: #BDD4DA;
+  display: grid;
+ border-radius: 10px;
+  margin: 2px 3px;
+  justify-content: center;
+}
+
+.starterpackage { 
+  border-radius: 20px;
+    margin-left: 2px;
+    max-width: 90vw; 
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-soft);
+    box-shadow: var(--shadow-soft);
+    padding: 1.25rem;
+  }
+  .starterpackage img {
+    border-radius: 10px;
+    width: 100%;
+    max-width: 400px;
+  
+  }
+  #discount{
+    background-color: var(--bg-surface);
+    border: 1px dashed var(--brand-green);
+    color: var(--text-main);
+    border-radius: 14px;
+    padding: 0.75rem;
+    justify-content: center;
+    margin-top: 10px;
+   
+  }
+  .aside-article-container{
+    background-color: #014038;
+    border-radius: 10px;
+    display: grid;
+    margin: 2px 3px;
+    justify-content: center;
+  }
+  article{
+    margin: 2px;
+  }
+  aside{
+    justify-content: center;
+    margin-top: 10px;
+  }
+  .gallery-product-category{
+ 
+    max-width: fit-content; 
+    margin-right: 2px;
+    padding: 5px; 
+    background-color: var(--bg-muted);
+    border: 1px solid var(--border-soft);
+    box-shadow: var(--shadow-soft);
+    border-radius: 16px;
+   
+  }
+
+  .gallery-product-category img {
+    border: none;
+    border-radius: 14px;
+  
+  }
+  .main-category-select{
+    border: solid 2px #014038;
+    display: block;
+  }
+  
+  .tree-category{
+    display: none;
+  
+  }
+  .plant-category{
+    display: none;
+  }
+  .equipment-category{
+    display: none;
+  }
+

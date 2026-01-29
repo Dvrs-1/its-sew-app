@@ -1,0 +1,26 @@
+[
+  {
+    "id": 431,
+    "name": "Apple Tree",
+    "price": 80.95,
+    "image": "images/purse3.jpg",
+    "alt": "Apple tree with ripening red fruit and green leaves",
+    "description": "Premium-grade selected for high yield, disease resistance, and ease of maintenance."
+  },
+  {
+    "id": 300,
+    "name": "Large Purse",
+    "price": 14.36,
+    "image": "images/purse6.jpg",
+    "alt": "Large Purse with custom design",
+    "description": "custom purse with sports lining."
+  },
+  {
+    "id": 301,
+    "name": "Small Purse",
+    "price": 30.00,
+    "image":"images/purse4.jpg",
+    "alt": "small purse with sports lining",
+    "description": "small other custom purse with sports lining."
+  }
+]

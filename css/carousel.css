@@ -1,0 +1,44 @@
+.carousel {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  margin: 1px;
+  background-color:#f0c06d;
+  
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.carousel-track {
+  display: flex;
+  transition: transform 0.5s ease;
+}
+.carousel-card-text{
+  color: #00231C;
+}
+.slide {
+  min-width: 100%;
+  box-sizing: border-box;
+}
+
+
+.carousel-btn {
+  position: absolute;
+  top: 85%;
+  transform: translateY(-60%);
+  background-color: rgba(0,0,0,0.5);
+  border: none;
+  color: #00231C ;
+  font-size: 2rem;
+  padding: 0 5px;
+  cursor:  pointer;
+  border-radius: 5px;
+}
+
+.prev { left: 5px; }
+.next { right: 5px; }
+
+.carousel-btn:hover {
+  background-color:#014038;
+}

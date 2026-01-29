@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Its Sew Regina - About Us</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="css/aboutuss.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/dompurify@3.0.6/dist/purify.min.js"></script>
+  <script src="scripts/aboutus.js" defer></script>
+  <style>
+  </style>
+</head>
+
+<body>
+  <div id="status-region" role="status" aria-live="polite" class="visually-hidden"></div>
+  <header>
+
+
+
+
+    <div class="bvn-logobar">
+    <a href="/" class="logo">
+      <img src="images/itssewlogo.png"alt="Its Sew Regina Home" >
+    </a>
+      <h1>Its Sew Regina</h1>
+      <button class='hamburger-icon'aria-label="Open menu" aria-expanded="false" aria-controls="main-menu"></button>
+      <!--Page header-->
+    </div>
+
+
+
+
+
+    <nav aria-label="Main navigation" class="menu-mobile">
+
+      <!--navigation list items-->
+      <ul class="navigation-menu" role="main-menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="aboutus.html">About Us</a></li>
+        <li><a href="foru.html">For You</a></li>
+      </ul>
+
+      
+      <ol id="top-nav" >
+      <a href="index.html">Home</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="aboutus.html">About Us</a>
+      <a href="foru.html">For you</a>
+      
+    </nav>
+
+
+
+
+
+
+  </header>
+
+
+  <main>
+
+
+    <!-- Cart Modal -->
+    <div id="users-card">
+   
+    <button id="open-cart" aria-haspopup="dialog" aria-controls="cart-modal">
+Open Cart
+</button>
+    <!-- Cart Modal -->
+    <div id="modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+
+      <div class="modal-content" role="group">
+        <button id="close-modal" class="close" aria-label="Close Modal">&times;</button>
+        <h2 id="modal-title" tabindex="-1"></h2>
+        <div id="modal-status-region" role="status" aria-live="polite" class="visually-hidden"></div>
+        <div id="modal-view-container" role="region" aria-labelledby="modal-title">
+        </div>
+        <div class="modal-actions">
+        </div>
+      </div>
+    </div>
+    <div id="cart-total"></div>
+  </div>
+
+
+
+
+
+
+    <h2 class="h2" id="page-header">About BVN</h2>
+
+
+    <h1 class="h1">Here's the latest news!</h1>
+
+
+    <h3 class="h3">About Bloom Valley Nursery</h3>
+    <p id="aboutus">Bloom Valley Nursery operates as a local, family-owned plant nursery in the area, specializing in
+      the sale of a wide variety of plants, trees, and gardening supplies. It aims to connect with gardening enthusiasts
+      and homeowners in the community who share a passion for horticulture. While the client does not have an existing
+      website, it reflects the natural beauty through plant nursery and resonates with gardening enthusiasts in the
+      local
+      community.<br> As the client focuses on sustainability and creativity in its operations, the primary goal of the website is to enhance visibility in the local market, foster community engagement, and facilitate customer inquiries and orders.<br> Its target audience comprises local gardening enthusiasts and homeowners seeking high-quality plants and gardening supplies.
+    </p>
+
+
+
+
+    <legend>Contact Us</legend>
+
+    <form action="process.php" method="POST" class="subToNewsletter" id="subToNewsletter" autocomplete="off">
+      <div>
+        <div id="session-storage-submission"></div>
+        <div id="result"></div>
+
+
+
+        <label for="name">Name:
+      <input  name="name" id="name" type="text" autocomplete="off"  ></label><br />
+
+        <label for="email">E-Mail:   
+      <input  name="email" id="email"type="email" required autocomplete="off" ></label><br />
+
+        <label for="phone">Phone: 
+      <input type="tel" name="phone" id="phone"  pattern="[0-9]{10}" minlength="10" maxlength="10" placeholder="123-456-7890"  aria-label="3-digit area code" autocomplete="off" ></label><br />
+
+        <label for="feedback">Feedback/Order information:</label>
+        <textarea name="feedback" id="feedback" rows="5" cols="25"required>  </textarea><br />
+        <label>Custom Order: 
+          <input type="checkbox" name="customOrder" id="custom-order" /></label><br />
+        <br />
+
+
+
+        <input type="submit" name="submit" value="Submit"  />
+        <input id="clear-form"type="reset" value="Clear Form" />
+
+      </div>
+
+    </form>
+
+
+
+  </main>
+
+  <footer>
+    <div class="container" id="footer-container">
+      <div class="footer-row" id="hourstable">
+        <h3>Hours of Operation</h3>
+        <table id="hours">
+          <tr>
+            <th colspan="3">Hours of Operation</th>
+          </tr>
+          <tr>
+            <th>Days</th>
+            <th>Open</th>
+            <th>Close</th>
+          </tr>
+          <tr>
+            <td>Mon-Friday</td>
+            <td>9 a.m</td>
+            <td>6 p.m</td>
+          </tr>
+          <tr>
+            <td>Sat-Sun</td>
+            <td>10 a.m</td>
+            <td>5 p.m</td>
+          </tr>
+        </table>
+      </div>
+      <div id="social-links">
+        <a href="http://facebook.com/html"><img class="social1" src="images/SVG/facebook.svg"></a>
+        <a href="http://linkedin.com/html"><img class="social2" src="images/SVG/linkedin.svg"></a>
+        <a href="http://pinterest.com/html"><img class="social3" src="images/SVG/pinterest.svg"></a>
+      </div>
+      <nav class="footer-nav">
+        <ol>
+          <a href="index.html">Home</a>
+          <a href="gallery.html">Gallery</a>
+          <a href="aboutus.html">About Us</a>
+          <a href="foru.html">For you</a>
+        </ol>
+      </nav>
+      <form class="footer-subscribe" action="">
+        <input type="email" name="email" id="emailToSubscribe"  autocomplete="email">
+        <input class="subscribe-btn" type="submit" for="submit" name="submit"_parent>
+
+      </form>
+    </div>
+  </footer>
+  <script src="scripts/modal.js"></script>
+  <script src="scripts/cart.js"></script>
+  <script src="scripts/main.js"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://kit.fontawesome.com/668995576d.js" crossorigin="anonymous"></script>
+</body>
+
+</html>
