@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   const link = document.createElement('link');
   link.rel = 'stylesheet';
-  link.href = 'css/carousel.css';
+  link.href = '/static/css/carousel.css';
   document.head.appendChild(link);
 
 

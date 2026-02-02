@@ -1,38 +1,32 @@
 
 
-
-
-
-
-from flask import Flask, jsonify, send_from_directory
+from flask import Flask, jsonify, send_from_directory, render_template
 import json
 import os
 
-app = Flask(__name__, static_folder="")  # serve files from project root
+app = Flask(__name__)  # <-- IMPORTANT: no static_folder override
 
-# ---------- API endpoint ----------
 @app.get("/api/products")
 def get_products():
-    # Load your JSON file from the data folder
-    data_file = os.path.join("data", "products.json")
-    with open(data_file, "r") as f:
-        products = json.load(f)
-    return jsonify(products)
+    with open(os.path.join("data", "products.json")) as f:
+        return jsonify(json.load(f))
 
-# ---------- Serve static files (HTML, CSS, JS) ----------
-@app.get("/<path:filename>")
-def serve_file(filename):
-    return send_from_directory("", filename)
+@app.get("/gallery")
+def gallery():
+    return render_template("gallery.html")
 
-# Serve root page (gallery.html) if just / is requested
+@app.get("/aboutus")
+def about():
+    return render_template("aboutus.html")
+
+@app.get("/foru")
+def for_you():
+    return render_template("foru.html") 
+
 @app.get("/")
-def root():
-    return send_from_directory("", "gallery.html")
+def index():
+    return render_template("index.html")
 
-# ---------- Run server ----------
 if __name__ == "__main__":
     app.run(debug=True)
-
-
-
     

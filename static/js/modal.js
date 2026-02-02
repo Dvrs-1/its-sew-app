@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const link = document.createElement('link');
   link.rel = 'stylesheet';
   link.type = 'text/css';
-  link.href = 'css/cartstyles.css';
+  link.href = "/static/css/cartstyles.css";
   document.head.appendChild(link);
 
   const modalContainer = document.getElementById("modal-view-container");

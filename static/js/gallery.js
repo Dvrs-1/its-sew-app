@@ -5,7 +5,7 @@
 
  const API_BASE = window.location.origin;  // dynamically grabs current host + protocol
 
-fetch(`${API_BASE}/api/products`)
+fetch(`${window.location.origin}/api/products`)
    .then(res => res.json())
    .then(products => {
      products.forEach(product => {
