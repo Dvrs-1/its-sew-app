@@ -2,8 +2,10 @@
 
  const productMap = new Map();
 
- //fetch("/data/products.json")
-fetch(/api/products)
+
+ const API_BASE = window.location.origin;  // dynamically grabs current host + protocol
+
+fetch(`${API_BASE}/api/products`)
    .then(res => res.json())
    .then(products => {
      products.forEach(product => {
