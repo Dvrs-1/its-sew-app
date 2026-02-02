@@ -1,17 +1,17 @@
 [
   {
     "id": 431,
-    "name": "Apple Tree",
+    "name": "Afro Bag",
     "price": 80.95,
-    "image": "images/purse3.jpg",
-    "alt": "Apple tree with ripening red fruit and green leaves",
-    "description": "Premium-grade selected for high yield, disease resistance, and ease of maintenance."
+    "image": "images/products/afroculturelgb1.1.webp",
+    "alt": "Large bag with Afro culture design",
+    "description": "Premium-grade fabric selected for high yield, tear resistance, and ease of maintenance."
   },
   {
     "id": 300,
-    "name": "Large Purse",
+    "name": "Tan afro Culture",
     "price": 14.36,
-    "image": "images/purse6.jpg",
+    "image": "images/products/tanafrolgb2.1.webp",
     "alt": "Large Purse with custom design",
     "description": "custom purse with sports lining."
   },
@@ -19,7 +19,7 @@
     "id": 301,
     "name": "Small Purse",
     "price": 30.00,
-    "image":"images/purse4.jpg",
+    "image":"images/products/smallpurse1.webp",
     "alt": "small purse with sports lining",
     "description": "small other custom purse with sports lining."
   }
