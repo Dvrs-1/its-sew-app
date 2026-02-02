@@ -2,7 +2,8 @@
 
  const productMap = new Map();
 
- fetch("/data/products.json")
+ //fetch("/data/products.json")
+fetch(/api/products)
    .then(res => res.json())
    .then(products => {
      products.forEach(product => {
