@@ -1,3 +1,9 @@
 /.vscode
 /foruee.html
 /package-lock.json
+__pycache__/
+*.pyc
+.env
+node_modules/
+venv/
+tmp/
