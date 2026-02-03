@@ -3,88 +3,65 @@ document.addEventListener('DOMContentLoaded', function() {
   
 
   cleanupExpiredStorage();
-  const form = document.querySelector('form[action="process.php"]');
+  const form = document.getElementById('custom-order-form');
   const resultDiv = document.getElementById('result');
 
 
   
-  if (form) {
-    form.addEventListener('submit', function(e) {
-      e.preventDefault(); 
-      
-      // Get form data
-            const rawName = document.getElementById("name").value.trim();
-            const rawPhone = document.getElementById("phone").value;
-            const rawEmail = document.getElementById("email").value.trim();
-            const rawFeedback = document.getElementById("feedback").value.trim();
-            const customOrder = document.getElementById("custom-order").checked;
-           
+  form.addEventListener('submit', function (e) {
+  e.preventDefault();
 
-            if (!rawName || !rawEmail) {
-              alert('Please fill in both name and email fields.');
-              return;
-            }
+  const rawName = document.getElementById("name").value.trim();
+  const rawPhone = document.getElementById("phone").value;
+  const rawEmail = document.getElementById("email").value.trim();
+  const rawFeedback = document.getElementById("feedback").value.trim();
+  const customOrder = document.getElementById("custom-order").checked;
 
-            const name = DOMPurify.sanitize(rawName);
-            const phone = DOMPurify.sanitize(rawPhone);
-            const email = DOMPurify.sanitize(rawEmail);
-            const feedback = DOMPurify.sanitize(rawFeedback);
+  if (!rawName || !rawEmail) {
+    alert('Please fill in both name and email fields.');
+    return;
+  }
 
+  const customerInfo = {
+    name: DOMPurify.sanitize(rawName),
+    phone: DOMPurify.sanitize(rawPhone),
+    email: DOMPurify.sanitize(rawEmail),
+    feedback: DOMPurify.sanitize(rawFeedback),
+    customOrder: customOrder
+  };
 
-            const customerInfo = {
-              name: name,
-              phone: phone,
-              email: email,
-              feedback: feedback,
-              customOrder: customOrder
-            };
+  resultDiv.textContent = "Submitting…";
 
+  fetch("/api/process", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(customerInfo)
+  })
+    .then(res => {
+      if (!res.ok) {
+        throw new Error("Server error");
+      }
+      return res.json();
+    })
+    .then(data => {
+      if (data.status !== "success") {
+        throw new Error("Submission failed");
+      }
 
-            const xhr = new XMLHttpRequest();
-            xhr.open('POST', 'process.php', true);
-            xhr.responseType = 'json'
-            xhr.timeout = 5000;
-            xhr.onreadystatechange = function() {
-              if (xhr.readyState === 4 && xhr.status === 200) {
-                resultDiv.textContent = xhr.response;
-              }
-            };
-            xhr.setRequestHeader('Content-Type', 'application/json');
-            xhr.send(JSON.stringify(customerInfo));
-        
+      // ✅ Server confirmed success — NOW we proceed
+      const keyValue = `user_${customerInfo.name}_${Date.now()}`;
+      setTimedStorage(keyValue, customerInfo, 5000);
 
-        
-            xhr.ontimeout = function() {
-              resultDiv.textContent = "The server took too long to respond. Please try again.";
-            
-            };
-            
-            //  Network failure
-            xhr.onerror = function() {
-              resultDiv.textContent = "Network error. Check your connection and retry.";
-            };
-
-
-      //customer Objects for Local Storage
-
-            const keyValue = `user_${name}_${new Date()}`;
-
-            /*
-            sessionStorage.setItem(keyValue, JSON.stringify(customerInfo));
-            */
-
-            //setting time limit for submitted customer information to be stored in locat storage
-            setTimedStorage(keyValue, customerInfo, 5000)//ms value
-      
-              //access and parse local data back out of localStorage in order to USE
-              const who = JSON.parse( localStorage.getItem(keyValue) );
-              if(who){
-            
-            displaySubmissionResult(who);
-          }else{console.warn('no user data in Local storage');}
-
-          });
-        }
+      displaySubmissionResult(customerInfo);
+      resultDiv.textContent = "";
+    })
+    .catch(err => {
+      console.error(err);
+      resultDiv.textContent = "Submission failed. Please try again.";
+    });
+});
 
         // *** setting timed storage for localStorage of user information
 function setTimedStorage(keyValue, value, duration, onExpire){
@@ -153,7 +130,7 @@ function cleanupExpiredStorage() {
               <p><strong>Name:</strong> ${who.name}</p>
               <p><strong>Email:</strong> ${who.email}</p>
               <p>Thank you for your message!</p>
-              <a href="aboutus.html" style="color: #155724; text-decoration: underline;">Back to page</a>
+              <a href="/aboutus" style="color: #155724; text-decoration: underline;">Back to page</a>
           `;
         
           displayedUserSubmission.appendChild(resultDiv);

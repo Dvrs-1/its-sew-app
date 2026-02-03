@@ -1,10 +1,18 @@
-
-
-from flask import Flask, jsonify, send_from_directory, render_template
-import json
+print("THIS is server.py")
+from flask import Flask, request, jsonify, send_from_directory, render_template
+import json 
 import os
 
 app = Flask(__name__)  # <-- IMPORTANT: no static_folder override
+
+from flask_limiter import Limiter
+from flask_limiter.util import get_remote_address
+
+limiter = Limiter(
+    get_remote_address,
+    app=app,
+    default_limits=["200 per day", "50 per hour"]
+)
 
 
 @app.route("/")
@@ -31,6 +39,42 @@ def get_products():
         return jsonify(json.load(f))
     
 
+
+
+import html
+
+@app.route("/api/process", methods=["POST"])
+@limiter.limit("5 per minute, 10 per hour")
+def process_form():
+    data = request.get_json(silent=True)
+
+    if not data:
+        return jsonify({"status": "error", "message": "Invalid JSON"}), 400
+
+    # Sanitize (equivalent to htmlspecialchars)
+    name = html.escape(data.get("name", ""))
+    email = html.escape(data.get("email", ""))
+    phone = html.escape(data.get("phone", ""))
+    feedback = html.escape(data.get("feedback", ""))
+    custom_order = bool(data.get("customOrder", False))
+
+    response = {
+        "status": "success",
+        "data": {
+            "name": name,
+            "email": email,
+            "phone": phone,
+            "feedback": feedback,
+            "customOrder": custom_order
+        }
+    }
+
+    return jsonify(response), 200
+
+
+
+
+print(app.url_map)
+
 if __name__ == "__main__":
-    app.run(debug=True)
-    
+ app.run(debug=True)
