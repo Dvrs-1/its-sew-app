@@ -5,55 +5,44 @@
   <title>Its Sew Regina - About Us</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="/static/css/aboutus.css" rel="stylesheet">
+  <link href="/static/css/aboutus.css?v=2026-02-04" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/dompurify@3.0.6/dist/purify.min.js"></script>
-  <script src="static/js/aboutus.js" defer></script>
+  <script src="static/js/aboutus.js?v=2026-02-04" defer></script>
   <style>
   </style>
 </head>
 
 <body>
-  <div id="status-region" role="status" aria-live="polite" class="visually-hidden"></div>
   <header>
-
-
-
-
+    
     <div class="bvn-logobar">
-    <a href="/" class="logo">
-      <img src="static/images/itssewlogo.png"alt="Its Sew Regina Home" >
-    </a>
-      <h1>Its Sew Regina</h1>
-      <button class='hamburger-icon'aria-label="Open menu" aria-expanded="false" aria-controls="main-menu"></button>
-      <!--Page header-->
-    </div>
-
-
-
-
-    <nav aria-label="Main navigation" class="menu-mobile">
-
-      <ul class="navigation-menu" role="main-menu">
-        <li><a href="/">Home</a></li>
-        <li><a href="/gallery">Gallery</a></li>
-        <li><a href="/aboutus">About Us</a></li>
-        <li><a href="/forum">For You</a></li>
-      </ul>
-
-      <ol id="top-nav" >
-      <a href="/">Home</a>
-      <a href="/gallery">Gallery</a>
-      <a href="/aboutus">About Us</a>
-      <a href="/forum">For you</a>
+      <a href="/" class="logo">
+        <img src="/static/images/itssewlogo.png" alt="Its Sew Regina Home" >
+      </a>
+      <!--Business Name-->
+      <h1 >Its Sew Regina</h1>
+      <!-- Live region for announcements -->
       
-      </ol>
-    </nav>
-
-
-
-
-
-
+      <nav aria-label="Main navigation" class="menu-mobile">
+        
+        <ul class="navigation-menu" role="main-menu">
+          <li><a href="/">Home</a></li>
+          <li><a href="/gallery">Gallery</a></li>
+          <li><a href="/aboutus">About Us</a></li>
+          <li><a href="/forum">For You</a></li>
+        </ul>
+        
+        <ol id="top-nav" >
+          <a href="/">Home</a>
+          <a href="/gallery">Gallery</a>
+          <a href="/aboutus">About Us</a>
+          <a href="/forum">For you</a>
+          
+        </ol>
+      </nav>
+    </div>
+    
+    
   </header>
 
 
@@ -140,7 +129,13 @@ Open Cart
 
     </form>
 
-
+<div class="hero-group-container">
+<a class="hero-group-option"href="/">Home</a>
+<a class="hero-group-option"href="/gallery">Gallery</a>
+<a class="hero-group-option"href="/aboutus">About Us</a>
+<button class="hero-group-option" id="hamburger-icon" aria-label="Navigation menu" 
+aria-controls="main-menu"></button>
+</div>
 
   </main>
 
