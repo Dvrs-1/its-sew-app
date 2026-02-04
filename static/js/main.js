@@ -19,12 +19,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-  $( ".justA" ).attr( "href", "aboutus.html" );
+  
 
       
       //appending the hamburger item(id=newHamburger)
 
-      const menuToggle = document.querySelector('.hamburger-icon')
+      const menuToggle = document.getElementById('hamburger-icon')
  
   
       if (menuToggle) {
@@ -53,14 +53,14 @@ document.addEventListener('DOMContentLoaded', function() {
         $menu.toggleClass("show hidden");
         if ($menu.hasClass("show")) {
           console.log("Menu is now visible");
-          makeAnouncement('Navigation menu open')
+         // makeAnouncement('Navigation menu open')
       
           $("#newHamburger").attr("aria-expanded", "true");
           toggleAriaExpanded(menuButton, mainMenu)
      
         } else {
           console.log("Menu is now hidden");//check console
-         makeAnouncement('Navigation menu closed')
+         // makeAnouncement('Navigation menu closed')
     
         }
       });
@@ -97,7 +97,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Store sanitized email in local storage
         const subscribedEmail = { email: sanitizedEmail };
-        localStorage.setItem("subscribedEmail", JSON.stringify(subscribedEmail));
+        sessionStorage.setItem("subscribedEmail", JSON.stringify(subscribedEmail));
 
         alert(`Subscription saved for: ${sanitizedEmail}`);
         emailInput.value = "";
@@ -140,18 +140,30 @@ document.addEventListener('DOMContentLoaded', function() {
     
     
     
-    
+    /*
+//HTML to add status region to page:
+ <div id="status-region" role="status" aria-live="polite" >_</div> 
+
   function makeAnouncement(message, regionId = "status-region") {
     const region = document.getElementById(regionId);
     if (region) {
-      region.textContent = ""; //forced reading 
+      region.textContent = " "; //forced reading 
       setTimeout(() => {
-        region.textContent = message;
+        const announcement = document.createElement('span');
+        announcement.setAttribute('role', 'status');
+        announcement.setAttribute('aria-live', 'polite');
+        announcement.setAttribute('aria-atomic', 'true');
+        announcement.textContent = message;
+
+
+        region.appendChild(announcement)
+
+
       }, 400);
     }
   }
 
-
+*/
 
     });
 

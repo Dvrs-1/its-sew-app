@@ -137,18 +137,27 @@ document.addEventListener('DOMContentLoaded', () => {
       modalTitle.textContent = title.textContent
     
       const modalImage = document.createElement("img");
+      modalImage.id = "modal-product-image";
       modalImage.src = img.src;
       modalImage.alt = img.alt;
     
      
     
       const modalDesc = document.createElement("p");
+      modalDesc.id = "modal-product-description";
       modalDesc.textContent = desc.textContent;
+
+      const productModal = document.createElement("div");
+      productModal.className = "product-modal-content";
+
+      productModal.append(
+        modalImage,
+        modalDesc
+      );
     
       modalContainer.append(
     
-        modalImage,
-        modalDesc
+        productModal
       );
     
       openModal();

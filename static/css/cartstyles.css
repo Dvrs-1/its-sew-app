@@ -39,56 +39,72 @@
 
 
 .modal-content {
+ display: flex;
+ flex-direction: column;
+ align-items: center ;
+ justify-content: center ;
  animation: ease-in-out;
  border-radius: 8px;
  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
- background: white;
+ background: var(--brand-blonde);
  outline: none;
  position: relative;
- padding: 20px;
+ padding: 10px;
  text-align: center;
- width: 320px;
+ max-height: 90vh;
 }
+
 
 #modal-view-container{
  
   border: solid 2px #000;
    border-radius: 15px;
-   display: inline-block;
-
+   display: block;
    margin-left: 2px;
    margin-right: 2px;
    overflow: auto;
    padding: 2px;
    padding-left: 5px;
    padding-right: 5px;
-   width: fit-content;
+   width: 100%;
+   max-width: 100%;
  }
 
  .cart-view-modal{
   border: solid 2px #000;
    border-radius: 15px;
-   display: inline-block;
- 
+   display: block;
    margin-left: 2px;
    margin-right: 2px;
    overflow: auto;
    padding: 2px;
    padding-left: 5px;
    padding-right: 5px;
-   width: fit-content;
+   width:100%;
+   max-width: 100%;
 
  }
 
- .product-modal{
-  border: solid 2px rgb(212, 25, 25);
-  border-radius: 15px;
-
- 
-  overflow: auto;
-
-  width: fit-content;
- }
+.product-modal-content{
+  display: grid;
+  grid-template-columns: auto ;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  max-width: 90%;
+  height:60%;
+  align-content: center;
+}
+#modal-product-image{
+  display: block;
+  max-width: 100%;
+  border-radius: 5px;
+  height: auto;
+  margin: 0 auto;
+}
+.modal p{
+ max-width: 100%;
+}
  #cart-title{
 color: #00231C;
 margin: 1px;
@@ -142,21 +158,7 @@ padding: 1px;
  
  
  
- #open-cart {
-   background:#F0C06D;
-   border: none;
-   border-radius: 6px;
-   color: #00231C;
-   cursor: pointer;
-   font-size: 1rem;
-   margin: 1px 2px;
-   max-width: fit-content;
-   padding: 2px 2px;
- }
- 
- #open-cart:hover {
-   background: #BDD4DA;
- }
+
  
  button:focus, .close:focus {
    outline: 2px solid #00231C;

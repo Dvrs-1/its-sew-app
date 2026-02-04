@@ -12,9 +12,9 @@
 
 
 :root {
-  --bg-main: #3f4042e4;        /* soft black */
+  --bg-main: #29180be1;        /* soft black */
   --bg-surface: #16191c; 
-  --bg-secondary:#2b6875 ;    /* card surface */
+  --bg-secondary:#f3e5e3 ;    /* card surface */
   --bg-muted: #1e2226;       /* subtle contrast */
   --text-main: #e6e6e6;
   --text-muted: #b5b5b5;
@@ -33,6 +33,7 @@
   html, body{
     display: grid;
     grid-template-rows: auto 1fr auto;
+   
   }  
 
   .hamburger-icon,.navigation-menu{
@@ -44,7 +45,7 @@
   /*header styles*/
 header {
   
-  display: flex;
+  display: block;
   align-items: center;
   justify-content: space-between;
 }  
@@ -59,9 +60,12 @@ footer{
   align-items: center;
   display: grid;
   grid-template-columns: 2fr 1fr;
-  gap: 4px;
+  gap: 4px;}
 
-}  
+  .hero-group-container,.hero-group-option {
+  visibility: hidden;}
+
+ 
 
 
 }
@@ -85,17 +89,22 @@ footer{
 
 
 /* Base styles (shared) */
+status-region {
+  display: block;
+min-height: 16px;
+margin-bottom: 1rem;
+}
 
 html, body{
-  background-color:var(--bg-secondary);
+  background-color:var(--bg-main);
   min-height: 100vh;
-  max-width: min(98%, );
   font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 16px;
   line-height: 1.7;
   font-weight: 400;
   letter-spacing: 0.01em;
   margin: 0;
+  overflow-x: hidden;
 }  
 
 a {
@@ -123,15 +132,15 @@ button:hover {
   color: var(--brand-green);
 }  
 header{
-  background-color:var(--brand-blonde);
+  background-color: var(--bg-secondary);
   width: 100%;
   padding: 2px;
-  border-bottom: 2px solid var(--bg-main);
+  border-bottom: 2px solid var(--blonde-accent);
 }  
 
 main {
   gap: 1.5rem;
-  padding: 3rem 2rem;
+ 
 }  
 figure {
   margin: 0.75rem 0;
@@ -160,6 +169,8 @@ figure {
 
 .bvn-logobar {
   display: flex;
+  background-color:var(--bg-secondary);
+  
   align-items: center;
   justify-content: space-between;
 }  
@@ -186,9 +197,9 @@ figure {
 
 
 .navigation-menu li { 
-display: flex;  
-flex-direction: row;
-  list-style: none;
+  display: flex;  
+  flex-direction: column;
+  list-style: none; 
   background-color: #f7f7f7; 
   border: 2px solid #014038; 
   border-radius: 4px; 
@@ -212,11 +223,12 @@ flex-direction: row;
  
   text-decoration: none; 
    display: none;
-  flex-direction: row;  
-  position: absolute;  
-  top: 100px;  
+  flex-direction: column;
+  position: fixed;  
+  bottom: 100px;  
   right: 10px;  
   background-color:transparent;  
+  z-index: 1001;
 
 }   
 .hidden{
@@ -224,7 +236,7 @@ flex-direction: row;
 }  
 .show { 
   display: flex; 
-  flex-direction: row;
+ 
 }   
 
 footer {
@@ -235,7 +247,7 @@ footer {
   clear: both;
   border: solid 3px #00231C;
   height: fit-content;
-  width: 90vw;
+  width: 100%;
 }  
 footer a {
   color: var(--text-muted);
@@ -298,6 +310,48 @@ footer a:hover {
   #social-links img{
     width: 40px;
     }
+.hero-group-container {
+  background-color: var(--bg-secondary);
+ 
+  position: fixed;
+  bottom: 0px;
+  width: 100%;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  z-index: 1000;
+
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 80px;
+}
+hero-group-option {
+  color: var(--text-main);
+  font-size: 1.2rem;
+  text-decoration: none;
+  padding: 10px;}
+
+
+
+ #open-cart {
+   background:#F0C06D;
+   border: none;
+   border-radius: 6px;
+   color: #00231C;
+   cursor: pointer;
+   font-size: 1rem;
+   margin: 1px 2px;
+   max-width: fit-content;
+   padding: 2px 2px;
+ }
+ 
+ #open-cart:hover {
+   background: #BDD4DA;
+ }
+
+
 
     /* fonts and headings*/
     

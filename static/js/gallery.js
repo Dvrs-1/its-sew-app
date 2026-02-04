@@ -31,7 +31,7 @@ fetch(`${window.location.origin}/api/products`)
     card.innerHTML = `
       <figure class="product-media">
         <figcaption>${product.name}</figcaption>
-        <img src="${product.image}" alt="${product.alt}">
+        <img class="product-image" src="${product.image}" alt="${product.alt}">
       </figure>
 
       <p class="product-price">$${product.price.toFixed(2)}</p>
