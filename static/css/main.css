@@ -12,14 +12,15 @@
 
 
 :root {
-  --bg-main: #29180be1;        /* soft black */
+  --bg-main: #f3e5e3;        /* soft black */
   --bg-surface: #16191c; 
-  --bg-secondary:#f3e5e3 ;    /* card surface */
+  --bg-secondary:#312726 ;    /* card surface */
   --bg-muted: #1e2226;       /* subtle contrast */
   --text-main: #e6e6e6;
   --text-muted: #b5b5b5;
+  --text-unmuted: #7a7a7a;
   --brand-blonde: #f3e5e3; 
-  --blonde-accent: #ed6c26;
+  --blonde-accent: #f0ddd3;
   --brand-pink: #e06aa3;
   --brand-green: #6fbf8f;
 
@@ -109,17 +110,19 @@ html, body{
 
 a {
   color: var(--brand-green);
+  
   text-decoration: none;
 }  
 
 a:hover {
-  color: var(--brand-pink);
-}  
+  color: var(--bg-surface);
+ background-color: var(--brand-blonde); 
+}
 
 
 button {
   background-color: transparent;
-  color: var(--bg-surface);
+  color: var(--brand-pink);
   border: 1px solid var(--border-soft);
   padding: 0.5rem 1rem;
   border-radius: 12px;
@@ -153,7 +156,7 @@ figure {
 
 }  
 #top-nav a{
-  color: var(--text-muted);
+  color: var(--brand-pink);
   border-radius: 8px;
   padding: 5px;
   text-align: center;

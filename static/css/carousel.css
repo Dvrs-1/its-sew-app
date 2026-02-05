@@ -1,27 +1,46 @@
 .carousel {
-  position: relative;
-  width: 100%;
-  max-width: 500px;
-  margin: 1px;
-  background-color:#f0c06d;
-  
-  overflow: hidden;
-  border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    position: relative;
+    width: 100%;
+    margin: 1px; 
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  overscroll-behavior-x: contain;
+
+  /* mobile sanity */
+  -webkit-overflow-scrolling: touch;
+  border: solid 10px black;
+}
+.carousel::-webkit-scrollbar {
+  display: none;
 }
 
 .carousel-track {
   display: flex;
   transition: transform 0.5s ease;
 }
-.carousel-card-text{
-  color: #00231C;
-}
+
 .slide {
-  min-width: 100%;
+  flex: 0 0 100%;
+  scroll-snap-align: start;
   box-sizing: border-box;
 }
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
 
+.carousel[data-variant="hero"] img {
+  width: 200px;
+  height: auto;
+  display: block;
+}
+.carousel[data-variant="demo"] img {
+  min-height: auto;
+}
 
 .carousel-btn {
   position: absolute;
@@ -35,10 +54,7 @@
   cursor:  pointer;
   border-radius: 5px;
 }
-
-.prev { left: 5px; }
-.next { right: 5px; }
-
-.carousel-btn:hover {
-  background-color:#014038;
+.carousel-btn:active {
+  background-color:var(--brand-pink);
 }
+

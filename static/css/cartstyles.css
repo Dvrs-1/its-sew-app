@@ -9,15 +9,14 @@
 }
 /*Cart view/ summary */
 #users-card{
-  background-color: #96BAA0;
-  border: #F0C06D 2px solid;
-  padding: 10px;
+  background-color: var(--brand-green);
+  border: var(--bg-surface) 2px solid;
+  padding: 1px,2px;
   margin: 3px;
   max-width: fit-content;
   border-radius: 10px;
   justify-self: end;
 
-  
 }
 
 /*Modal/ hidden */
@@ -58,7 +57,7 @@
 #modal-view-container{
  
   border: solid 2px #000;
-   border-radius: 15px;
+   border-radius: 5px;
    display: block;
    margin-left: 2px;
    margin-right: 2px;
