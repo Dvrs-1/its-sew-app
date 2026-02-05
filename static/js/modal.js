@@ -140,6 +140,11 @@ document.addEventListener('DOMContentLoaded', () => {
       modalImage.id = "modal-product-image";
       modalImage.src = img.src;
       modalImage.alt = img.alt;
+
+        // 🔒 image wrapper 
+  const imageWrapper = document.createElement("div");
+  imageWrapper.className = "modal-image-wrapper";
+  imageWrapper.appendChild(modalImage);
     
      
     
@@ -151,7 +156,7 @@ document.addEventListener('DOMContentLoaded', () => {
       productModal.className = "product-modal-content";
 
       productModal.append(
-        modalImage,
+        imageWrapper,
         modalDesc
       );
     

@@ -28,17 +28,18 @@ fetch(`${window.location.origin}/api/products`)
     card.className = "gallery";
     card.dataset.id = product.id;
 
-    card.innerHTML = `
-      <figure class="product-media">
-        <figcaption>${product.name}</figcaption>
-        <img class="product-image" src="${product.image}" alt="${product.alt}">
-      </figure>
+ card.innerHTML = `
+  <figure class="product-media">
+    <img class="product-image" src="${product.image}" alt="${product.alt}">
+  </figure>
 
-      <p class="product-price">$${product.price.toFixed(2)}</p>
-      <button class="add-to-cart-btn" aria-label="Add ${product.name} to cart">Add To Cart</button>
-      <button class="show-more">Show More</button>
-      <p class="product-description">${product.description}</p>
-    `;
+  <figcaption class="product-name">${product.name}</figcaption>
+
+  <p class="product-price">$${product.price.toFixed(2)}</p>
+  <button class="add-to-cart-btn" aria-label="Add ${product.name} to cart">Add To Cart</button>
+  <button class="show-more">Show More</button>
+  <p class="product-description">${product.description}</p>
+`;
   
     container.appendChild(card);
   });

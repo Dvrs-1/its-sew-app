@@ -23,18 +23,18 @@
   },
   {
     "id": 301,
-    "name": "Cowsboys Small Purse",
-    "price": 30.00,
+    "name": "Cowsboys Purse",
+    "price": 3.00,
     "group": "purses",
     "size": "Small",
-    "image":"/static/images/products/cowboyssp2.1.webp",
+    "image":"/static/images/products/smallpurse1.webp",
     "alt": "small purse with sports lining",
     "description": "small hand purse with custom cowboys sports lining."
   },
   {
     "id": 302,
-    "name": "Cowboys Large Pillow",
-    "price": 45.50,
+    "name": "Cowboys Pillow",
+    "price": 5.50,
     "group": "Pillows",
     "size": "Large",
     "image": "/static/images/products/cowboyslgplw2.1.webp",
@@ -45,7 +45,7 @@
   {
     "id": 303,
     "name": "Cowboys Phone Stand",
-    "price": 75.00,
+    "price": 5.00,
     "group": "Phone Stands",
     "size": "Standard",
     "image": "/static/images/products/cowboysps1.1.webp",
@@ -63,11 +63,11 @@
   },
   {
     "id": 402,
-    "name": "Large Sports Pillow",
+    "name": "Sports Pillows",
     "price": 55.00,
     "group": "Pillows",
     "size": "Large",
-    "image": "/static/images/products/sportslgplwdemo1.webp",
+    "image": "/static/images/products/smlpillowdemo1.1.webp",
     "alt": "Large pillow with sports design",
     "description": "Large pillow with custom sports design made from durable materials."
   },
@@ -92,11 +92,11 @@
   },
   {
     "id": 305,
-    "name": "Cowboys Small Pillow",
+    "name": "Cowboys Pillow",
     "price": 50.00,
     "group": "Pillows",
     "size": "Small",
-    "image": "/static/images/products/cowboyssplw1.1.webp",
+    "image": "/static/images/products/cowboyslgplw3.webp",
     "alt": "Small pillow with cowboys design",
     "description": "Small pillow with custom cowboys design made from durable materials."
   }

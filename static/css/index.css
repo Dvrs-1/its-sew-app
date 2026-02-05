@@ -41,8 +41,8 @@ aside{
 
     /* Base styles (shared) */
     main{
-      gap: 1.5rem;
-      padding: 3rem 2rem;
+      gap: 1rem;
+      padding: 2px;
       max-width: 1200px;
     }
 

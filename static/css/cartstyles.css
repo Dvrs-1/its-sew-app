@@ -29,6 +29,7 @@
   background: #01362c8a;
   transition: opacity 0.2s ease;
   z-index: 9999;
+  cursor: pointer;
 }
 
 
@@ -50,7 +51,11 @@
  position: relative;
  padding: 10px;
  text-align: center;
- max-height: 90vh;
+ width: 75vw;
+ max-width: 520px;
+ min-width: 240px;
+ max-height:800vh;
+ cursor: default;
 }
 
 
@@ -96,10 +101,18 @@
 }
 #modal-product-image{
   display: block;
-  max-width: 100%;
-  border-radius: 5px;
-  height: auto;
+  width: 100%;
+  height: 100%;
   margin: 0 auto;
+  object-fit: contain;
+}
+
+.modal-image-wrapper {
+  width: 100%;
+  max-width: 100%;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border-radius: 6px;
 }
 .modal p{
  max-width: 100%;

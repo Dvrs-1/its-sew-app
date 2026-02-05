@@ -10,7 +10,7 @@
 
   /* mobile sanity */
   -webkit-overflow-scrolling: touch;
-  border: solid 10px black;
+
 }
 .carousel::-webkit-scrollbar {
   display: none;
@@ -48,7 +48,7 @@
   transform: translateY(-60%);
   background-color: rgba(0,0,0,0.5);
   border: none;
-  color: #00231C ;
+  color: var(--brand-pink) ;
   font-size: 2rem;
   padding: 0 5px;
   cursor:  pointer;
