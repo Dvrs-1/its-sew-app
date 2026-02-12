@@ -1,39 +1,4 @@
-// cart.js
-/*const Cart = (() => {
-  let cart = {};
-  let items = {};
 
-  function load() {
-    let raw;
-    try {
-      raw = JSON.parse(sessionStorage.getItem("cartItems"));
-    } catch {
-      raw = {};
-    }
-
-    cart = {};
-
-    if (!raw || typeof raw !== "object") return;
-
-    for (const [id, item] of Object.entries(raw)) {
-      if (
-        typeof id === "string" &&
-        item &&
-        typeof item.name === "string" &&
-        typeof item.price === "number" &&
-        typeof item.quantity === "number" &&
-        item.quantity > 0
-      ) {
-        cart[id] = {
-          id,
-          name: item.name,
-          price: item.price,
-          quantity: Math.floor(item.quantity)
-        };
-      }
-    }
-  }
-*/
 
 const listeners = new Set();
 

@@ -1,4 +1,92 @@
 [
+  {
+      "id": 502,
+      "name": "Cowboys Pillow",
+      "category":{
+        "id": "pillow",
+        "label": "Pillow"
+      },
+      "description": "Pillow with custom design made from durable materials.",
+      "variants": [
+        {
+          "id": "502-large",
+          "sku": "PIL-COWBS-LG",
+          "size": "Large",
+          "price": 50.00,
+          "inventory": 5
+        },
+        {
+          "id": "502-small",
+          "sku":"PIL-COWBS-SM",
+          "size": "Small",
+          "price": 30.00,
+          "inventory": 5
+        }
+  
+      ],
+      "images": [
+        {
+          "url": "/static/images/products/cowboyslgplw2.1.webp",
+          "variantId": "502-large",
+          "alt": "Large pillow sewn with authentic Cowboys sports team design",
+          "description": "Large pillow sewn with authentic Cowboys sports team design made from premium-grade fabric selected for high yeild,tear resistence and ease of maintenance.",
+          "role": "primary",
+          "order": 1
+        },
+        {
+          "url": "/static/images/products/cowboyslgplw3.webp",
+          "variantId": "502-large",
+          "alt": "Back of large pillow sewn with authentic Cowboys sports team design",
+          "description": "Back of large pillow sewn with authentic Cowboys sports team design made from premium-grade fabric selected for high yeild,tear resistence and ease of maintenance.",
+          "role": "detail",
+          "order": 2
+        },
+        {
+          "url": "/static/images/products/stealersps1.1.webp",
+          "variantId": "502-small",
+          "alt": "testolterna",
+          "description": "the image shouldnt be the ame s the other products in this selection.",
+          "role": "variant",
+          "order": 3
+        }
+      ]
+  },
+  {
+    "id": 503,
+    "name": "Cowboys Purse",
+    "category": {
+        "'id": "purses" ,
+        "label": "purse"
+    },
+    "description": "Purse with Authentic Sports Team Design" ,
+    "variants":[
+      {
+        "id": "503-small",
+        "sku": "PRS-COWBSSTR-SM",
+        "size":"Small",
+        "price": 35.00,
+        "inventory": 5
+      }
+    ],
+    "images": [
+      {
+        "url": "/static/images/products/cowboyssp2.1.webp",
+        "variantId" : "503-small",
+        "alt": "Small purse sewn with Cowboys sports team silver blue Cowboys star design",
+        "description": "Small handmade machine sewn purse with Custom Cowboys Sports teams Star design",
+        "role": "primary",
+        "order": 1 
+      },
+      {
+        "url": "/static/images/products/smallpurse1.webp",
+        "variantId":"503-small",
+        "alt":"whole view of Small cowboys sports design purse",
+        "description":"Small handmade machine sewn purse with Custom Cowboys Sports teams Star design",
+        "role": "detail",
+        "order":2
+      }
+    ]
+  },
 
   
   {
@@ -22,27 +110,6 @@
     "description": "Large handmad Purse with custom light brown Agfo culture design"
   },
   {
-    "id": 301,
-    "name": "Cowsboys Purse",
-    "price": 3.00,
-    "group": "purses",
-    "size": "Small",
-    "image":"/static/images/products/smallpurse1.webp",
-    "alt": "small purse with sports lining",
-    "description": "small hand purse with custom cowboys sports lining."
-  },
-  {
-    "id": 302,
-    "name": "Cowboys Pillow",
-    "price": 5.50,
-    "group": "Pillows",
-    "size": "Large",
-    "image": "/static/images/products/cowboyslgplw2.1.webp",
-    "alt": "Large pillow with cowboys design",
-    "description": "Large pillow with custom cowboys design made from durable materials."
-  },
-  
-  {
     "id": 303,
     "name": "Cowboys Phone Stand",
     "price": 5.00,
@@ -53,11 +120,11 @@
     "description": "Phone stand with custom cowboys design, perfect for holding your phone securely."
   },
   {"id": 400,
-    "name": "Sports Phone Stands",
-    "price": 20.00,
-    "group": "Phone Stands",
-    "size": "Standard",
-    "image": "/static/images/products/sportspsdemo1.webp",
+  "name": "Sports Phone Stands",
+  "price": 20.00,
+  "group": "Phone Stands",
+  "size": "Standard",
+  "image": "/static/images/products/sportspsdemo1.webp",
     "alt": "Phone stand with sports design",
     "description": "Phone stand with custom sports design, perfect for holding your phone securely."
   },
@@ -89,15 +156,7 @@
     "image": "/static/images/products/stealersps1.1.webp",
     "alt": "Phone stand with sports design",
     "description": "Phone stand with custom sports design, perfect for holding your phone securely."
-  },
-  {
-    "id": 305,
-    "name": "Cowboys Pillow",
-    "price": 50.00,
-    "group": "Pillows",
-    "size": "Small",
-    "image": "/static/images/products/cowboyslgplw3.webp",
-    "alt": "Small pillow with cowboys design",
-    "description": "Small pillow with custom cowboys design made from durable materials."
   }
+  
+  
 ]

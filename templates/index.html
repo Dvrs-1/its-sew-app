@@ -4,8 +4,9 @@
   <title>Its Sew Regina - home</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="/static/css/index.css?v=2026-02-05" rel="stylesheet">
-  <script type="module" src="/static/js/index.js?v=2026-02-05 " defer></script>
+  <link href="/static/css/index.css?v=2026-02-12" rel="stylesheet">
+  <script type="module" src="/static/js/index.js?v=2026-02-12 " defer></script>
+  <script src="https://kit.fontawesome.com/668995576d.js" crossorigin="anonymous"></script>
   <style>
   
   
@@ -13,15 +14,19 @@
 </head>
 <body>
   
+
+
+  <div class="page">  
   <header>
     
     <div class="bvn-logobar">
-      <a href="/" class="logo">
-        <img src="/static/images/itssewlogo.png" alt="Its Sew Regina Home" >
+      <a href="/" >
+        <img class="logo" src="/static/images/itssewlogoedited.webp" alt="Its Sew Regina Home" >
       </a>
       <!--Business Name-->
       <h1 >Its Sew Regina</h1>
       <!-- Live region for announcements -->
+    </div>
       
       <nav aria-label="Main navigation" class="menu-mobile">
         
@@ -33,18 +38,21 @@
         </ul>
         
         <ol id="top-nav" >
-          <a href="/">Home</a>
-          <a href="/gallery">Gallery</a>
-          <a href="/aboutus">About Us</a>
-          <a href="/forum">For you</a>
+          <li><a href="/">Home</a></li>
+          <li><a href="/gallery">Gallery</a></li>
+          <li><a href="/aboutus">About Us</a></li>
+          <li><a href="/forum">For you</a></li>
           
         </ol>
       </nav>
-    </div>
+      <div id="status-region" 
+      class="visualy-hidden" 
+      aria-live="polite "
+      aria-atomic="true"></div>
     
     
   </header>
-  <main>
+  <main class="container home-layout">
     <div id="modal-status-region" role="status" aria-live="polite" class="visually-hidden"></div>
  
     <!-- Cart Modal -->
@@ -66,7 +74,7 @@
   </div>
 
 
-  <div class="special-card" id="promo-bundle">
+  <div class="special-card card" id="promo-bundle">
     <h3 id="special-header">On the Racks</h3>
     <h4> In stores now!!</h4>
     <div class="special-items-container">
@@ -86,22 +94,21 @@
     <button class="add-bundle" data-id="bundle-special"><i class="fa-solid fa-cart-plus"></i>Add to cart</button>
     <span class="price" id="special-price">$21.02</span>
   </div>
-
+  
+  <article>
+    <script src="/static/js/carousel.js?v=2026-02-12"></script>
+    <div class="carousel" 
+    data-carousel 
+    data-group="Phone Stands"
+    data-variant="hero"
+    id="home-carousel-demo">
+      <div class="carousel-track"></div>
+    </div>
+    <div class="carousel-dots" data-dots></div>
+  </article>
+  
   <div class="aside-article-container">
 
-    <article>
-      <div class="carousel" data-carousel id="home-carousel-demo">
-        <div class="carousel-track">
-
-    
-
-        </div>
-
-       
-      </div>
-      <div class="carousel-dots" data-dots></div>
-
-    </article>
     <aside>
       <div class="gallery-product-category">
         <h3 class="topic">New Patterns</h3>
@@ -148,7 +155,7 @@
   <section>
 
 
-    <div class="starterpackage">
+    <div class="starterpackage card">
       <h3>Custom Made Items </h3>
     <div id="duo">
       <div class="bundle">
@@ -156,25 +163,19 @@
         <figure class="bundle-deal">
           <figcaption>Afro Culture</figcaption>
           <img src="/static/images/products/tanafrolgb2.1.webp"
-                alt="Custom made tan afro culture womens carry bag" width="200px">
+                alt="Custom made tan afro culture womens carry bag" >
         </figure>
         
         <figure class="bundle-deal">
           <figcaption>stand +</figcaption>
           <img src="/static/images/products/afroculturelgb1.1.webp"
-                alt="Custom made afro culture carry bag " width="200px">
+                alt="Custom made afro culture carry bag " >
 
         </figure>
       </div>
-        <figure class="bundle-deal">
-          <figcaption>purse</figcaption>
-          <img src="/static/images/products/sportspsdemo2.webp"
-                alt="aloe plant" width="200px">
-
-        </figure>
-
+    
       </div>
-      <button class="add-starter-package" data-id="bundle-starter"><i class="fa-solid fa-cart-plus"></i>Add to cart</button>
+
       <span class="price" id="starter-price" alt="Starter package price">$29.99</span>
     </div>
 
@@ -185,10 +186,12 @@
 
 
 <div class="hero-group-container">
-<a class="hero-group-option"href="/">Home</a>
-<a class="hero-group-option"href="/gallery">Gallery</a>
-<a class="hero-group-option"href="/aboutus">About Us</a>
-<button class="hero-group-option" id="hamburger-icon" aria-label="Navigation menu" 
+  <div class="hero-group-navigation">
+<a href="/">Home</a>
+<a href="/gallery">Gallery</a>
+<a href="/aboutus">About Us</a>
+  </div>
+<button type="button"  class="hero-group-option" id="hamburger-icon" aria-label="Navigation menu" 
 aria-controls="main-menu"></button>
 </div>
 
@@ -225,10 +228,10 @@ aria-controls="main-menu"></button>
   </div>
   <nav class="footer-nav">
     <ol>
-      <a href="/">Home</a>
-      <a href="/gallery">Gallery</a>
-      <a href="/aboutus">About Us</a>
-      <a href="/forum">For you</a>
+      <li><a href="/">Home</a></li>
+      <li><a href="/gallery">Gallery</a></li>
+      <li><a href="/aboutus">About Us</a></li>
+      <li><a href="/forum">For you</a></li>
     </ol>
     <form class="footer-subscribe" action="">
       <input type="email" name="email" id="emailToSubscribe" autocomplete="off" />
@@ -237,12 +240,12 @@ aria-controls="main-menu"></button>
   </nav>
 </footer>
 </div>
-<script src="/static/js/cart.js?v=2026-02-05" media="print"></script>
-<script src="/static/js/carousel.js?v=2026-02-05" media="print"></script>
-<script src="/static/js/modal.js?v=2026-02-05" media="print"></script>
-<script src="/static/js/main.js?v=2026-02-05"></script>
+<script src="/static/js/cart.js?v=2026-02-12" media="print"></script>
+<script src="/static/js/modal.js?v=2026-02-12" media="print"></script>
+<script src="/static/js/main.js?v=2026-02-12"></script>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-<script src="https://kit.fontawesome.com/668995576d.js" crossorigin="anonymous"></script>
+
+
 </body>
 
 </html>

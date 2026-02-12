@@ -1,187 +1,149 @@
-/* Desktop layout */
-@media (min-width: 769px) {
-  
-  main{
-    display: grid;
-    grid-template-columns: 2fr 2fr 1fr;
-  }
-  
-  .starterpackage { 
-    grid-column: 2;
-  }
-  #duo{
-  width: 100%;
-  max-width: 400px;
+/* Mobile-first default */
+.home-layout {
   display: flex;
-  flex-direction: row;
-  border-radius: 10px;  
-}
-aside{
-  grid-column: 3;
+  flex-direction: column;
+  gap: var(--space-5);
 }
 
+/* Shared grid groups */
+.special-items-container,
+.bundle,
+.aside-article-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(7.0rem, 1fr)); /* 120px */
+ 
 }
 
-/* Mobile layout */
-@media (max-width: 768px) {
-  .special-items-container{
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-  }
-  .bundle{
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-  }
-  .aside-article-container{
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-  }
-  aside{
-  float: right;
-  }
+/* ---------- Media ---------- */
+
+
+/* ---------- Promotional Card ---------- */
+.special-card {
+  grid-column: 1;
+  max-width: 100%;
+  padding: var(--space-5);
 }
 
-    /* Base styles (shared) */
-    main{
-      gap: 1rem;
-      padding: 2px;
-      max-width: 1200px;
-    }
+#special-header {
+  margin-bottom: var(--space-2);
+}
 
-      
-  img {
-    max-width: 100%;
-    height: auto;
+.special-items-container {
+  background-color: #BDD4DA;
+  padding: var(--space-1);
+  border-radius: 5%;
+}
+
+.special-product img {
+  border-radius: 2px;
+      overflow: hidden;
+    aspect-ratio: 5 /5;
+    object-fit: cover;
+    width: 100%;
     
-  }
 
-  .price{
-    margin: 1px;
-    border-radius: 999px;
-    font-weight: bold;
-    background-color: transparent;
-    color: var(--brand-green);
-    border: 1px solid var(--brand-green);
-    padding: 0.4rem 0.75rem;
-    font-size: 1.2rem;
-  }
+}
 
-  /*First time Bundle*/
 
-.special-card{
+/* ---------- Starter Package ---------- */
+.starterpackage {
+  max-width: 100%;
+  padding: var(--space-5);
+}
+
+.starterpackage img {
+  border-radius: 10px;
+    border-radius: 2px;
+      overflow: hidden;
+    aspect-ratio: 5 /5;
+    object-fit: cover;
+    width: 100%;
+
+}
+
+
+/* ---------- Bundle ---------- */
+.bundle {
+  background-color: #BDD4DA;
+  border-radius: 10px;
+  padding: var(--space-2);
+}
+
+
+/* ---------- Discount ---------- */
+#discount {
   background-color: var(--bg-surface);
+  border: 1px dashed var(--brand-green);
+  color: var(--text-main);
+  border-radius: 14px;
+  padding: var(--space-3);
+  margin-top: var(--space-3);
+}
+
+
+/* ---------- Aside / Categories ---------- */
+.aside-article-container {
+  background-color: #014038;
+  border-radius: 10px;
+  padding: var(--space-3);
+}
+
+aside {
+  margin-top: var(--space-3);
+}
+
+.gallery-product-category {
+ 
+  padding: var(--space-3);
+  background-color: var(--brand-blonde);
   border: 1px solid var(--border-soft);
   box-shadow: var(--shadow-soft);
-  border-radius: 18px;
-  grid-column: 1;
-  margin-left: 2px;
-  max-width: 90vw; 
-  padding: 1.4rem; 
- 
-}
-#special-header{
-  margin: 1px;
-}
-.special-items-container{
-  background-color: #BDD4DA;
-  border-radius: 10px;
-  margin: 2px 3px;
-  justify-content: center;
+  border-radius: 16px;
 }
 
-.special-product img{
-  border-radius: 10px;
-  width:90vw;
-}
-
-figcaption {
-  
-  font-style: normal;
-  font-family: 'Courier New', Courier, monospace;
-  text-align:  center;
-  margin: 2px;
-  font-weight: bold;
-  color:  #00231C;
-}
-
-section{
-  justify-content: center;
-}
-.bundle{
-  background-color: #BDD4DA;
-  display: grid;
- border-radius: 10px;
-  margin: 2px 3px;
-  justify-content: center;
-}
-
-.starterpackage { 
-  border-radius: 20px;
-    margin-left: 2px;
-    max-width: 90vw; 
-    background-color: var(--bg-surface);
-    border: 1px solid var(--border-soft);
-    box-shadow: var(--shadow-soft);
-    padding: 1.25rem;
-  }
-  .starterpackage img {
-    border-radius: 10px;
+.gallery-product-category img {
+  border-radius: 14px;
+    border-radius: 2px;
+      overflow: hidden;
+    aspect-ratio: 5 /5;
+    object-fit: cover;
     width: 100%;
-    max-width: 400px;
+}
+.default-category {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
   
-  }
-  #discount{
-    background-color: var(--bg-surface);
-    border: 1px dashed var(--brand-green);
-    color: var(--text-main);
-    border-radius: 14px;
-    padding: 0.75rem;
-    justify-content: center;
-    margin-top: 10px;
-   
-  }
-  .aside-article-container{
-    background-color: #014038;
-    border-radius: 10px;
+}
+
+.default-category button:hover{
+  color: var(--brand-green);
+  border: 2px solid #014038;
+}
+
+
+/* Category images default hidden */
+.tree-category,
+.plant-category,
+.equipment-category {
+  display: none;
+}
+
+
+/* ---------- Desktop Enhancements ---------- */
+@media (min-width: 769px) {
+  .home-layout {
     display: grid;
-    margin: 2px 3px;
-    justify-content: center;
-  }
-  article{
-    margin: 2px;
-  }
-  aside{
-    justify-content: center;
-    margin-top: 10px;
-  }
-  .gallery-product-category{
- 
-    max-width: fit-content; 
-    margin-right: 2px;
-    padding: 5px; 
-    background-color: var(--bg-muted);
-    border: 1px solid var(--border-soft);
-    box-shadow: var(--shadow-soft);
-    border-radius: 16px;
-   
+    grid-template-columns: 2fr 2fr 1fr;
+    gap: var(--space-6);
   }
 
-  .gallery-product-category img {
-    border: none;
-    border-radius: 14px;
-  
-  }
-  .main-category-select{
-    border: solid 2px #014038;
-    display: block;
-  }
-  
-  .tree-category{
-    display: none;
-  
-  }
-  .plant-category{
-    display: none;
-  }
-  .equipment-category{
-    display: none;
+  .starterpackage {
+    grid-column: 2;
   }
 
+  aside {
+    grid-column: 3;
+  }
+}

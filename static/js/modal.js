@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const link = document.createElement('link');
   link.rel = 'stylesheet';
   link.type = 'text/css';
-  link.href = "/static/css/cartstyles.css";
+  link.href = "/static/css/cartstyles.css?v=2026-02-12";
   document.head.appendChild(link);
 
   const modalContainer = document.getElementById("modal-view-container");
@@ -126,47 +126,165 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function showProductModal(card) {
-      modalContainer.innerHTML = "";
-      modalActions.innerHTML = "";
-      modalTitle.textContent = "";
-    
-      const img = card.querySelector("img");
-      const desc = card.querySelector(".product-description");
-      const title = card.querySelector("figcaption");
+  modalContainer.innerHTML = "";
+  modalActions.innerHTML = "";
 
-      modalTitle.textContent = title.textContent
-    
-      const modalImage = document.createElement("img");
-      modalImage.id = "modal-product-image";
-      modalImage.src = img.src;
-      modalImage.alt = img.alt;
+  const id = card.dataset.id;
+  const product = productMap.get(String(id));
+  if (!product) return;
 
-        // 🔒 image wrapper 
+  modalTitle.textContent = product.name;
+
+  const productModal = document.createElement("div");
+  productModal.className = "product-modal-content";
+
+  // === Main Image ===
+  const mainImage = document.createElement("img");
+  mainImage.id = "modal-product-image";
+  mainImage.src = product.images?.[0]?.url || product.image;
+  mainImage.alt = product.images?.[0]?.alt || product.alt;
+
   const imageWrapper = document.createElement("div");
   imageWrapper.className = "modal-image-wrapper";
-  imageWrapper.appendChild(modalImage);
-    
-     
-    
-      const modalDesc = document.createElement("p");
-      modalDesc.id = "modal-product-description";
-      modalDesc.textContent = desc.textContent;
+  imageWrapper.appendChild(mainImage);
 
-      const productModal = document.createElement("div");
-      productModal.className = "product-modal-content";
+  // === Description ===
+  const modalDesc = document.createElement("p");
+  modalDesc.id = "modal-product-description";
+  modalDesc.textContent =
+    product.images?.[0]?.description || product.description;
 
-      productModal.append(
-        imageWrapper,
-        modalDesc
-      );
     
-      modalContainer.append(
+    // === Variant Selection ===
+    let selectedVariant = product.variants?.[0] || {
+  id: product.id,
+  size: product.size,
+  price: product.price
+};
+// === Thumbnail Container ===
+const thumbContainer = document.createElement("div");
+thumbContainer.className = "modal-thumbnails";
+
+function renderImagesForVariant() {
+  thumbContainer.innerHTML = "";
+
+  const variantSpecific = product.images?.filter(
+  img => img.variantId === selectedVariant.id
+) || []
+
+  const imagesForVariant = variantSpecific.length > 0
+  ? variantSpecific
+  : product.images?.filter(img => !img.variantId) || [];
+
+  if (imagesForVariant.length === 0) return;
+
+  // Set main image to first matching image
+  mainImage.src = imagesForVariant[0].url;
+  mainImage.alt = imagesForVariant[0].alt;
+  modalDesc.textContent =
+    imagesForVariant[0].description || product.description;
+
+  imagesForVariant.forEach(imgObj => {
+    const thumb = document.createElement("img");
+    thumb.src = imgObj.url;
+    thumb.alt = imgObj.alt;
+    thumb.className = "modal-thumb";
+
+    thumb.addEventListener("click", () => {
+      mainImage.src = imgObj.url;
+      mainImage.alt = imgObj.alt;
+      modalDesc.textContent =
+        imgObj.description || product.description;
+    });
+
+    thumbContainer.appendChild(thumb);
+  });
+}
+renderImagesForVariant();
+
+
+
+    const priceDisplay = document.createElement("p");
+    priceDisplay.className = "modal-price";
+    priceDisplay.textContent = `$${selectedVariant?.price?.toFixed(2)}`;
+
+const variantContainer = document.createElement("div");
+variantContainer.className = "modal-variants";
+
+if (product.variants && product.variants.length > 1) {
+  
+  
+
+  const label = document.createElement("p");
+  label.textContent = "Select Size:";
+  variantContainer.appendChild(label);
+
+  product.variants.forEach(variant => {
+    const btn = document.createElement("button");
+    btn.textContent = variant.size;
+    btn.className = "variant-btn";
     
-        productModal
-      );
-    
-      openModal();
+    if (variant === selectedVariant) {
+      btn.classList.add("active");
     }
+    
+    btn.addEventListener("click", () => {
+      selectedVariant = variant;
+
+      // Update active state
+      variantContainer.querySelectorAll(".variant-btn")
+        .forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+
+      // Update price display
+      priceDisplay.textContent = `$${variant.price.toFixed(2)}`;
+      renderImagesForVariant();
+    });
+    
+    variantContainer.appendChild(btn);
+  });
+}
+
+const addBtn = document.createElement("button");
+addBtn.textContent = "Add To Cart";
+addBtn.className = "modal-add-to-cart";
+
+addBtn.addEventListener("click", () => {
+
+    const confirmProduct = confirm(`Add one "${product.name}" cart?
+      `);
+      
+      if (!confirmProduct) return
+
+const alreadyInCart =
+  Cart.getItems().some(item => item.id === selectedVariant.id);
+
+if (alreadyInCart) {
+  const confirmAdd = confirm(
+    `There is already a "${product.name} - ${selectedVariant.size}" in your cart.\nAdd another?`
+  );
+  if (!confirmAdd) return;
+}
+
+Cart.add({
+  id: selectedVariant.id,
+  name: `${product.name} - ${selectedVariant.size}`,
+  price: selectedVariant.price
+});
+
+  closeModal();
+});
+
+const cartPriceContainer = document.createElement("div");
+cartPriceContainer.className = "cart-price-container"
+
+cartPriceContainer.append(addBtn,priceDisplay)
+
+  productModal.append(imageWrapper, variantContainer, cartPriceContainer, thumbContainer, modalDesc );
+  modalContainer.append(productModal);
+
+  openModal();
+}
 
 
     

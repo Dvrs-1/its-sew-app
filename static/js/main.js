@@ -9,9 +9,11 @@ var cartItems = JSON.parse(sessionStorage.getItem("cartItems")) || [];
 var link = document.createElement('link');
 link.rel = 'stylesheet';
 link.type = 'text/css';
-link.href = '/static/css/main.css'; 
+link.href = '/static/css/main.css?v=2026-02-12'; 
 
 document.head.appendChild(link)
+
+
 
 
 
@@ -32,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function() {
         hamburgerButton.className = 'show-navigation-btn';
       
         const iconImage = document.createElement('i');
-        iconImage.className = 'fa-solid fa-bars fa-2xl';
+        iconImage.className = '<i class="fa-sharp-duotone fa-solid fa-bars fa-2xl"></i>';
         
         hamburgerButton.appendChild(iconImage);
         menuToggle.appendChild(hamburgerButton);
@@ -110,26 +112,32 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-    function toggleAriaExpanded(triggerBtn, targetElement, focusTrappedEl) {
-      if (!triggerBtn || !targetElement) return;
-    
-      const isExpanded = triggerBtn.getAttribute('aria-expanded') === 'true';
-      const newState = !isExpanded;
-    
-      triggerBtn.setAttribute('aria-expanded', String(newState));
-      triggerBtn.setAttribute('aria-label', newState ? closeMsg : openMsg);
-      targetEl.hidden = !newState; // Make sure it's hidden when not expanded
-    
-      // Delay announcement just enough to let screen reader catch up(refrenced to by MDN Docs)
-     
-      if (newState && typeof focusTrappedEl === 'function') {
-        focusTrappedEl(targetElement);
-        const firstFocusable = targetElement.querySelector('a, button, input, select, textarea, [tabindex]:not([tabindex="-1"])');
-        if (firstFocusable) firstFocusable.focus();
-      } else if (!newState) {
-        triggerBtn.focus();
-      }
+ function toggleAriaExpanded(button, target) {
+     if (!button || !target) return;
+
+  const expanded = button.getAttribute("aria-expanded") === "true";
+  const next = !expanded;
+
+  button.setAttribute("aria-expanded", String(next));
+  target.hidden = !next;
+
+  return next;
+
     }
+
+ function moveFocusInto(container) {
+  if (!container) return;
+
+  const focusable = container.querySelector(
+    'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+  );
+
+  focusable?.focus();
+}
+
+ function returnFocusTo(el) {
+  el?.focus();
+}
 
     
     
@@ -137,33 +145,37 @@ document.addEventListener('DOMContentLoaded', function() {
 
   
   
-    
-    
-    
-    /*
-//HTML to add status region to page:
- <div id="status-region" role="status" aria-live="polite" >_</div> 
+ function announce(message, regionId = "status-region") {
+  const region = document.getElementById(regionId);
+  if (!region) return;
 
-  function makeAnouncement(message, regionId = "status-region") {
-    const region = document.getElementById(regionId);
-    if (region) {
-      region.textContent = " "; //forced reading 
-      setTimeout(() => {
-        const announcement = document.createElement('span');
-        announcement.setAttribute('role', 'status');
-        announcement.setAttribute('aria-live', 'polite');
-        announcement.setAttribute('aria-atomic', 'true');
-        announcement.textContent = message;
+  region.textContent = "";      // clear
+  requestAnimationFrame(() => { // let DOM settle
+    region.textContent = message;
+  });
+}
 
 
-        region.appendChild(announcement)
 
 
-      }, 400);
-    }
-  }
+ function enableCarouselKeyboard(carousel) {
+  if (!carousel) return;
 
-*/
+  carousel.setAttribute("tabindex", "0");
+  carousel.setAttribute("role", "region");
+  carousel.setAttribute("aria-roledescription", "carousel");
+
+  carousel.addEventListener("keydown", (e) => {
+    if (e.key !== "ArrowLeft" && e.key !== "ArrowRight") return;
+
+    e.preventDefault();
+
+    const delta = e.key === "ArrowRight" ? 1 : -1;
+    carousel.dispatchEvent(
+      new CustomEvent("carousel:step", { detail: delta })
+    );
+  });
+}
 
     });
 

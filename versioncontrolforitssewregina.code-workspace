@@ -1,0 +1,27 @@
+{
+	"folders": [
+		{
+			"name": "itssewregina",
+			"path": "."
+		}
+	],
+	"settings": {
+		"editor.fontSize": 10,
+		"editor.defaultFormatter": "formulahendry.code-runner",
+		"editor.autoClosingComments": "always",
+		"editor.bracketPairColorization.independentColorPoolPerBracketType": true,
+		"editor.codeLensFontSize": 7,
+		"editor.colorDecoratorsActivatedOn": "click",
+		"editor.copyWithSyntaxHighlighting": false,
+		"editor.hover.hidingDelay": 200,
+		"editor.lineNumbers": "relative",
+		"editor.linkedEditing": true,
+		"editor.scrollbar.verticalScrollbarSize": 7,
+		"editor.selectionHighlightMaxLength": 600,
+		"editor.selectionHighlightMultiline": true,
+		"editor.wrapOnEscapedLineFeeds": true,
+		"editor.cursorBlinking": "solid",
+		"editor.cursorStyle": "line-thin",
+		"editor.cursorWidth": 1
+	}
+}
