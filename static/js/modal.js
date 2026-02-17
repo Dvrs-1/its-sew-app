@@ -7,6 +7,27 @@ document.addEventListener('DOMContentLoaded', () => {
   link.href = "/static/css/cartstyles.css?v=2026-02-12";
   document.head.appendChild(link);
 
+
+  const productMap = new Map();
+
+
+  const API_BASE = window.location.origin;  // dynamically grabs current host + protocol
+ 
+ fetch(`${window.location.origin}/api/products`)
+    .then(res => res.json())
+    .then(products => {
+      products.forEach(product => {
+        productMap.set(String(product.id), product);
+      });
+  
+     // renderGallery(products);
+    })
+    .catch(err => {
+      console.error("Failed to load products", err);
+    });
+
+
+
   const modalContainer = document.getElementById("modal-view-container");
    
   // Storage helpers 
@@ -110,24 +131,28 @@ document.addEventListener('DOMContentLoaded', () => {
   
   
   
-  const galleryContainer =   document.getElementById("gallery-container")
-  
-  if(galleryContainer){
+  // show more button
+ document.addEventListener("click", e => {
+      
+      const button = e.target.closest(".show-more");
+      if(!button) return;
+      
+      //Expandable Text on cards
+      const card = button.closest(".slide");
     
-    galleryContainer.addEventListener("click", e => {
-
-    //Expandable Text on cards
-    if (e.target.classList.contains("show-more")) {
-
-      const card = e.target.closest(".gallery");
+      if(!card) return;
       showProductModal(card);
+      console.log("show button pressed")
+      console.log("dataset id:", card.dataset.id)
       
+    });
       
-    }
-
+  
+    
+    
     function showProductModal(card) {
-  modalContainer.innerHTML = "";
-  modalActions.innerHTML = "";
+      modalContainer.innerHTML = "";
+      modalActions.innerHTML = "";
 
   const id = card.dataset.id;
   const product = productMap.get(String(id));
@@ -194,9 +219,9 @@ function renderImagesForVariant() {
       mainImage.src = imgObj.url;
       mainImage.alt = imgObj.alt;
       modalDesc.textContent =
-        imgObj.description || product.description;
+      imgObj.description || product.description;
     });
-
+    
     thumbContainer.appendChild(thumb);
   });
 }
@@ -204,9 +229,9 @@ renderImagesForVariant();
 
 
 
-    const priceDisplay = document.createElement("p");
-    priceDisplay.className = "modal-price";
-    priceDisplay.textContent = `$${selectedVariant?.price?.toFixed(2)}`;
+const priceDisplay = document.createElement("p");
+priceDisplay.className = "modal-price";
+priceDisplay.textContent = `$${selectedVariant?.price?.toFixed(2)}`;
 
 const variantContainer = document.createElement("div");
 variantContainer.className = "modal-variants";
@@ -214,7 +239,7 @@ variantContainer.className = "modal-variants";
 if (product.variants && product.variants.length > 1) {
   
   
-
+  
   const label = document.createElement("p");
   label.textContent = "Select Size:";
   variantContainer.appendChild(label);
@@ -272,7 +297,7 @@ Cart.add({
   price: selectedVariant.price
 });
 
-  closeModal();
+closeModal();
 });
 
 const cartPriceContainer = document.createElement("div");
@@ -280,23 +305,23 @@ cartPriceContainer.className = "cart-price-container"
 
 cartPriceContainer.append(addBtn,priceDisplay)
 
-  productModal.append(imageWrapper, variantContainer, cartPriceContainer, thumbContainer, modalDesc );
-  modalContainer.append(productModal);
-
-  openModal();
+productModal.append(imageWrapper, variantContainer, cartPriceContainer, thumbContainer, modalDesc );
+modalContainer.append(productModal);
+console.log("Products", product)
+openModal();
 }
 
+const modal = document.getElementById("modal");
 
-    
-  //Gallery cards Add to cart button
+   
+  /*Gallery cards Add to cart button
   if (e.target.classList.contains("add-to-cart-btn")) {
     addToCartClick(e.target);
   }
-})};
-
-function addToCartClick(button) {
-  const galleryItem = button.closest(".gallery");
-  const id = galleryItem.dataset.id;
+  */
+  function addToCartClick(button) {
+    const galleryItem = button.closest(".gallery");
+    const id = galleryItem.dataset.id;
   const product = productMap.get(id);
 
   const alreadyInCart =
@@ -322,7 +347,7 @@ function addToCartClick(button) {
   // Clear Cart Button 
   if (clrCart) {
     clrCart.addEventListener('click', () => {
-      const confirmClear = confirm(`Are you sure you would like to Cleare your entire cart?
+      const confirmClear = confirm(`Are you sure you would like to Clear your entire cart?
       `);
       
       if (confirmClear)
@@ -386,38 +411,37 @@ function handleRemoveItem(button) {
 
   Cart.remove(button.dataset.id);
   renderCartView();
-
- 
+  
+  
 };
 
-  setupCartModal();
+setupCartModal();
+let lastFocusedElement = null;
 
-  // === MODAL LOGIC ===
-  function setupCartModal() {
-    const modalViewWindow = document.getElementById("modal");
-    const closeModalBtn = document.getElementById("close-modal");
-    const cartStatus = document.getElementById("cart-status");
-    
-    if (!modalViewWindow || !openCartBtn || !closeModalBtn) {
+// === MODAL LOGIC ===
+function setupCartModal() {
+  const closeModalBtn = document.getElementById("close-modal");
+  const cartStatus = document.getElementById("cart-status");
+  
+    if (!modal || !openCartBtn || !closeModalBtn) {
       console.error("Modal elements not found in DOM");
       return;
     }
 
    // openCartBtn.addEventListener("click", () => openModal(modalViewWindow));
-    closeModalBtn.addEventListener("click", () => closeModal(modalViewWindow));
+    closeModalBtn.addEventListener("click", () => closeModal(modal));
 
     // Close modal 
-    modalViewWindow.addEventListener("click", (e) => {
-      if (e.target === modalViewWindow) closeModal(modal, openCartBtn, cartStatus);
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) closeModal(modal, openCartBtn, cartStatus);
     });
 
    
-    trapFocus(modalViewWindow);
+    trapFocus(modal);
   }
   
   function openModal() {
     
-    lastFocusedElement = document.activeElement;
     modal.classList.remove("hidden");
     document.body.style.overflow = "hidden";
     
@@ -494,6 +518,7 @@ function closeModal() {
   }
   
 });
+
 
 /* 
 // starter package Logic

@@ -1,0 +1,38 @@
+
+[
+
+    {
+      "id": "purses",
+      "label": "Purses",
+      "description": "Handmade custom purses",
+      "image": "/static/images/categories/purses.webp",
+      "order": 1,
+      "active": true
+    },
+    {
+      "id": "pillows",
+      "label": "Pillows",
+      "description": "Custom sewn design made from premium-grade fabric selected for high yeild,tear resistence and ease of maintenance",
+      "image": "/static/images/categories/pillows.webp",
+      "order": 2,
+      "active": true
+    },
+    {
+        "id": "carrying-bags",
+        "label": "Carrying Bags",
+        "description": "Multi-porpose carrying bags",
+        "image": "/static/images/categories/pillows.webp",
+        "order": 3,
+        "active":true
+    },
+    {
+        "id": "phone-props",
+        "label": "Phone Props",
+        "description": "Phone stand with custom design, perfect for displaying phone for screen watching on flat surfaces.",
+        "image": "/static/images/categories/pillows.webp",
+        "order": 4,
+        "active":true
+    }
+
+  ]
+    

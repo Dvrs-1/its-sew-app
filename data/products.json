@@ -1,12 +1,11 @@
+
 [
-  {
+
+   {
       "id": 502,
       "name": "Cowboys Pillow",
-      "category":{
-        "id": "pillow",
-        "label": "Pillow"
-      },
-      "description": "Pillow with custom design made from durable materials.",
+      "categoryId" : "pillows",
+  
       "variants": [
         {
           "id": "502-large",
@@ -17,7 +16,7 @@
         },
         {
           "id": "502-small",
-          "sku":"PIL-COWBS-SM",
+          "sku":"PIL-demoS-SM",
           "size": "Small",
           "price": 30.00,
           "inventory": 5
@@ -29,7 +28,7 @@
           "url": "/static/images/products/cowboyslgplw2.1.webp",
           "variantId": "502-large",
           "alt": "Large pillow sewn with authentic Cowboys sports team design",
-          "description": "Large pillow sewn with authentic Cowboys sports team design made from premium-grade fabric selected for high yeild,tear resistence and ease of maintenance.",
+          "description": "Large pillow sewn with authentic Cowboys sports team design .",
           "role": "primary",
           "order": 1
         },
@@ -37,12 +36,12 @@
           "url": "/static/images/products/cowboyslgplw3.webp",
           "variantId": "502-large",
           "alt": "Back of large pillow sewn with authentic Cowboys sports team design",
-          "description": "Back of large pillow sewn with authentic Cowboys sports team design made from premium-grade fabric selected for high yeild,tear resistence and ease of maintenance.",
+          "description": "Back of large pillow sewn with authentic Cowboys sports team design .",
           "role": "detail",
           "order": 2
         },
         {
-          "url": "/static/images/products/stealersps1.1.webp",
+          "url": "/static/images/products/steelersps1.1.webp",
           "variantId": "502-small",
           "alt": "testolterna",
           "description": "the image shouldnt be the ame s the other products in this selection.",
@@ -51,14 +50,44 @@
         }
       ]
   },
+
   {
     "id": 503,
+    "name": "Cowboys Pillow",
+    "categoryId": "pillows",
+    "variants":[
+      {
+        "id": "503-small",
+        "sku": "PIL-COWBS-SM",
+        "size":"Small",
+        "price": 35.00,
+        "inventory": 5
+      }
+    ],
+    "images": [
+      {
+        "url": "/static/images/products/cowboyssplw1.1.webp",
+        "variantId" : "503-small",
+        "alt": "Small purse sewn with Cowboys sports team silver blue Cowboys star design",
+        "description": "Small pillow sewn with authentic Cowboys sports team design",
+        "role": "primary",
+        "order": 1 
+      },
+      {
+        "url": "/static/images/products/smlpillowdemo.webp",
+        "variantId":"503-small",
+        "alt":"close view of Small cowboys sports design on pillow",
+        "description":"Small pillow sewn with authentic Cowboys sports team design",
+        "role": "detail",
+        "order":2
+      }
+    ]
+  },
+
+  {
+    "id": 804,
     "name": "Cowboys Purse",
-    "category": {
-        "'id": "purses" ,
-        "label": "purse"
-    },
-    "description": "Purse with Authentic Sports Team Design" ,
+    "categoryId": "purses",
     "variants":[
       {
         "id": "503-small",
@@ -78,85 +107,174 @@
         "order": 1 
       },
       {
-        "url": "/static/images/products/smallpurse1.webp",
+        "url": "/static/images/products/closeup2.1.webp",
         "variantId":"503-small",
-        "alt":"whole view of Small cowboys sports design purse",
+        "alt":"close view of Small cowboys sports design purse",
         "description":"Small handmade machine sewn purse with Custom Cowboys Sports teams Star design",
         "role": "detail",
         "order":2
       }
     ]
   },
+  {
+    "id": 901,
+     "name": "Afro Bag",
+     "categoryId": "carrying-bags",
+     "variants": [
+       {
+         "id": "901-large",
+         "sku": "CRY-AFOCLBLK-LG",
+         "size": "Large",
+         "price": 65.00,
+         "inventory": 1
+       }
+     ],  
+      "images": [
+       {
+         "url": "/static/images/products/lgblkafcul.webp",
+         "variantId" : "901-large",
+         "alt": "Large carrying bag with multi colored dressed afro-culture woman design, ",
+         "description": "Large carrying bag with multi colored dressed afro-culture woman design,",
+         "role": "primary",
+         "order": 1 
+       },
+       {
+         "url": "/static/images/products/lgblkafclup.webp",
+         "variantId":"901-large",
+         "alt":"close up of afro culture women in multi colord dresses on carrying bag",
+         "description":"close up of afro culture women in multi colord dresses on carrying bag",
+         "role": "detail",
+         "order":2
+       }
+     ]
+   },
+   {
+    "id":902 ,
+     "name": "Tan afro Culture",
+     "categoryId": "carrying-bags",
+     "variants": [
+       {
+         "id": "902-large",
+         "sku": "CRY-AFOCLTAN-LG",
+         "size": "Large",
+         "price": 65.00,
+         "inventory": 1
+       }
+     ],  
+      "images": [
+       {
+         "url": "/static/images/products/tanafrolgb2.1.webp",
+         "variantId" : "902-large",
+         "alt": "Large tan carry bag, bold Afro-inspired print, deep black circular motifs, and subtle gold accents.custom  soft pink lining inside. multiple interior pockets for easy organization, blends cultural expression with everyday practicality.",
+         "description": "Large tan carry bag featuring a bold Afro-inspired print with deep black circular motifs and subtle gold accents. While the custom pink lining brings a soft, personal touch inside. Designed with multiple interior pockets for easy organization, it blends cultural expression with everyday practicality. ",
+         "role": "primary",
+         "order": 1 
+       },
+       {
+         "url": "/static/images/products/tanafrocu.webp",
+         "variantId":"902-large",
+         "alt":"Large tan carry bag, bold Afro-inspired print, deep black circular motifs, and subtle gold accents.custom  soft pink lining inside. multiple interior pockets for easy organization, blends cultural expression with everyday practicality.",
+         "description": "Large tan carry bag featuring a bold Afro-inspired print with deep black circular motifs and subtle gold accents. While the custom pink lining brings a soft, personal touch inside. Designed with multiple interior pockets for easy organization, it blends cultural expression with everyday practicality. ",
+         "role": "detail",
+         "order":2
+       }
+     ]
+   },
+   {
+    "id": 903,
+    "name": "Steelers Duffle Bag",
+    "categoryId": "carrying-bags",
+    "variants":[
+      {
+        "id": "903-small",
+        "sku": "DFB-STELRGLD-SM",
+        "size":"Small",
+        "price":30.00,
+        "inventory":1
+      }
+    ],
+      "images" :[
+        {
+          "url": "/static/images/products/smlsteelersdflbg1.1.webp",
+          "variantId": "903-small",
+          "alt":"Small duffle bag with Steelers sports team design",
+          "description": "Small duffle bag with Steelers sports team design",
+          "role": "primary",
+          "order": 1
+        }
 
+      ]
+
+   },
   
-  {
-    "id": 299,
-    "name": "Afro Bag",
-    "price": 80.95,
-    "group": "purses",
-    "size": "Large",
-    "image": "static/images/products/afroculturelgb1.1.webp",
-    "alt": "Large bag with Afro culture design",
-    "description": "Premium-grade fabric selected for high yield, tear resistance, and ease of maintenance."
-  },
-  {
-    "id": 300,
-    "name": "Tan afro Culture",
-    "price": 14.36,
-    "group": "purses",
-    "size": "Large",
-    "image": "/static/images/products/tanafrolgb2.1.webp",
-    "alt": "Large handmad Purse with custom light brown Agfo culture design",
-    "description": "Large handmad Purse with custom light brown Agfo culture design"
-  },
-  {
-    "id": 303,
-    "name": "Cowboys Phone Stand",
-    "price": 5.00,
-    "group": "Phone Stands",
-    "size": "Standard",
-    "image": "/static/images/products/cowboysps1.1.webp",
-    "alt": "Phone stand with cowboys design",
-    "description": "Phone stand with custom cowboys design, perfect for holding your phone securely."
-  },
-  {"id": 400,
-  "name": "Sports Phone Stands",
-  "price": 20.00,
-  "group": "Phone Stands",
-  "size": "Standard",
-  "image": "/static/images/products/sportspsdemo1.webp",
-    "alt": "Phone stand with sports design",
-    "description": "Phone stand with custom sports design, perfect for holding your phone securely."
-  },
-  {
-    "id": 402,
-    "name": "Sports Pillows",
-    "price": 55.00,
-    "group": "Pillows",
-    "size": "Large",
-    "image": "/static/images/products/smlpillowdemo1.1.webp",
-    "alt": "Large pillow with sports design",
-    "description": "Large pillow with custom sports design made from durable materials."
-  },
-  {"id": 401,
-    "name": "Sports Phone Stands2",
-    "price": 25.00,
-    "group": "Phone Stands",
-    "size": "Standard",
-    "image": "/static/images/products/sportspsdemo2.webp",
-    "alt": "Phone stand with sports design",
-    "description": "Phone stand with custom sports design, perfect for holding your phone securely."
-  },
-  {
-    "id": 304,
-    "name": "Stealers phone stand",
-    "price": 65.00,
-    "group": "Phone Stands",
-    "size": "Standard",
-    "image": "/static/images/products/stealersps1.1.webp",
-    "alt": "Phone stand with sports design",
-    "description": "Phone stand with custom sports design, perfect for holding your phone securely."
-  }
+   {
+    "id": 101,
+     "name": "Cowboy's Phone Prop",
+     "categoryId": "phone-props",
+     "variants": [
+       {
+         "id": "101-standard",
+        "sku": "PRP-COWBOY-RD",
+         "size": "Standard",
+         "price": 20.00,
+         "inventory": 3
+       }
+ 
+     ],  
+      "images": [
+       {
+         "url": "/static/images/products/cowboysps1.1.webp",
+         "variantId" : "101-standard",
+         "alt": "Phone stand with custom design, perfect for displaying phone for screen watching on flat surfaces.",
+         "description": "Phone stand with custom design, perfect for displaying phone for screen watching on flat surfaces.",
+         "role": "primary",
+         "order": 1 
+       },
+       {
+         "url": "/static/images/products/cowboysps1.1.webp",
+         "variantId":"101-standard",
+         "alt":"Phone stand with custom design, perfect for displaying phone for screen watching on flat surfaces.",
+         "description":"Phone stand with custom design, perfect for displaying phone for screen watching on flat surfaces.",
+         "role": "detail",
+         "order":2
+       }
+     ]
+   },
+   {
+    "id": 102,
+     "name": "Steeler's Phone Prop",
+     "categoryId": "phone-props",
+     "variants": [
+       {
+         "id": "102-standard",
+        "sku": "PRP-STLRS-RD",
+         "size": "Standard",
+         "price": 20.00,
+         "inventory": 3
+       }
+ 
+     ],  
+      "images": [
+       {
+         "url": "/static/images/products/steelersps1.1.webp",
+         "variantId" : "102-standard",
+         "alt": "Phone stand with custom design, perfect for displaying phone for screen watching on flat surfaces.",
+         "description": "Phone stand with custom design, perfect for displaying phone for screen watching on flat surfaces.",
+         "role": "primary",
+         "order": 1 
+       },
+       {
+         "url": "/static/images/products/steelersps1.1.webp",
+         "variantId":"102-standard",
+         "alt":"Phone stand with custom design, perfect for displaying phone for screen watching on flat surfaces.",
+         "description":"Phone stand with custom design, perfect for displaying phone for screen watching on flat surfaces.",
+         "role": "detail",
+         "order":2
+       }
+     ]
+    }
+
+  ]
   
   
-]
+

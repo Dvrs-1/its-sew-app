@@ -31,7 +31,10 @@ def get_products():
     with open(os.path.join("data", "products.json")) as f:
         return jsonify(json.load(f))
     
-
+@app.get("/api/categories")
+def get_categories():
+    with open(os.path.join("data/categories.json")) as f:
+        return jsonify(json.load(f))
 
 
 

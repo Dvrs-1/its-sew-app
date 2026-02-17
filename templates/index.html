@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="/static/css/index.css?v=2026-02-12" rel="stylesheet">
-  <script type="module" src="/static/js/index.js?v=2026-02-12 " defer></script>
+  <script type="module" src="/static/js/index.js?v=2026-02-17 " defer></script>
   <script src="https://kit.fontawesome.com/668995576d.js" crossorigin="anonymous"></script>
   <style>
   
@@ -26,7 +26,6 @@
       <!--Business Name-->
       <h1 >Its Sew Regina</h1>
       <!-- Live region for announcements -->
-    </div>
       
       <nav aria-label="Main navigation" class="menu-mobile">
         
@@ -45,6 +44,7 @@
           
         </ol>
       </nav>
+    </div>
       <div id="status-region" 
       class="visualy-hidden" 
       aria-live="polite "
@@ -53,7 +53,7 @@
     
   </header>
   <main class="container home-layout">
-    <div id="modal-status-region" role="status" aria-live="polite" class="visually-hidden"></div>
+  
  
     <!-- Cart Modal -->
     <div id="users-card">
@@ -79,27 +79,27 @@
     <h4> In stores now!!</h4>
     <div class="special-items-container">
       <figure class="special-product">
-        <figcaption>Small Pillow</figcaption>
+        <figcaption>Phone Props</figcaption>
         <img src="/static/images/products/sportspsdemo1.webp" alt="sports phone stands"  >
       </figure>
       <figure class="special-product">
-        <figcaption>Phone Stand</figcaption>
+        <figcaption>Pillows</figcaption>
         <img src="/static/images/products/smlpillowdemo1.1.webp" alt="small pillow" >
       </figure>
     </div>
 
     
     
-    <a href="gallery.html" id="linkgallery">see More</a>
-    <button class="add-bundle" data-id="bundle-special"><i class="fa-solid fa-cart-plus"></i>Add to cart</button>
+    <a href="/gallery.html" id="linkgallery">see More</a>
+
     <span class="price" id="special-price">$21.02</span>
   </div>
   
   <article>
-    <script src="/static/js/carousel.js?v=2026-02-12"></script>
+    <script src="/static/js/carousel.js?v=2026-02-17"></script>
     <div class="carousel" 
     data-carousel 
-    data-group="Phone Stands"
+    data-category="phone-props"
     data-variant="hero"
     id="home-carousel-demo">
       <div class="carousel-track"></div>
@@ -107,12 +107,38 @@
     <div class="carousel-dots" data-dots></div>
   </article>
   
-  <div class="aside-article-container">
 
-    <aside>
-      <div class="gallery-product-category">
-        <h3 class="topic">New Patterns</h3>
-        <p>Press a selection to view by category</p>
+
+  <aside>
+    <div class="gallery-product-category">
+      <h3 class="topic">New Patterns</h3>
+      <p>Select a fabric to expand</p>
+      <div class="fabric-picker">
+        <div class="fabric" style="background-image:url('/static/images/fabricpicker/fab1.webp');""">
+          <div class="overlay"></div>
+        </div>
+        <div class="fabric" style="background-image:url('/static/images/fabricpicker/fab2.webp');""">
+          <div class="overlay"></div>
+        </div>
+        <div class="fabric" style="background-image:url('/static/images/fabricpicker/fab3.webp');""">
+          <div class="overlay"></div>
+        </div>
+        <div class="fabric" style="background-image:url('/static/images/fabricpicker/fab4.webp');""">
+          <div class="overlay"></div>
+        </div>
+        <div class="fabric" style="background-image:url('/static/images/fabricpicker/fab5.webp');""">
+          <div class="overlay"></div>
+        </div>
+        <div class="fabric" style="background-image:url('/static/images/fabricpicker/fab6.webp');""">
+          <div class="overlay"></div>
+        </div>
+        <div class="fabric" style="background-image:url('/static/images/fabricpicker/fab7.webp');""">
+          <div class="overlay"></div>
+        </div>
+        
+      </div>
+      <p>Press a selection to view by category</p>
+      
         <div class="default-category" id="default-selection">
           <button class="main-category-select" id="show-equipment-category">
     Msc
@@ -133,7 +159,7 @@
           </div>
           <div class="category">
             <a
-              href="/gallery"><img class="plant-category" src="/static/images/products/stealersps1.1.webp" alt="click here for string of peerls plant description"></a>
+              href="/gallery"><img class="plant-category" src="/static/images/products/steelersps1.1.webp" alt="click here for string of peerls plant description"></a>
             <a
               href="/gallery"><img class="plant-category" src="/static/images/products/cowboyslgplw2.1.webp" alt="click here for the spider plant description"></a>
             <a
@@ -151,7 +177,7 @@
 
         </div>
     </aside>
-  </div>
+
   <section>
 
 
@@ -167,7 +193,7 @@
         </figure>
         
         <figure class="bundle-deal">
-          <figcaption>stand +</figcaption>
+          <figcaption>Afro Culture</figcaption>
           <img src="/static/images/products/afroculturelgb1.1.webp"
                 alt="Custom made afro culture carry bag " >
 
@@ -198,7 +224,7 @@ aria-controls="main-menu"></button>
   
 </main>
 <footer>
-  <table id="hours">
+  <table id="hours-table">
     <tr>
       <th colspan="3">Hours of Operation</th>
     </tr>
@@ -218,6 +244,9 @@ aria-controls="main-menu"></button>
       <td>5 p.m</td>
     </tr>
   </table>
+  <a href="#" onclick="window.open('https://www.sitelock.com/verify.php?site=itssewregina.com','SiteLock','width=600,height=600,left=160,top=170');" >
+    <img class="img-fluid" alt="SiteLock" title="SiteLock" src="https://shield.sitelock.com/shield/itssewregina.com" /></a>
+  <div id="modal-status-region" role="status" aria-live="polite" class="visually-hidden"></div>
   <div id="social-links">
     <a
       href="http://facebook.com/html"><img aria-label="follow us on face book page"  class="social1" src="/static/images/SVG/facebook.svg"></a>
@@ -240,9 +269,9 @@ aria-controls="main-menu"></button>
   </nav>
 </footer>
 </div>
-<script src="/static/js/cart.js?v=2026-02-12" media="print"></script>
-<script src="/static/js/modal.js?v=2026-02-12" media="print"></script>
-<script src="/static/js/main.js?v=2026-02-12"></script>
+<script src="/static/js/cart.js?v=2026-02-17" media="print"></script>
+<script src="/static/js/modal.js?v=2026-02-17" media="print"></script>
+<script src="/static/js/main.js?v=2026-02-17"></script>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
 

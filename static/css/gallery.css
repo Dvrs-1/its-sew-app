@@ -91,13 +91,6 @@ figure.product-media figcaption {
 
 }
 
-.show-more{
-  border-radius: 5px;
-  max-width: fit-content;
-  margin: 5px 3px 3px 5px;
-  box-shadow: #00231C 1px 3px 0px 0px;
-}
-
 .product-description{
   background-color: #BDD4DA; 
   display: none;

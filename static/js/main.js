@@ -9,7 +9,7 @@ var cartItems = JSON.parse(sessionStorage.getItem("cartItems")) || [];
 var link = document.createElement('link');
 link.rel = 'stylesheet';
 link.type = 'text/css';
-link.href = '/static/css/main.css?v=2026-02-12'; 
+link.href = '/static/css/main.css?v=2026-02-17'; 
 
 document.head.appendChild(link)
 

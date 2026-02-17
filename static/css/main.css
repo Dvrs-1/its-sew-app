@@ -71,7 +71,7 @@ body {
 .container {
   width: 100%;
   max-width: var(--container-max);
-  margin-inline: auto;
+
 }
 
 
@@ -85,9 +85,7 @@ main {
 
 
 /* ---------- Typography ---------- */
-h1,
-h2,
-h3,
+
 h4 {
   color: var(--brand-pink);
   font-weight: 500;
@@ -99,18 +97,28 @@ h1 {
    font-size: clamp(1.2rem, 7vw, 1.8rem);
   line-height: 1.2;
   align-self: center;
-  padding-right: 30px;
+  padding-right: 5px;
+  color: var(--brand-pink);
+  letter-spacing: 0.04em;
+  font-weight: 500;
 }
 
 h2 {
   font-size: clamp(1.8rem, 2.5vw, 2.2rem);
   line-height: 1.25;
+  color: var(--brand-pink);
+  letter-spacing: 0.04em;
+  font-weight: 500;
 }
 
 h3 {
   font-size: 1rem;
   text-transform: uppercase;
+  color: var(--brand-pink);
+  letter-spacing: 0.04em;
+  font-weight: 500;
 }
+
 
 p {
   max-width: 65ch;
@@ -307,9 +315,8 @@ box-shadow: 0 6px 12px rgba(0.0.0.0.25);
 /* ---------- Footer ---------- */
 footer {
   background-color: var(--brand-blonde);
-  padding: var(--space-6);
   position: relative;
-  offset-inline-end: 60px;;
+  offset-inline-end: 60px;
   width: 100%;
 }
 
@@ -321,12 +328,18 @@ footer a {
 footer a:hover {
   color: var(--brand-pink);
 }
+#hours-table{
+  display: inline-block;
+}
 #social-links {
   max-width: 30px;
   display: flex;
   flex-direction: row;
   gap: var(--space-3);
   margin-top: var(--space-4);
+}
+.footer-nav{
+  display: flex;
 }
 
 /* ---------- Desktop Enhancements ---------- */
@@ -347,5 +360,9 @@ footer a:hover {
 
   .hero-group-container {
     visibility: hidden;
+  }
+  .menu-mobile{
+    align-self: center;
+    padding: var(--space-3);
   }
 }

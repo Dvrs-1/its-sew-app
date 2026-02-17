@@ -19,7 +19,7 @@
   display: none;
 }
 article{
-  display: flex;
+  
   justify-content: center;
   align-items: center;
   border-top: 3px solid var(--border-soft);
@@ -53,8 +53,12 @@ article{
 
 
 .slide-media {
+  display: block;
   width: 100%;
   overflow: visible;
+  aspect-ratio: 4/5;
+  object-fit: cover;
+
 }
 
 .slide.is-active{
@@ -78,39 +82,55 @@ article{
   bottom: var(--space-3);
   left: var(--space-3);
   color: var(--bg-surface);
-  font-size: 1.5rem;
+ 
   text-shadow: 0 0 5px rgba(0,0,0,0.5);
 }
 
-.carousel[data-variant="hero"] img {
+
+.slide-option{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.show-more{
+  border-radius: 5px;
+  max-width: fit-content;
+  margin: 5px 3px 3px 5px;
+  box-shadow: #00231C 1px 3px 0px 0px;
+}
+
+.carousel[data-carousel] img {
   overflow: hidden;
-  aspect-ratio: 4/2;
-  object-fit: cover;
+ 
+ 
   transform: translateY(-10px);
   width: 100%;
-  display: block;
+  height: 100%;
+  
 }
 .carousel[data-variant="demo"] button {
    overflow: hidden;
-  aspect-ratio: 4/2;
-  object-fit: cover;
+
+
   transform: translateY(-10px);
   width: 100%;
-  display: block;
+
 }
 
 .carousel-dots  {
   position: absolute;
-  bottom: 10px;
+  bottom: 50px;
   right: 70px;
   transform: translateY(-50%);
   background-color: rgba(0,0,0,0.5);
   border: none;
   color: var(--brand-green) ;
-  font-size: 2rem;
-  padding: 0 5px;
+  padding: 3px 5px;
   cursor:  pointer;
   border-radius: 5px;
+  min-width: 40px;
+  display: flex;
 }
 
 .carousel-dots button {

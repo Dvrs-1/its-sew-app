@@ -1,56 +1,69 @@
 const productsPromise = fetch('/api/products')
   .then(r => r.json());
-
+const categoriesPromise = fetch('/api/categories')
+.then(r => r.json());
 
 document.addEventListener('DOMContentLoaded', () => {
   // Load carousel styles once
   const link = document.createElement('link');
   link.rel = 'stylesheet';
-  link.href = '/static/css/carousel.css?v=2026-02-12';
+  link.href = '/static/css/carousel.css?v=2026-02-17';
   document.head.appendChild(link);
 
   // Initialize all carousels with shared data
-  document
-    .querySelectorAll('[data-carousel]')
-    .forEach(carousel => {
-      productsPromise.then(products => {
-        initCarousel(carousel, products);
-      });
+  productsPromise.then(products => {
+  });
+  
+ 
+    Promise.all([productsPromise, categoriesPromise])
+    .then(([products, categories]) => {
+  
+      document
+        .querySelectorAll('[data-carousel]')
+        .forEach(carousel => {
+          initCarousel(carousel, products);
+        });
+  
     });
 
 
-      const nextButton = document.querySelector('.next');
-  const prevButton = document.querySelector('.prev');
+    
+  });
+  
+  function initCarousel(carousel, products) {
+    const track = carousel.querySelector('.carousel-track');
+    const dotsContainer = carousel.nextElementSibling?.matches('[data-dots]')
+    ? carousel.nextElementSibling
+    : null;
 
+
+
+    let activeIndex = 0;
+    
+    const nextButton = carousel.querySelector('.next');
+  const prevButton = carousel.querySelector('.prev');
+  
   if(nextButton && prevButton){
   
-  const track = document.querySelector('.carousel-track');
-  const slides = Array.from(track.children);
-let currentIndex = 0;
 
-function updateCarousel() {
+  const slides = Array.from(track.children);
+  let currentIndex = 0;
+  
+  function updateCarousel() {
   const offset = -currentIndex * 100;
   track.style.transform = `translateX(${offset}%)`;
-}
-
-nextButton.addEventListener('click', () => {
+  }
+  
+  nextButton.addEventListener('click', () => {
   currentIndex = (currentIndex + 1) % slides.length;
   updateCarousel();
-});
-
-prevButton.addEventListener('click', () => {
+  });
+  
+  prevButton.addEventListener('click', () => {
   currentIndex = (currentIndex - 1 + slides.length) % slides.length;
   updateCarousel();
-});
+  });
   }
-});
-
-
-function initCarousel(carousel, products) {
-  const track = carousel.querySelector('.carousel-track');
-  const dotsContainer = carousel.parentElement.querySelector('[data-dots]');
-  let activeIndex = 0;
-
 
   carousel.addEventListener("carousel:step", (e) => {
   const direction = e.detail;
@@ -62,8 +75,8 @@ function initCarousel(carousel, products) {
   scrollToSlide(targetIndex);
 });
 
-  const group = carousel.dataset.group;
-  populateCarousel(track, products, group);
+  const categoryId = carousel.dataset.category;
+  populateCarousel(track, products, categoryId);
   buildDots();
   activeIndex = getActiveIndex();
   updateDots();
@@ -175,11 +188,11 @@ function initCarousel(carousel, products) {
 
 
 
-function populateCarousel(track, products, group) {
+function populateCarousel(track, products, categoryId) {
   track.innerHTML = '';
 
   products
-    .filter(p => p.group === group)
+  .filter(p => p.categoryId === categoryId)
     .forEach(p => track.appendChild(createSlide(p)));
 }
 
@@ -188,18 +201,33 @@ function populateCarousel(track, products, group) {
 function createSlide(product) {
   const slide = document.createElement('div');
   slide.className = 'slide';
-
   slide.dataset.id = product.id;
-  slide.dataset.group = product.group;
+  slide.product = product;
 
+  const primaryImage = product.images?.find(img => img.role === "primary");
+  const price = product.variants?.length
+    ? Math.min(...product.variants.map(v => v.price))
+    : product.price;
+
+  const slideOption = document.createElement("div");
+  slideOption.className = "slide-option"
+  const showMoreBtn = document.createElement("button");
+  showMoreBtn.className = 'show-more';
+  showMoreBtn.innerText = "Show More"
+
+  const priceOnSlide  = document.createElement('p')
+  priceOnSlide.innerHTML = `$${price?.toFixed(2)}`;
+
+  slideOption.append(priceOnSlide, showMoreBtn)
   slide.innerHTML = `
     <div class="slide-media">
-      <img src="${product.image}" alt="">
+      <img src="${primaryImage?.url || product.image}" alt="${primaryImage?.alt || ''}">
     </div>
     <h3>${product.name}</h3>
-    <p>$${product.price.toFixed(2)}</p>
+  
+    
   `;
-
+slide.append(slideOption)
   return slide;
 }
 
