@@ -51,7 +51,7 @@
  position: relative;
  padding: 10px;
  text-align: center;
- width: 65vw;
+ width: 85vw;
  max-width: 520px;
  min-width: 240px;
  max-height:80vh;
@@ -73,6 +73,9 @@
    width: 100%;
    max-width: 100%;
    background-color: #f7f7f7;
+ }
+ .modal-add-to-cart{
+  margin: 10px;
  }
 
  .cart-view-modal{
@@ -197,10 +200,11 @@ padding: 1px;
  
 
  .close {
-   font-size: 1.0rem;
+   font-size: 2.3rem;
    cursor: pointer;
    color: #00231C;
    position: absolute;
+   padding: 1px;
    right: 10px;
    top: 10px;
  }

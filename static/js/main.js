@@ -27,38 +27,42 @@ document.addEventListener('DOMContentLoaded', function() {
       //appending the hamburger item(id=newHamburger)
 
       const menuToggle = document.getElementById('hamburger-icon')
- 
+
   
       if (menuToggle) {
+       
+       console.log('menutoggle')
+      }
         const hamburgerButton = document.createElement('button');
         hamburgerButton.className = 'show-navigation-btn';
       
         const iconImage = document.createElement('i');
-        iconImage.className = '<i class="fa-sharp-duotone fa-solid fa-bars fa-2xl"></i>';
+        iconImage.innerHTML = `<i class="fa-sharp-duotone fa-solid fa-bars fa-2xl"></i>`;
         
         hamburgerButton.appendChild(iconImage);
-        menuToggle.appendChild(hamburgerButton);
+       // menuToggle.appendChild(hamburgerButton);
         hamburgerButton.id = "newHamburger"
-      }
       
       
       
       //Hamburger Menu event Toggling
    
       const menuButton = document.getElementById('newHamburger');
-      const mainMenu = document.querySelector('navigation-menu');
+      const mainMenu = document.querySelector('.navigation-menu');
       
-      $("#newHamburger").click(function(event) {
+      hamburgerButton.addEventListener('click', function(event) {
         event.preventDefault(); 
-        const $menu = $(".navigation-menu");
+       
       
-        $menu.toggleClass("show hidden");
-        if ($menu.hasClass("show")) {
+    
+        if (hamburgerButton) {
+          mainMenu.classList.toggle("show");
+          mainMenu.classList.toggle("hidden");
           console.log("Menu is now visible");
          // makeAnouncement('Navigation menu open')
       
-          $("#newHamburger").attr("aria-expanded", "true");
-          toggleAriaExpanded(menuButton, mainMenu)
+         hamburgerButton.setAttribute("aria-expanded", "true");
+          toggleAriaExpanded(hamburgerButton, mainMenu)
      
         } else {
           console.log("Menu is now hidden");//check console
@@ -66,6 +70,32 @@ document.addEventListener('DOMContentLoaded', function() {
     
         }
       });
+
+
+
+
+
+
+      const heroGroupContainer = document.querySelector('.hero-group-container');
+
+      const heroGroupNav = document.createElement('div');
+      heroGroupNav.className = "hero-group-navigation";
+
+      const homeButton = document.createElement('a');
+      homeButton.href = '/';
+      homeButton.innerText = "Home"
+      const galleryLink = document.createElement('a');
+      galleryLink.href = '/gallery';
+      galleryLink.innerText = "Gallery";
+      const aboutUsLink = document.createElement('a');
+      aboutUsLink.href = '/aboutus';
+      aboutUsLink.innerText = "About us"
+
+      heroGroupNav.append(homeButton,galleryLink,aboutUsLink,hamburgerButton);
+
+      heroGroupContainer.appendChild(heroGroupNav);
+
+ 
 
 
   // footer Subscrib Feature Validation and Lstorage submission()
