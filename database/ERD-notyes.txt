@@ -1,0 +1,10 @@
+- A product can have many tags.
+- Every Product has at leat one variantId.
+- No duplicate (variant,url) pairs.
+- Every image refrences an existing variantId.
+- Image URLs all have .webp.
+- A tag can belong to many products.
+- Tags are consistant and lowercase.
+- Category slugs align with caregories dataset.
+- An order has many order_items.
+- An order has exactly one shipping_address.

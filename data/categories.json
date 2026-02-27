@@ -12,7 +12,7 @@
     {
       "id": "pillows",
       "label": "Pillows",
-      "description": "Custom sewn design made from premium-grade fabric selected for high yeild,tear resistence and ease of maintenance",
+      "description": "Custom sewn design made from premium-grade fabric selected for high yeld, tear resilience and ease of maintenance",
       "image": "/static/images/categories/pillows.webp",
       "order": 2,
       "active": true
@@ -20,17 +20,25 @@
     {
         "id": "carrying-bags",
         "label": "Carrying Bags",
-        "description": "Multi-porpose carrying bags",
-        "image": "/static/images/categories/pillows.webp",
+        "description": "Multi-purpose carrying bags",
+        "image": "/static/images/products/afroculturelgb1.1.webp",
         "order": 3,
         "active":true
     },
     {
-        "id": "phone-props",
-        "label": "Phone Props",
-        "description": "Phone stand with custom design, perfect for displaying phone for screen watching on flat surfaces.",
-        "image": "/static/images/categories/pillows.webp",
+        "id": "phone-stands",
+        "label": "Phone Stands",
+        "description": "Handmade soft, fabric wedge phone stand that holds your phone upright on flat surfaces.",
+        "image": "/static/images/categories/sportspsdemo.webp",
         "order": 4,
+        "active":true
+    },
+    {
+       "id": "wristlets",
+        "label": "Wristlets",
+        "description": "Custom Handmade soft fabric wristlets, made with interior design and durable zipper",
+        "image": "/static/images/categories/wristletctgry.webp",
+        "order": 5,
         "active":true
     }
 

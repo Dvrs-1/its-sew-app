@@ -1,0 +1,633 @@
+
+[
+   {
+      "id": 901,
+      "name": "Memphis Grizzlies Pillow\nlight blue",
+      "categoryId" : "pillows",
+      "tags": ["sports", "decor", "nfl"],
+      "variants": [
+        {
+          "id": "901-large",
+          "sku": "PIL-MGZLB-LG",
+          "size": "Large",
+          "price": 50.00,
+          "inventory": 5
+        },
+        {
+          "id": "901-small",
+          "sku":"PIL-MGZLB-SM",
+          "size": "Small",
+          "price": 30.00,
+          "inventory": 5
+        }
+  
+      ],
+      "images": [
+        {
+          "url": "/static/images/products/grizzplwlg1.3.webp",
+          "variantId": "901-large",
+          "alt": "Large Memphis Grizzlies pillow",
+          "description": "Full view of light blue Memphis Grizzlies pillow",
+          "role": "primary",
+          "order": 1
+        },
+        {
+          "url": "/static/images/products/grizzplwlg1.2.webp",
+          "variantId": "901-large",
+          "alt": "Large Memphis Grizzlies pillow",
+          "description": "View comparison of large pillow with sports team design",
+          "role": "detail",
+          "order": 2
+        },
+         {
+          "url": "/static/images/products/grizzplwlg1.1.webp",
+          "variantId": "901-large",
+          "alt": "close up view of Large Memphis Grizzlies pillow's design",
+          "description": "Close up view of large pillow with light blue Memphis Grizzlies design",
+          "role": "detail",
+          "order": 3
+        },
+        {
+          "url": "/static/images/products/grizplwsml1.1.webp",
+          "variantId": "901-small",
+          "alt": "Small light blue Memphis Grizzlies pillow",
+          "description": "Full view of small pillow with light blue Memphis Grizzlies pillow",
+          "role": "variant",
+          "order": 1
+        },
+            {
+          "url": "/static/images/products/grizplwsml1.2.webp",
+          "variantId": "901-small",
+          "alt": "Small light blue Memphis Grizzlies pillow size comparison ",
+          "description": "View of small pillow standing on side for size comparison",
+          "role": "variant",
+          "order": 2
+        }
+      ]
+  },
+
+  {
+    "id": 902,
+    "name": "Cowboys Pillow",
+    "categoryId": "pillows",
+    "tags": ["sports", "decor", "nfl"],
+    "variants":[
+      {
+        "id": "902-small",
+        "sku": "PIL-COWBS-SM",
+        "size":"Small",
+        "price": 35.00,
+        "inventory": 5
+      }
+    ],
+    "images": [
+      {
+        "url": "/static/images/products/cowboyssplw1.1.webp",
+        "variantId" : "902-small",
+        "alt": "Small pillow sewn with Cowboys sports team silver blue Cowboys star design",
+        "description": "Small pillow sewn with authentic Cowboys sports team design",
+        "role": "primary",
+        "order": 1 
+      },
+      {
+        "url": "/static/images/products/smlpillowdemo.webp",
+        "variantId":"902-small",
+        "alt":"close view of Small cowboys sports design on pillow",
+        "description":"Small pillow sewn with authentic Cowboys sports team design",
+        "role": "detail",
+        "order":2
+      }
+    ]
+  },
+  {
+    "id": 903,
+    "name": "Saints Pillow",
+    "categoryId": "pillows",
+    "tags": ["sports", "decor", "nfl"],
+    "variants":[
+      {
+        "id": "903-large",
+        "sku": "PIL-SANTS-LG",
+        "size":"Large",
+        "price": 35.00,
+        "inventory": 2
+      }
+    ],
+    "images": [
+      {
+        "url": "/static/images/products/sntsplwlg1.1.webp",
+        "variantId" : "903-large",
+        "alt": "Large pillow sewn with Saints sports design",
+        "description": "Full view of pillow sewn with Saints sports team design",
+        "role": "primary",
+        "order": 1 
+      },
+      {
+        "url": "/static/images/products/sntsplwlg1.4.webp",
+        "variantId":"903-large",
+        "alt":"close view of Large pillows saints sports design on pillow",
+        "description":"Close view of saints design on pillow",
+        "role": "detail",
+        "order":2
+      },
+       {
+        "url": "/static/images/products/sntsplwlg1.3.webp",
+        "variantId":"903-large",
+        "alt":"Large pillows view from side",
+        "description":"Side view of large pillow",
+        "role": "detail",
+        "order":3
+      }
+    ]
+  },
+    {
+    "id": 904,
+    "name": "Tennessee Titans Pillow",
+    "categoryId": "pillows",
+    "tags": ["sports", "decor", "nfl"],
+    "variants":[
+      {
+        "id": "904-small",
+        "sku": "PIL-TITNS-SM",
+        "size":"Small",
+        "price": 35.00,
+        "inventory": 2
+      }
+    ],
+    "images": [
+      {
+        "url": "/static/images/products/titnsplwsml1.1.webp",
+        "variantId" : "904-small",
+        "alt": "Small pillow sewn with Tennessee Titans sports design",
+        "description": "Small pillow with Tennessee Titans sports team design",
+        "role": "primary",
+        "order": 1 
+      },
+      {
+        "url": "/static/images/products/titnsplwsml1.2.webp",
+        "variantId":"904-small",
+        "alt":"close view of Small pillows Tennessee Titans sports design on pillow",
+        "description":"Close view of Tennessee Titan pillow's stitching",
+        "role": "detail",
+        "order":2
+      },
+       {
+        "url": "/static/images/products/titnsplwsml1.3.webp",
+        "variantId":"904-small",
+        "alt":"full view of small Tennessee Titans pillow",
+        "description":"Small Tennessee Titans pillow in full view",
+        "role": "detail",
+        "order":3
+      }
+    ]
+  },
+  {
+    "id": 801,
+    "name": "Cowboys Purse",
+    "categoryId": "purses",
+    "tags": ["nfl", "sports", "fashion"],
+    "variants":[
+      {
+        "id": "801-small",
+        "sku": "PRS-COWBSSTR-SM",
+        "size":"Small",
+        "price": 35.00,
+        "inventory": 5
+      }
+    ],
+    "images": [
+      {
+        "url": "/static/images/products/cowboypursml1.1.webp",
+        "variantId" : "801-small",
+        "alt": "Small purse sewn with Cowboys sports team silver blue Cowboys star design",
+        "description": "Small handmade machine sewn purse with Custom Cowboys Sports teams Star design",
+        "role": "primary",
+        "order": 1 
+      },
+      {
+        "url": "/static/images/products/cowboypursml1.2.webp",
+        "variantId":"801-small",
+        "alt":"close view of Small cowboys sports design purse",
+        "description":"Close up view of purses strap and buckle",
+        "role": "detail",
+        "order":2
+      }
+    ]
+  },
+  {
+    "id": 701,
+     "name": "Afro Bag",
+     "categoryId": "carrying-bags",
+     "tags": ["culture", "travel"],
+     "variants": [
+       {
+         "id": "701-large",
+         "sku": "CRY-AFOCLBLK-LG",
+         "size": "Large",
+         "price": 65.00,
+         "inventory": 1
+       }
+     ],  
+      "images": [
+       {
+         "url": "/static/images/products/lgblkafcul.webp",
+         "variantId" : "701-large",
+         "alt": "Large carrying bag with multi colored dressed afro-culture woman design, ",
+         "description": "Large carrying bag with multi colored dressed afro-culture woman design,",
+         "role": "primary",
+         "order": 1 
+       },
+       {
+         "url": "/static/images/products/lgblkafclup.webp",
+         "variantId":"701-large",
+         "alt":"close up of afro culture women in multi colord dresses on carrying bag",
+         "description":"close up of afro culture women in multi colord dresses on carrying bag",
+         "role": "detail",
+         "order":2
+       }
+     ]
+   },
+   {
+    "id":702 ,
+     "name": "Tan afro Culture",
+     "categoryId": "carrying-bags",
+     "tags": ["culture", "travel"],
+     "variants": [
+       {
+         "id": "702-large",
+         "sku": "CRY-AFOCLTAN-LG",
+         "size": "Large",
+         "price": 65.00,
+         "inventory": 1
+       }
+     ],  
+      "images": [
+       {
+         "url": "/static/images/products/tanafrolgb2.1.webp",
+         "variantId" : "702-large",
+         "alt": "Large tan carry bag, bold Afro-inspired print, deep black circular motifs, and subtle gold accents.custom  soft pink lining inside. multiple interior pockets for easy organization, blends cultural expression with everyday practicality.",
+         "description": "Large tan carry bag featuring a bold Afro-inspired print with deep black circular motifs and subtle gold accents. While the custom pink lining brings a soft, personal touch inside. Designed with multiple interior pockets for easy organization, it blends cultural expression with everyday practicality. ",
+         "role": "primary",
+         "order": 1 
+       },
+       {
+         "url": "/static/images/products/tanafrocu.webp",
+         "variantId":"702-large",
+         "alt":"Large tan carry bag, bold Afro-inspired print, deep black circular motifs, and subtle gold accents.custom  soft pink lining inside. multiple interior pockets for easy organization, blends cultural expression with everyday practicality.",
+         "description": "Large tan carry bag featuring a bold Afro-inspired print with deep black circular motifs and subtle gold accents. While the custom pink lining brings a soft, personal touch inside. Designed with multiple interior pockets for easy organization, it blends cultural expression with everyday practicality. ",
+         "role": "detail",
+         "order":2
+       }
+     ]
+   },
+   {
+    "id": 703,
+    "name": "Steelers Duffle Bag",
+    "categoryId": "carrying-bags",
+    "tags": ["sports", "nfl", "travel"],   
+    "variants":[
+      {
+        "id": "703-small",
+        "sku": "DFB-STELRGLD-SM",
+        "size":"Small",
+        "price":30.00,
+        "inventory":1
+      }
+    ],
+      "images" :[
+        {
+          "url": "/static/images/products/smlsteelersdflbg1.1.webp",
+          "variantId": "703-small",
+          "alt":"Small duffle bag with Steelers sports team design",
+          "description": "Small duffle bag with Steelers sports team design",
+          "role": "primary",
+          "order": 1
+        }
+
+      ]
+
+   },
+      {
+    "id": 201,
+     "name": "Steelers Wristlet",
+     "categoryId": "wristlets",
+     "tags": ["sports", "nfl", "fashion"],   
+     "variants": [
+       {
+         "id": "201-standard",
+        "sku": "WRS-STLRS-SD",
+         "size": "Standard",
+         "price": 20.00,
+         "inventory": 3
+       }
+ 
+     ],  
+      "images": [
+       {
+         "url": "/static/images/products/steelerswrst1.1.webp",
+         "variantId" : "201-standard",
+         "alt": "Wristlets with yellow goldSteelers sports team design",
+         "description": "Full view of wristlet in Steelers gold sports team print",
+         "role": "primary",
+         "order": 1 
+       },
+       {
+         "url": "/static/images/products/steelerswrst1.2.webp",
+         "variantId":"201-standard",
+         "alt":"view of grizzlies wristlets' black and white checkerboard style lining ",
+         "description": "Interior view of black and white checker style lining inside Grizzlies wristlet",
+         "role": "detail",
+         "order":2
+       }
+     ]
+    },
+          {
+    "id": 202,
+     "name": "Memphis Grizzlies Wristlet",
+     "categoryId": "wristlets",
+     "tags": ["sports", "nfl", "fashion"],   
+     "variants": [
+       {
+         "id": "202-standard",
+        "sku": "WRS-MEMGZR-SD",
+         "size": "Standard",
+         "price": 20.00,
+         "inventory": 3
+       }
+ 
+     ],  
+      "images": [
+       {
+         "url": "/static/images/products/grizzwrst1.1.webp",
+         "variantId" : "202-standard",
+         "alt": "Wristlets with light blue Memphis Grizzlies sports team design",
+         "description": "Full view of Wristlet with light blue  Memphis Grizzlies sports team print",
+         "role": "primary",
+         "order": 1 
+       },
+       {
+         "url": "/static/images/products/grizzwrst1.2.webp",
+         "variantId":"202-standard",
+         "alt":"View of Grizzlies wristlets orange interior lining",
+         "description": "Interior view of orange lining inside Grizzlies wristlet",
+         "role": "detail",
+         "order":2
+       }
+     ]
+    },
+  
+   {
+    "id": 101,
+     "name": "Cowboy's Phone Stand",
+     "categoryId": "phone-stands",
+     "tags": ["sports", "nfl", "decor"],   
+     "variants": [
+       {
+         "id": "101-standard",
+        "sku": "PRP-COWBOY-SD",
+         "size": "Standard",
+         "price": 20.00,
+         "inventory": 3
+       }
+ 
+     ],  
+      "images": [
+       {
+         "url": "/static/images/products/cowboysps1.1.webp",
+         "variantId" : "101-standard",
+         "alt": "Handmade fabric phone stand with Cowboys sports team design",
+         "description": "Wedge-style fabric phone stand in black Cowboys sports team print",
+         "role": "primary",
+         "order": 1 
+       }
+  
+     ]
+   },
+   {
+    "id": 102,
+     "name": "Steelers Phone Stand",
+     "categoryId": "phone-stands",
+     "tags": ["sports", "nfl", "decor"],   
+     "variants": [
+       {
+         "id": "102-standard",
+         "sku": "PRP-STLRS-SD",
+         "size": "Standard",
+         "price": 20.00,
+         "inventory": 3
+       }
+ 
+     ],  
+      "images": [
+       {
+         "url": "/static/images/products/steelersps1.1.webp",
+         "variantId" : "102-standard",
+         "alt": "Handmade fabric phone stand with black Steelers sports team design",
+         "description": "Wedge-style fabric phone stand in black Steelers sports team print",
+         "role": "primary",
+         "order": 1 
+       }
+     ]
+    },
+     {
+    "id": 103,
+     "name": "Patriots Phone Stand",
+     "categoryId": "phone-stands",
+     "tags": ["sports", "nfl", "decor"],   
+     "variants": [
+       {
+         "id": "103-standard",
+         "sku": "PRP-PTRTS-SD",
+         "size": "Standard",
+         "price": 20.00,
+         "inventory": 3
+       }
+ 
+     ],  
+      "images": [
+       {
+         "url": "/static/images/products/patrips1.1.webp",
+         "variantId": "103-standard",
+         "alt": "Handmade fabric phone stand with red Patriots sports team design",
+         "description": "Close up of wedge-style fabric phone stand in red Patriots sports team print",
+         "role": "primary",
+         "order": 1 
+       },
+       {
+         "url": "/static/images/products/patrips1.4.webp",
+         "variantId": "103-standard",
+         "alt": "Handmade fabric phone stand with red Patriots sports team design",
+         "description": "Wedge-style fabric phone stand in red Patriots sports team print holding a smartphone upright on a table.",
+         "role": "detail",
+         "order": 2
+       },
+            {
+         "url": "/static/images/products/patrips1.2.webp",
+         "variantId": "103-standard",
+         "alt": "Handmade fabric phone stand with red Patriots sports team design",
+         "description": "Wedge-style fabric phone stand in red Patriots sports team print, Full view",
+         "role": "detail",
+         "order": 3
+       }
+     ]
+    },
+         {
+    "id": 104,
+     "name": "Memphis Redbirds Phone Stand",
+     "categoryId": "phone-stands",
+     "tags": ["sports", "nfl", "decor"],   
+     "variants": [
+       {
+         "id": "104-standard",
+         "sku": "PRP-MEMRB-SD",
+         "size": "Standard",
+         "price": 20.00,
+         "inventory": 3
+       }
+ 
+     ],  
+      "images": [
+       {
+         "url": "/static/images/products/redbrdps1.1.webp",
+         "variantId": "104-standard",
+         "alt": "Handmade fabric phone stand with dark blue Memphis Redbirds sports team design",
+         "description": "Close up of wedge-style fabric phone stand in dark blue Memphis Redbirds sports team print",
+         "role": "primary",
+         "order": 1 
+       },
+       {
+         "url": "/static/images/products/redbrdps1.2.webp",
+         "variantId": "104-standard",
+         "alt": "Handmade fabric phone stand with dark blue Memphis Redbirds sports team design",
+         "description": "Wedge-style fabric phone stand in dark blue Memphis Redbirds sports team print holding a smartphone upright on a table.",
+         "role": "detail",
+         "order": 2
+       }
+     ]
+    },
+      {
+    "id": 105,
+     "name": "Saints Phone Stand",
+     "categoryId": "phone-stands",
+     "tags": ["sports", "nfl", "decor"],   
+     "variants": [
+       {
+         "id": "105-standard",
+         "sku": "PRP-SANTS-SD",
+         "size": "Standard",
+         "price": 20.00,
+         "inventory": 3
+       }
+ 
+     ],  
+      "images": [
+       {
+         "url": "/static/images/products/sntsps1.2.webp",
+         "variantId": "105-standard",
+         "alt": "Handmade fabric phone stand with black Saints sports team design",
+         "description": "Close up of wedge-style fabric phone stand in black Saints sports team print",
+         "role": "primary",
+         "order": 1 
+       },
+       {
+         "url": "/static/images/products/sntsps1.3.webp",
+         "variantId": "105-standard",
+         "alt": "Handmade fabric phone stand with black Saints sports team design",
+         "description": "Wedge-style fabric phone stand in black Saints sports team print holding a smartphone upright on a table.",
+         "role": "detail",
+         "order": 2
+       },
+            {
+         "url": "/static/images/products/sntsps1.4.webp",
+         "variantId": "105-standard",
+         "alt": "Handmade fabric phone stand with black Saints sports team design",
+         "description": "Wedge-style fabric phone stand in black Saints sports team print, Full view",
+         "role": "detail",
+         "order": 3
+       }
+     ]
+    },
+          {
+    "id": 106,
+     "name": "Dog Lovers Phone Stand",
+     "categoryId": "phone-stands",
+     "tags": ["decor"],   
+     "variants": [
+       {
+         "id": "106-standard",
+         "sku": "PRP-DOGLV-SD",
+         "size": "Standard",
+         "price": 20.00,
+         "inventory": 3
+       }
+ 
+     ],  
+      "images": [
+       {
+         "url": "/static/images/products/doglvps1.2.webp",
+         "variantId": "106-standard",
+         "alt": "Handmade fabric phone stand with tan Dog lovers design",
+         "description": "Close up of wedge-style fabric phone stand in tan Dog lovers print",
+         "role": "primary",
+         "order": 1 
+       },
+       {
+         "url": "/static/images/products/doglvps1.1.webp",
+         "variantId": "106-standard",
+         "alt": "Handmade fabric phone stand with tan Dog lovers design",
+         "description": "Wedge-style fabric phone stand in tan Dog lovers print holding a smartphone upright.",
+         "role": "detail",
+         "order": 2
+       },
+            {
+         "url": "/static/images/products/doglvps1.3.webp",
+         "variantId": "106-standard",
+         "alt": "Handmade fabric phone stand with tan Dog lovers design",
+         "description": "Wedge-style fabric phone stand in tan Dog lovers print, Full view",
+         "role": "detail",
+         "order": 3
+       }
+     ]
+    },
+          {
+    "id": 107,
+     "name": "Memphis Tigers Phone Stand",
+     "categoryId": "phone-stands",
+     "tags": ["sports", "nfl", "decor"],   
+     "variants": [
+       {
+         "id": "107-standard",
+         "sku": "PRP-MEMTG-SD",
+         "size": "Standard",
+         "price": 20.00,
+         "inventory": 3
+       }
+ 
+     ],  
+      "images": [
+       {
+         "url": "/static/images/products/memtigrps1.1.webp",
+         "variantId": "107-standard",
+         "alt": "Handmade fabric phone stand with blue Memphis Tigers sports team design",
+         "description": "Close up of wedge-style fabric phone stand in blue Memphis Tigers sports team print",
+         "role": "primary",
+         "order": 1 
+       },
+       {
+         "url": "/static/images/products/memtigrps1.2.webp",
+         "variantId": "107-standard",
+         "alt": "Handmade fabric phone stand with blue Memphis Tigers sports team design",
+         "description": "Wedge-style fabric phone stand in blue Memphis Tigers sports team print holding a smartphone upright on a table.",
+         "role": "detail",
+         "order": 2
+       }
+     ]
+    }
+
+
+
+
+  ]
+  
+  
+

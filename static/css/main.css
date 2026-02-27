@@ -28,6 +28,7 @@
   --brand-pink: #e06aa3;
   --brand-green: #6fbf8f;
   --brand-blonde: #f3e5e3;
+  --trns-blonde: #f3e5e35e;
 
 
   --border-soft: rgba(255,255,255,0.08);
@@ -40,6 +41,7 @@
   --space-4: 1rem;      /* 16px */
   --space-5: 1.5rem;    /* 24px */
   --space-6: 2rem;      /* 32px */
+  
 
   /* Layout */
   --container-max: 1200px;
@@ -119,7 +121,6 @@ h2 {
 
 h3 {
   font-size: 1rem;
-  text-transform: uppercase;
   color: var(--brand-pink);
   letter-spacing: 0.04em;
   font-weight: 500;
@@ -264,11 +265,10 @@ nav ol {
 
 /* ---------- Cards ---------- */
 .card {
-  background-color: var(--bg-surface);
   border: 1px solid var(--border-soft);
   border-radius: 18px;
   box-shadow: var(--shadow-soft);
-  padding: var(--space-5);
+  padding: var(--space-1);
 }
 
 
