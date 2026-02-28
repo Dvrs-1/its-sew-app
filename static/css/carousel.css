@@ -144,7 +144,9 @@ article{
   color: var(--brand-green);
 }
 
-
+.carousel-btn{
+  visibility: hidden;
+}
 
 @media (min-width: 769px) {
   .carousel {
@@ -161,6 +163,7 @@ article{
     overscroll-behavior-x: contain;
   }
 .carousel-btn {
+  visibility: visible;
   position: absolute;
   bottom: 10px;
   background-color: rgba(0,0,0,0.5);

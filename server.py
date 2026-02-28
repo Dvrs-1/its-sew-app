@@ -9,16 +9,26 @@ app = Flask(__name__)  # <-- IMPORTANT: no static_folder override
 import psycopg2
 from psycopg2.extras import RealDictCursor
 
-DATABASE_CONFIG = {
-    "dbname": "itssewregina_dev",
-    "user": "itssewregina_user",
-    "password": "burnTToast0!",
-    "host": "localhost",
-    "port": "5432"
-}
+import psycopg2
+from psycopg2.extras import RealDictCursor
+import os
 
 def get_db_connection():
-    return psycopg2.connect(**DATABASE_CONFIG)
+    database_url = os.environ.get("DATABASE_URL")
+
+    if database_url:
+        # Production (Render)
+        return psycopg2.connect(database_url, cursor_factory=RealDictCursor)
+    else:
+        # Local development fallback
+        return psycopg2.connect(
+            dbname="itssewregina_dev",
+            user="itssewregina_user",
+            password="burnTToast0!",
+            host="localhost",
+            port="5432",
+            cursor_factory=RealDictCursor
+        )
 
 @app.route("/")
 def home():

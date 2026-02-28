@@ -4,13 +4,19 @@ import os
 import psycopg2
 from psycopg2.extras import RealDictCursor
 
-DATABASE_CONFIG = {
-    "dbname": "itssewregina_dev",
-    "user": "itssewregina_user",
-    "password": "burnTToast0!",
-    "host": "localhost",
-    "port": "5432"
-}
+def get_connection():
+    database_url = os.environ.get("DATABASE_URL")
+
+    if database_url:
+        return psycopg2.connect(database_url)
+    else:
+        return psycopg2.connect(
+            dbname="itssewregina_dev",
+            user="itssewregina_user",
+            password="burnTToast0!",
+            host="localhost",
+            port="5432"
+        )
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
