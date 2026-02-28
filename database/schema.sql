@@ -6,8 +6,9 @@ CREATE TABLE categories (
     slug VARCHAR(100) UNIQUE NOT NULL,
     label VARCHAR(255) NOT NULL,
     description TEXT,
-    image TEXT
-    
+    image TEXT,
+    display_order INTEGER,
+    active BOOLEAN DEFAULT true
 );
 
 -- =========================================
@@ -31,7 +32,7 @@ CREATE TABLE product_variants (
     size VARCHAR(100),
     price NUMERIC(10,2) NOT NULL,
     inventory INTEGER NOT NULL CHECK (inventory >= 0),
-    ORDER BY variant_id, display_order
+   
 );
 
 -- =========================================
