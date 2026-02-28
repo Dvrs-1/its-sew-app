@@ -31,7 +31,7 @@ CREATE TABLE product_variants (
     sku VARCHAR(100) UNIQUE NOT NULL,
     size VARCHAR(100),
     price NUMERIC(10,2) NOT NULL,
-    inventory INTEGER NOT NULL CHECK (inventory >= 0),
+    inventory INTEGER NOT NULL CHECK (inventory >= 0)
    
 );
 
