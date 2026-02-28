@@ -39,13 +39,14 @@ CREATE TABLE product_variants (
 -- PRODUCT IMAGES
 -- =========================================
 CREATE TABLE product_images (
-    id SERIAL PRIMARY KEY,
+   id SERIAL PRIMARY KEY,
     variant_id VARCHAR(100) REFERENCES product_variants(id) ON DELETE CASCADE,
     url TEXT NOT NULL,
     alt TEXT,
     description TEXT,
     role VARCHAR(50),
-    display_order INTEGER
+    display_order INTEGER,
+    CONSTRAINT unique_variant_image UNIQUE (variant_id, url)
 );
 
 -- =========================================
