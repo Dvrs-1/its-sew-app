@@ -24,9 +24,6 @@ CATEGORIES_PATH = os.path.join(BASE_DIR, "data", "categories.json")
 PRODUCTS_PATH = os.path.join(BASE_DIR, "data", "productrefrence.json")
 
 
-def get_connection():
-    return psycopg2.connect(**DATABASE_CONFIG)
-
 
 def load_json(path):
     with open(path, "r", encoding="utf-8") as f:
