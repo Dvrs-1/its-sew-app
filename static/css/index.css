@@ -1,216 +1,205 @@
 /* Mobile-first default */
-.home-layout {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-5);
-}
-
-/* Shared grid groups */
 
 .bundle {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(7.0rem, 1fr)); /* 120px */
- 
+  grid-template-columns: repeat(auto-fit, minmax(7.0rem, 1fr));
 }
 
-/* ---------- Media ---------- */
-
-
-/* ---------- Promotional Card ---------- */
-
-#special-header {
-  margin-bottom: var(--space-1);
-}
-
-.special-items-container {
-  grid-column: 1;
-  max-width: 100%;
-  background-color: var(--brand-blonde);
-
-
-}
-
-.special-product img {
-  border-radius: 2px;
-      overflow: hidden;
-    aspect-ratio: 6/4;
-    object-fit: cover;
-    width: 100%;
-    padding: var(--space-1);
-    
-
-}
-.special-product-caption{
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  margin-left: 10px;
-}
-.special-product-caption h3, p{
-
-  margin: 0;
-  padding: 0;
-}
-#special-price{
- 
-  position: absolute;
-  right: 20px;
-}
-
-
-/* ---------- Starter Package ---------- */
-.starterpackage {
-  max-width: 100%;
-  padding: var(--space-1);
-  background-color: var(--brand-blonde);
-}
-
-.starterpackage img {
-  border-radius: 10px;
-    border-radius: 2px;
-      overflow: hidden;
-    aspect-ratio: 4 /5;
-    object-fit: cover;
-    width: 100%;
-    padding: var(--space-1);
-   
-
-}
-
-
-
-
-
-/* ---------- Discount ---------- */
-#discount {
-  background-color: var(--bg-surface);
-  border: 1px dashed var(--brand-green);
-  color: var(--text-main);
-  border-radius: 14px;
-  padding: var(--space-3);
-  margin-top: var(--space-3);
-}
-figure{
-  display: block;
-  width: 100%;
-  margin: 0;
-}
-
-
-/* ---------- Aside / Categories ---------- */
-
-
-aside {
-  margin-top: var(--space-3);
-  display: block;
-  float: left;
-}
-
-.gallery-product-category {
- 
-  padding: var(--space-3);
-  background-color: var(--brand-blonde);
-  border: 1px solid var(--border-soft);
-  box-shadow: var(--shadow-soft);
-  border-radius: 16px;
-}
-
-.gallery-product-category img {
-  border-radius: 14px;
-    border-radius: 2px;
-      overflow: hidden;
-    aspect-ratio: 5 /5;
-    object-fit: cover;
-    width: 100%;
-    height: 100%;
-    padding: var(--space-1);
-}
-.default-category {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-direction: row;
-  
-}
 .category{
   display: flex;
   flex-direction: row;
- 
+}
+
+.default-category {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .default-category button:hover{
-  color: var(--brand-green);
   border: 2px solid #014038;
-}
-
-
-
-
-
-.fabric-picker {
-  position: relative;
- 
-  height: 15vh;
-  overflow: hidden;
-  border-radius: 10px;
-
+  color: var(--brand-green);
 }
 
 .fabric {
-  position: absolute;
-  overflow: hidden;
-  width: 100%;
-  height: 100%;
-  background-size: auto;
   background-position: left;
-  transition: all .8s cubic-bezier(0.4, 0, 1, 1);
+  background-size: auto;
   cursor: pointer;
-}
-.overlay{
-  position: absoulute;
-  inset: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.5), transparent);
-  pointer-events: none;
-}
-.fabric.active {
-  right: 0 ;
   height: 100%;
-  z-index: 100;
+  overflow: hidden;
+  position: absolute;
+  transition: all .8s cubic-bezier(0.4, 0, 1, 1);
+  width: 100%;
+}
+
+.fabric.active {
   box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-    transform: scale(3);
+  height: 100%;
+  right: 0 ;
+  transform: scale(3);
+  z-index: 100;
 }
 
 .fabric:hover {
   transform: scale(1.02);
 }
 
+.fabric-picker {
+  border-radius: 10px;
+  height: 15vh;
+  overflow: hidden;
+  position: relative;
+}
 
+figure{
+  display: block;
+  margin: 0;
+  width: 100%;
+}
 
+.gallery-product-category {
+  background-color: var(--brand-blonde);
+  border: 1px solid var(--border-soft);
+  border-radius: 16px;
+  box-shadow: var(--shadow-soft);
+  padding: var(--space-3);
+}
 
+.gallery-product-category img {
+  aspect-ratio: 5 /5;
+  border-radius: 2px;
+  height: 100%;
+  object-fit: cover;
+  overflow: hidden;
+  padding: var(--space-1);
+  width: 100%;
+}
 
+.home-layout {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
 
+.overlay{
+  background: linear-gradient(to top, rgba(0,0,0,0.5), transparent);
+  inset: 0;
+  pointer-events: none;
+  position: absoulute;
+}
 
-
-
-
-
-/* ---------- Desktop Enhancements ---------- */
-@media (min-width: 769px) {
-
-.home-layout{
-  display: grid;
-  grid-template-columns: 40vw 1fr;
+.special-items-container {
+  background-color: var(--brand-blonde);
+  grid-column: 1;
+  height: min-content;
   max-width: 100%;
 }
-  .starterpackage {
-  max-width: 50vw
-  }
+
+.special-product img {
+  aspect-ratio: 6/4;
+  border-radius: 2px;
+  object-fit: cover;
+  overflow: hidden;
+  padding: var(--space-1);
+  width: 100%;
+}
+
+.special-product-caption{
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+}
+
+.special-product-caption h3, p{
+  margin: 0;
+  padding: 0;
+}
+
+.special-product-card{
+  border-radius: 2px;
+}
+
+.special-product-card-img{
+  aspect-ratio: 4 /5;
+  border-radius: 2px;
+  object-fit: cover;
+  overflow: hidden;
+  padding: var(--space-1);
+  width: 100%;
+}
+
+.special-product-card-price{
+  border: solid 3px var(--bg-surface);
+}
+
+.special-products-container{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(7.0rem, 1fr)); 
+}
+
+.starterpackage {
+  background-color: var(--brand-blonde);
+  max-width: 100%;
+  padding: var(--space-1);
+}
+
+.starterpackage img {
+  aspect-ratio: 4 /5;
+  border-radius: 2px;
+  object-fit: cover;
+  overflow: hidden;
+  padding: var(--space-1);
+  width: 100%;
+}
+
+#discount {
+  background-color: var(--bg-surface);
+  border: 1px dashed var(--brand-green);
+  border-radius: 14px;
+  color: var(--text-main);
+  margin-top: var(--space-3);
+  padding: var(--space-3);
+}
+
+#special-header {
+  margin-bottom: var(--space-1);
+}
+
+#special-price{
+  position: absolute;
+  right: 20px;
+}
+
+/* ---------- Aside / Categories ---------- */
+
+aside {
+  display: block;
+  float: left;
+  margin-top: var(--space-3);
+}
+
+/* ---------- Desktop Enhancements ---------- */
+
+@media (min-width: 769px) {
 
   aside {
     grid-column: 1;
   }
+
+  .home-layout{
+    display: grid;
+    grid-template-columns: 40vw 1fr;
+    max-width: 100%;
+  }
+
   .special-card{
     max-width: 50vw;
+  }
+
+  .starterpackage {
+    max-width: 50vw
   }
 
 }

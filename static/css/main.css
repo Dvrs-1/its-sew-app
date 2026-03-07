@@ -8,8 +8,8 @@
 
 /* ---------- Reset ---------- */
 *,
-*::before,
-*::after {
+*::after,
+*::before {
   box-sizing: border-box;
 }
 
@@ -17,128 +17,49 @@
 /* ---------- Design Tokens ---------- */
 :root {
   /* Colors */
-  --bg-main: #dac9c6d4;
-  --bg-surface: #16191c;
-  --bg-secondary: #312726;
+  --bg-main: #CFB595;
   --bg-muted: #1e2226;
+  --bg-secondary: #312726;
+  --bg-surface: #16191c;
+
+  --border-soft: rgba(255,255,255,0.08);
+
+  --brand-blonde: #f3e6e3;
+  --brand-green: #6fbf8f;
+  --brand-pink: #e06aa3;
+
+  --shadow-soft: 0 8px 20px rgba(0,0,0,0.4);
 
   --text-main: #e6e6e6;
   --text-muted: #b5b5b5;
 
-  --brand-pink: #e06aa3;
-  --brand-green: #6fbf8f;
-  --brand-blonde: #f3e5e3;
   --trns-blonde: #f3e5e35e;
-
-
-  --border-soft: rgba(255,255,255,0.08);
-  --shadow-soft: 0 8px 20px rgba(0,0,0,0.4);
-
-  /* Spacing scale (4px baseline) */
-  --space-1: 0.25rem;   /* 4px */
-  --space-2: 0.5rem;    /* 8px */
-  --space-3: 0.75rem;   /* 12px */
-  --space-4: 1rem;      /* 16px */
-  --space-5: 1.5rem;    /* 24px */
-  --space-6: 2rem;      /* 32px */
-  
 
   /* Layout */
   --container-max: 1200px;
+
+  /* Spacing scale (4px baseline) */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
 }
 
 
 /* ---------- Base Document ---------- */
-html,
-body {
-  margin: 0;
-  min-height: 100vh;
+body,
+html {
+  background-color: var(--bg-main);
+  display: flex;
+  flex-direction: column;
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
   font-size: 16px;
   line-height: 1.2;
-  background-color: var(--bg-main);
-  overflow-x: hidden;
- 
-}
-
-
-/* ---------- Page Wrapper ---------- */
-.page {
+  margin: 0;
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-
-}
-
-
-/* ---------- Containers ---------- */
-.container {
-  width: 100%;
-  max-width: var(--container-max);
-
-}
-
-
-/* ---------- Main ---------- */
-main {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-
- 
-}
-
-.home-layout{
-  padding: var(--space-3);
-}
-
-/* ---------- Typography ---------- */
-
-h4 {
-  color: var(--brand-pink);
-  font-weight: 500;
-  letter-spacing: 0.04em;
-}
-
-h1 {
-  font-family: 'Playfair Display', Georgia, serif;
-   font-size: clamp(1.2rem, 7vw, 1.8rem);
-  line-height: 1.2;
-  align-self: center;
-  padding-right: 5px;
-  color: var(--brand-pink);
-  letter-spacing: 0.04em;
-  font-weight: 500;
-}
-
-h2 {
-  font-size: clamp(1.8rem, 2.5vw, 2.2rem);
-  line-height: 1.25;
-  color: var(--brand-pink);
-  letter-spacing: 0.04em;
-  font-weight: 500;
-}
-
-h3 {
-  font-size: 1rem;
-  color: var(--brand-pink);
-  letter-spacing: 0.04em;
-  font-weight: 500;
-}
-
-
-p {
-  max-width: 65ch;
-  font-size: 0.95rem;
-  line-height: 1.75;
-}
-
-figcaption {
-  font-family: 'Inter', sans-serif;
-  font-size: 0.85rem;
-  letter-spacing: 0.04em;
-  line-height: 1.4;
-  text-align: center;
+  overflow-x: hidden;
 }
 
 
@@ -155,111 +76,23 @@ a:hover {
 
 button {
   background-color: var(--brand-blonde);
-  color: var(--brand-pink);
   border: 1px solid var(--bg-surface);
-  padding: var(--space-1);
   border-radius: 5px;
+  color: var(--brand-pink);
   cursor: pointer;
   height: max-content;
+  padding: var(--space-1);
   transition: color
-  .15s ease-in-out,background-color 
-  .15s ease-in-out,border-color 
-  .15s ease-in-out,box-shadow 
+  .15s ease-in-out,background-color
+  .15s ease-in-out,border-color
+  .15s ease-in-out,box-shadow
   .15s ease-in-out;
 }
 
 button:hover {
+  background-color:var(--brand-pink);
+  border-color: var(--bg-secondary);
   color: var(--bg-surface);
-    
-    background-color:var(--brand-pink);
-    border-color: var(--bg-secondary);
-}
-
-
-/* ---------- Header ---------- */
-header {
-  display: flex;
-  flex-direction: column;
-  background-color: var(--bg-secondary);
-  width: 100vw;
-  height: 80px;
-
-  border-bottom: 2px solid var(--brand-blonde);
-}
-
-.bvn-logobar {
-  display: flex;
-  height: 100%;
-  justify-content: space-between;
- 
-
-}
-
-.logo {
-  height: 100%;
-  overflow: hidden;
-  object-fit: cover;
-  padding: var(--space-1);
-}
-
-
-/* ---------- Navigation ---------- */
-nav ul,
-nav ol {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-#top-nav {
-  display: none;
-  gap: var(--space-3);
-}
-
-#top-nav a {
-  padding: var(--space-2);
-  border-radius: 8px;
-  color: var(--brand-pink);
-}
-
-#top-nav a:hover {
-  background-color: var(--brand-blonde);
-  color: var(--bg-surface);
-}
-#hamburger-icon{
-  background-color: transparent;
-}
-.show-navigation-btn{
-  background-color: transparent;
-  font-size: large;
-  color: var(--brand-pink);
-}
-.show-navigation-btn:active{
-  background-color: var(--brand-pink);
-  color: var(--brand-blonde);
-}
-
-.navigation-menu {
-  display: none;
-  position: fixed;
-  right: var(--space-3);
-  bottom: calc(80px + var(--space-3));
-  flex-direction: column;
-  gap: var(--space-1);
-  z-index: 1000;
-}
-
-.navigation-menu.show {
-  display: flex;
-}
-
-.navigation-menu li {
-  background-color: #f7f7f7;
-  border: 2px solid #014038;
-  border-radius: 4px;
-  padding: var(--space-1);
-  font-size: 1rem;
-  font-weight: bold;
 }
 
 
@@ -272,112 +105,294 @@ nav ol {
 }
 
 
-/* ---------- Price Pill ---------- */
-.price {
-  display: inline-block;
-  border-radius: 999px;
-  padding: var(--space-1) var(--space-2);
-  
-  border: 1px solid var(--brand-green);
-  color: var(--bg-surface);
-  font-weight: bold;
-}
-
-
-/* ---------- Hero Group (Global) ---------- */
-.hero-group-container {
-  display: grid;
-  position: fixed;
-  bottom: 0;
+/* ---------- Containers ---------- */
+.container {
+  max-width: var(--container-max);
   width: 100%;
-  height: 80px;
-  background-color: var(--bg-secondary);
-  z-index: 1000;
-  justify-items: stretch;
-  align-items: center;
-
-
-
-}
-
-.hero-group-navigation{
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-}
-.hero-group-navigation a {
-  border: none;
-  color: var(--text-main);
-  font-size: clamp(1.5rem, 4vw, 3rem);
-  padding: var(--space-1);
-  cursor: pointer;
-  transition: all 0.2 ease;
-
-}
-.hero-group-navigation a:hover
-{
-background-color: transparent;
-transform: translateY(-3px);
-box-shadow: 0 6px 12px rgba(0.0.0.0.25);
-}
-.hero-group-navigation a:active{
-  transform: translateY(1px);
-  box-shadow: 0 3px 6px rgba(0,0, 0,0.2);
-  background-color: transparent;
 }
 
 
 /* ---------- Footer ---------- */
+#hours-table{
+  display: inline-block;
+}
+
+#social-links {
+  align-items: center;
+  display:flex ;
+  gap: 12px;
+}
+
+#social-links img{
+  height:24px;
+  width:24px;
+}
+
+.footer-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.footer-nav {
+  display: flex;
+  flex-direction: row;
+  width: max-content;
+}
+
 footer {
-  background-color: var(--brand-blonde);
+  background-color: var(--bg-secondary);
+  border-top: 1px solid var(--border-soft);
+  color: var(--text-main);
+  padding: var(--space-6) var(--space-4);
   position: relative;
-  offset-inline-end: 60px;
   width: 100%;
+  padding-bottom: 64px;
 }
 
 footer a {
-  max-width: fit-content;
   color: var(--text-muted);
+  max-width: fit-content;
 }
 
 footer a:hover {
   color: var(--brand-pink);
 }
-#hours-table{
-  display: inline-block;
+
+
+/* ---------- Header ---------- */
+.bvn-logobar {
+  display: flex;
+  height: 100%;
+  justify-content: space-between;
 }
-#social-links {
-  max-width: 30px;
+
+header {
+  background-color: var(--bg-secondary);
+  border-bottom: 2px solid var(--brand-blonde);
+  display: flex;
+  flex-direction: column;
+  height: 80px;
+  width: 100vw;
+}
+
+.logo {
+  height: 100%;
+  object-fit: cover;
+  overflow: hidden;
+  padding: var(--space-1);
+}
+
+
+/* ---------- Hero Group (Global) ---------- */
+.hero-group-container {
+  align-items: center;
+  background-color: var(--bg-muted);
+  border-top: 1px solid var(--border-soft);
+  bottom: 0;
+  display: grid;
+  height: 64px;
+  justify-items: stretch;
+  padding-bottom: env(safe-area-inset-bottom);
+  position: fixed;
+  width: 100%;
+  z-index: 1000;
+}
+
+.hero-group-navigation{
+  align-items: center;
   display: flex;
   flex-direction: row;
-  gap: var(--space-3);
-  margin-top: var(--space-4);
+  justify-content: space-around;
 }
-.footer-nav{
+
+.hero-group-navigation a {
+  border: none;
+  color: var(--text-main);
+  cursor: pointer;
+  font-size: clamp(0.9rem, 1vw, 0rem);
+  font-weight: 500;
+  letter-spacing: 0cap;
+  letter-spacing: 2px;
+  padding: var(--space-1);
+  transition: all 0.2s ease;
+}
+
+.hero-group-navigation a:active::after{
+  background-color: transparent;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25);
+  color: var(--brand-pink);
+  transform: translateY(1px);
+}
+
+.hero-group-navigation a:hover
+{
+  background-color: transparent;
+  box-shadow: 0 6px 12px rgba(0.0.0.0.25);
+  color: var(--brand-pink);
+  transform: translateY(-3px);
+}
+
+
+/* ---------- Main ---------- */
+.home-layout{
+  padding: var(--space-3);
+  padding-bottom: 10px;
+}
+
+main {
+  flex: 1;
+  min-height: 100vh;
+  padding-bottom: calc(64px + var(--space-3));
+}
+
+
+/* ---------- Navigation ---------- */
+#hamburger-icon{
+  background-color: transparent;
+}
+
+#top-nav {
+  display: none;
+  gap: var(--space-3);
+}
+
+#top-nav a {
+  border-radius: 8px;
+  color: var(--brand-pink);
+  padding: var(--space-2);
+}
+
+#top-nav a:hover {
+  background-color: var(--brand-blonde);
+  color: var(--bg-surface);
+}
+
+.navigation-menu {
+  bottom: calc(80px + var(--space-3));
+  display: none;
+  flex-direction: column;
+  gap: var(--space-1);
+  position: fixed;
+  right: var(--space-3);
+  z-index: 1000;
+}
+
+.navigation-menu li {
+  background-color: #f7f7f7;
+  border: 2px solid #014038;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: bold;
+  padding: var(--space-1);
+}
+
+.navigation-menu.show {
   display: flex;
 }
 
+nav ol,
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.show-navigation-btn{
+  background-color: transparent;
+  color: var(--brand-pink);
+  font-size: large;
+}
+
+.show-navigation-btn:active{
+  background-color: var(--brand-pink);
+  color: var(--brand-blonde);
+}
+
+
+/* ---------- Price Pill ---------- */
+.price {
+  border: 1px solid var(--brand-green);
+  border-radius: 999px;
+  color: var(--bg-surface);
+  display: inline-block;
+  font-weight: bold;
+  padding: var(--space-1) var(--space-2);
+}
+
+
+/* ---------- Typography ---------- */
+figcaption {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  line-height: 1.4;
+  text-align: center;
+}
+
+h1 {
+  align-self: center;
+  color: var(--brand-pink);
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(1.2rem, 7vw, 1.8rem);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  line-height: 1.2;
+  padding-right: 5px;
+}
+
+h2 {
+  color: var(--brand-pink);
+  font-size: clamp(1.8rem, 2.5vw, 2.2rem);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  line-height: 1.25;
+}
+
+h3 {
+  color: var(--brand-pink);
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+
+h4 {
+  color: var(--brand-pink);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+
+p {
+  font-size: 0.95rem;
+  line-height: 1.75;
+  max-width: 65ch;
+}
+
+
 /* ---------- Desktop Enhancements ---------- */
 @media (min-width: 769px) {
-  html,
-  body {
-    padding: 0;
-  }
 
   #top-nav {
     display: flex;
   }
 
-  .navigation-menu,
-  .hamburger-icon {
+  .hamburger-icon,
+  .navigation-menu {
     display: none;
   }
 
   .hero-group-container {
     visibility: hidden;
   }
+
   .menu-mobile{
     align-self: center;
     padding: var(--space-3);
   }
+
+  body,
+  html {
+    padding: 0;
+  }
+
 }

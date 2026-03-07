@@ -9,7 +9,7 @@ var cartItems = JSON.parse(sessionStorage.getItem("cartItems")) || [];
 var link = document.createElement('link');
 link.rel = 'stylesheet';
 link.type = 'text/css';
-link.href = '/static/css/main.css?v=2026-02-17'; 
+link.href = '/static/css/main.css?v=2026-03-04'; 
 
 document.head.appendChild(link)
 
@@ -34,20 +34,22 @@ document.addEventListener('DOMContentLoaded', function() {
        console.log('menutoggle')
       }
         const hamburgerButton = document.createElement('button');
-        hamburgerButton.className = 'show-navigation-btn';
+        hamburgerButton.className = 'show-navigation-btn navigation-hero';
       
         const iconImage = document.createElement('i');
         iconImage.innerHTML = `<i class="fa-sharp-duotone fa-solid fa-bars fa-2xl"></i>`;
-        
+     
+
         hamburgerButton.appendChild(iconImage);
        // menuToggle.appendChild(hamburgerButton);
         hamburgerButton.id = "newHamburger"
+       
       
       
       
       //Hamburger Menu event Toggling
    
-      const menuButton = document.getElementById('newHamburger');
+      
       const mainMenu = document.querySelector('.navigation-menu');
       
       hamburgerButton.addEventListener('click', function(event) {
@@ -78,25 +80,106 @@ document.addEventListener('DOMContentLoaded', function() {
 
       const heroGroupContainer = document.querySelector('.hero-group-container');
 
+      if(heroGroupContainer){
       const heroGroupNav = document.createElement('div');
       heroGroupNav.className = "hero-group-navigation";
 
       const homeButton = document.createElement('a');
       homeButton.href = '/';
-      homeButton.innerText = "Home"
+      homeButton.innerHTML = `<i class="fa-solid fa-house"></i><span>Home</span>`;
       const galleryLink = document.createElement('a');
       galleryLink.href = '/gallery';
-      galleryLink.innerText = "Gallery";
+      galleryLink.innerText = 'Gallery';
       const aboutUsLink = document.createElement('a');
       aboutUsLink.href = '/aboutus';
-      aboutUsLink.innerText = "About us"
+      aboutUsLink.innerText = "About Us"
 
       heroGroupNav.append(homeButton,galleryLink,aboutUsLink,hamburgerButton);
 
       heroGroupContainer.appendChild(heroGroupNav);
 
- 
+      };
 
+  //Footer Hours Table
+
+      const footer = document.querySelector('.footer');
+      footerContainer = document.createElement('div');
+      footerContainer.className = "footer-container"
+
+      const footerHours = document.createElement('section')
+      const hoursTable = document.createElement('table');
+      hoursTable.id = "hours-table";
+      hoursTable.innerHTML =`
+       <table id="hours-table">
+         <tr><th colspan="3">Hours of Operation</th></tr>
+         <tr>
+         <th>Days</th><th>Open</th><th>Close</th>
+         </tr>
+         <tr><td>Mon-Friday</td><td>9 a.m</td><td>6 p.m</td>
+         </tr>
+         <tr>
+         <td>Sat-Sun</td><td>10 a.m</td><td>5 p.m</td>
+         </tr>
+       </table>
+      `
+
+      footerHours.appendChild(hoursTable);
+
+
+//footer social links
+const socialLinks = document.createElement('nav');
+socialLinks.id = 'social-links';
+socialLinks.ariaLabel = "Social media";
+
+const footerSocial = document.createElement('section')
+
+const platforms = [
+  { href: 'https://facebook.com/yourpage', icon: 'facebook.svg', label: 'Follow us on Facebook' },
+  { href: 'https://linkedin.com/in/yourpage', icon: 'linkedin.svg', label: 'Connect with us on LinkedIn' },
+  { href: 'https://pinterest.com/yourpage', icon: 'pinterest.svg', label: 'View us on Pinterest' }
+];
+
+platforms.forEach(platform => {
+  const link = document.createElement('a');
+  link.href = platform.href;
+  link.setAttribute('aria-label', platform.label);
+  link.target = '_blank';
+  link.rel = 'noopener noreferrer';
+
+  const img = document.createElement('img');
+  img.src = `/static/images/SVG/${platform.icon}`;
+  img.alt = '';
+
+  link.appendChild(img);
+  socialLinks.appendChild(link);
+});
+
+footerSocial.appendChild(socialLinks);
+
+
+const footerSubscribeForm = document.createElement('form');
+footerSubscribeForm.className = 'footer-subscribe';
+footerSubscribeForm.action = "";
+
+const emailToSubscribe = document.createElement('input');
+emailToSubscribe.type = 'email';
+emailToSubscribe.id = 'emailToSubscribe';
+emailToSubscribe.autocomplete = 'off';
+
+const subscribeBtn = document.createElement('input');
+subscribeBtn.type = 'submit';
+subscribeBtn.name = 'submit';
+
+
+
+footerSubscribeForm.append(emailToSubscribe, subscribeBtn);
+if(footer){
+  const div = document.createElement('div');
+  div.append(footerSubscribeForm, footerSocial);
+  footerContainer.append(footerHours, div);
+  footer.appendChild(footerContainer);
+
+}
 
   // footer Subscrib Feature Validation and Lstorage submission()
     
