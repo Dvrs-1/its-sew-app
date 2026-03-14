@@ -84,10 +84,15 @@ article{
 }
 
 .show-more{
+  background: #c94c86;
   border-radius: 5px;
-  box-shadow: #00231C 1px 3px 0px 0px;
+  box-shadow: 0 3px 6px rgba(119, 79, 5, 0.644);
   margin: 5px 3px 3px 5px;
   max-width: fit-content;
+}
+.show-more:hover{
+  transform: translateY(-1px);
+  box-shadow: 0 5px 10px rgba(0,0,0,0.18);
 }
 
 .slide {
@@ -100,11 +105,11 @@ article{
   transition: transform 0.5s ease;
 }
 
-.slide h3 {
+.slide h4 {
   bottom: var(--space-3);
   color: var(--bg-surface);
   left: var(--space-3);
-  min-height: 30px;
+  height: 10px;
   position: relative;
   text-shadow: 0 0 5px rgba(119, 79, 5, 0.644);
 }

@@ -5,7 +5,7 @@
   <title>Its Sew Regina - Gallery</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="/static/css/gallery.css?v=2026-02-17" rel="stylesheet">
+  <link href="/static/css/gallery.css?v=2026-03-07" rel="stylesheet">
 
   <style>
 
@@ -45,15 +45,23 @@
 </header>
   <main>
   
-  <!-- Cart Modal -->
-  <div id="users-card">
-   
-    <button id="open-cart" aria-haspopup="dialog" aria-controls="cart-modal">
-      Open Cart
+
+    <div id="users-card">
+    <button id="open-cart"  aria-haspopup="dialog" aria-controls="cart-modal">Open cart
     </button>
-      <!-- Cart Modal -->
-      <div id="cart-total"></div>
+  
+    <div id="modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <div class="modal-content" role="group">
+        <button id="close-modal" class="close" aria-label="Close Modal">&times;</button>
+        <h2 id="modal-title" tabindex="-1"></h2>
+        <div id="modal-view-container" role="region" aria-labelledby="modal-title">
+        </div>
+        <div class="modal-actions">
+        </div>
+      </div>
     </div>
+      <div id="cart-total"></div>
+  </div>
     
     <div class="product-gallery container">
       
@@ -156,7 +164,7 @@
     </form>
   </nav>
 </footer>
-  <script src="/static/js/cart.js?v=2026-02-17" media="print"></script>
+  <script src="/static/js/cart.js?v=2026-03-07" media="print"></script>
   <script src="/static/js/modal.js"></script>
   <script src="/static/js/main.js"></script>
   <script src="/static/js/carousel.js"></script>

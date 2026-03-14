@@ -9,7 +9,7 @@ var cartItems = JSON.parse(sessionStorage.getItem("cartItems")) || [];
 var link = document.createElement('link');
 link.rel = 'stylesheet';
 link.type = 'text/css';
-link.href = '/static/css/main.css?v=2026-03-04'; 
+link.href = '/static/css/main.css?v=2026-03-07'; 
 
 document.head.appendChild(link)
 
@@ -21,10 +21,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-  // this is a for a development testing comment commit (live??)
+  // Hero group navigation elements
 
       
-      //appending the hamburger item(id=newHamburger)
+      //Hamburger icon
 
       const menuToggle = document.getElementById('hamburger-icon')
 
@@ -46,9 +46,7 @@ document.addEventListener('DOMContentLoaded', function() {
        
       
       
-      
       //Hamburger Menu event Toggling
-   
       
       const mainMenu = document.querySelector('.navigation-menu');
       
@@ -73,10 +71,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
       });
 
-
-
-
-
+      
 
       const heroGroupContainer = document.querySelector('.hero-group-container');
 
@@ -99,6 +94,8 @@ document.addEventListener('DOMContentLoaded', function() {
       heroGroupContainer.appendChild(heroGroupNav);
 
       };
+
+
 
   //Footer Hours Table
 

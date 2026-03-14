@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Load carousel styles once
   const link = document.createElement('link');
   link.rel = 'stylesheet';
-  link.href = '/static/css/carousel.css?v=2026-02-17';
+  link.href = '/static/css/carousel.css?v=2026-03-07';
   document.head.appendChild(link);
   
   Promise.all([productsPromise, categoriesPromise])
@@ -89,7 +89,7 @@ function createProductCard(product) {
     <div class="slide-media">
     <img src="${primaryImage?.url || product.image}" alt="${primaryImage?.alt || ''}">
     </div>
-    <h3>${product.name}</h3>
+    <h4>${product.name}</h4>
     `;
     
     slide.append(slideOption);

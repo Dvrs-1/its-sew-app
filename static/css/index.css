@@ -1,4 +1,9 @@
 /* Mobile-first default */
+aside {
+  display: block;
+  float: left;
+  margin-top: var(--space-3);
+}
 
 .bundle {
   display: grid;
@@ -10,6 +15,7 @@
   flex-direction: row;
 }
 
+
 .default-category {
   align-items: center;
   display: flex;
@@ -20,6 +26,15 @@
 .default-category button:hover{
   border: 2px solid #014038;
   color: var(--brand-green);
+}
+
+#discount {
+  background-color: var(--bg-surface);
+  border: 1px dashed var(--brand-green);
+  border-radius: 14px;
+  color: var(--text-muted);
+  margin-top: var(--space-3);
+  padding: var(--space-3);
 }
 
 .fabric {
@@ -154,31 +169,18 @@ figure{
   width: 100%;
 }
 
-#discount {
-  background-color: var(--bg-surface);
-  border: 1px dashed var(--brand-green);
-  border-radius: 14px;
-  color: var(--text-main);
-  margin-top: var(--space-3);
-  padding: var(--space-3);
-}
 
 #special-header {
   margin-bottom: var(--space-1);
 }
 
 #special-price{
-  position: absolute;
-  right: 20px;
+  position: static;
+
 }
 
 /* ---------- Aside / Categories ---------- */
 
-aside {
-  display: block;
-  float: left;
-  margin-top: var(--space-3);
-}
 
 /* ---------- Desktop Enhancements ---------- */
 
