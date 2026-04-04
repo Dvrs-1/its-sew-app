@@ -30,6 +30,110 @@ def load_json(path):
         return json.load(f)
 
 
+DOCUMENTS = [
+    {
+        "slug": "terms-of-service",
+        "title": "Terms of Service",
+        "version": "1.1",
+        "content": "<h1>Terms of Service</h1><p>Updated Version Test 1.1.</p>",
+        "is_current": True
+    },
+    {
+        "slug": "privacy-policy",
+        "title": "Privacy Policy",
+        "version": "1.0",
+        "content": "<h1>Privacy Policy</h1><p>Your privacy policy.</p>",
+        "is_current": True
+    },
+    {
+        "slug": "refund-policy",
+        "title": "Refund Policy",
+        "version": "1.0",
+        "content": "<h1>Refund Policy</h1><p>Your refund rules.</p>",
+        "is_current": True
+    }
+]
+
+def seed_documents(cur, documents):
+    print("Seeding documents...")
+
+    for doc in documents:
+
+        # 1. UPSERT DOCUMENT
+        cur.execute("""
+            INSERT INTO documents (slug, title, is_active)
+            VALUES (%s, %s, TRUE)
+            ON CONFLICT (slug)
+            DO UPDATE SET
+                title = EXCLUDED.title,
+                is_active = TRUE
+            RETURNING id;
+        """, (doc["slug"], doc["title"]))
+
+        document_id = cur.fetchone()["id"]
+
+        # 2. CLEAR OLD CURRENT FIRST (IMPORTANT)
+        if doc["is_current"]:
+            cur.execute("""
+                UPDATE document_versions
+                SET is_current = FALSE
+                WHERE document_id = %s;
+            """, (document_id,))
+
+        # 3. UPSERT VERSION
+        cur.execute("""
+            INSERT INTO document_versions (
+                document_id,
+                version,
+                content,
+                is_current
+            )
+            VALUES (%s, %s, %s, %s)
+            ON CONFLICT (document_id, version)
+            DO UPDATE SET
+                content = EXCLUDED.content,
+                is_current = EXCLUDED.is_current
+            RETURNING id;
+        """, (
+            document_id,
+            doc["version"],
+            doc["content"],
+            doc["is_current"]
+        ))
+
+
+def get_document_by_slug(slug):
+    conn = get_connection()
+    cur = conn.cursor(cursor_factory=RealDictCursor)
+
+    try:
+        cur.execute("""
+            SELECT 
+                d.slug,
+                d.title,
+                v.content,
+                v.version,
+                v.effective_date
+            FROM documents d
+            JOIN document_versions v
+                ON d.id = v.document_id
+            WHERE d.slug = %s
+              AND d.is_active = TRUE
+              AND v.is_current = TRUE
+            LIMIT 1;
+        """, (slug,))
+
+        document = cur.fetchone()
+        return document
+
+    finally:
+        cur.close()
+        conn.close()
+
+
+
+
+
 def seed_categories(cur, categories):
     print("Seeding categories...")
 
@@ -186,10 +290,12 @@ def main():
         products = load_json(PRODUCTS_PATH)
 
         seed_categories(cur, categories)
-        seed_products(cur, products)
+        seed_products(cur, products)    
+        seed_documents(cur, DOCUMENTS)
 
         conn.commit()
         print("Seed completed successfully.")
+
 
     except Exception as e:
         conn.rollback()
@@ -199,6 +305,7 @@ def main():
     finally:
         cur.close()
         conn.close()
+
 
 
 if __name__ == "__main__":

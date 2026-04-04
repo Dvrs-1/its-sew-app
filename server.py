@@ -9,9 +9,9 @@ app = Flask(__name__)  # <-- IMPORTANT: no static_folder override
 import psycopg2
 from psycopg2.extras import RealDictCursor
 
-import psycopg2
-from psycopg2.extras import RealDictCursor
 import os
+
+from database.seed import get_document_by_slug
 
 def get_db_connection():
     database_url = os.environ.get("DATABASE_URL")
@@ -45,6 +45,36 @@ def about():
 @app.get("/forum")
 def forum():
     return render_template("foru.html") 
+
+
+@app.route("/documents/<slug>")
+def document_page(slug):
+    return render_template("document.html")
+
+@app.route("/api/documents/<slug>", methods=["GET"])
+def fetch_document(slug):
+    try:
+        document = get_document_by_slug(slug)
+
+        if not document:
+            return jsonify({
+                "error": "Document not found"
+            }), 404
+
+        return jsonify({
+            "slug": document["slug"],
+            "title": document["title"],
+            "content": document["content"],
+            "version": document["version"],
+            "effective_date": document["effective_date"]
+        })
+
+    except Exception as e:
+        print("DOCUMENT ERROR:", e)
+        return jsonify({
+            "error": "Internal server error"
+        }), 500
+
 
 
 @app.get("/api/categories")
@@ -118,7 +148,7 @@ def get_products():
         result.append({
             "id": product["id"],
             "name": product["name"],
-            "categoryId": product["categoryid"],
+            "categoryId": product["categoryId"],
             "description": product["description"],
             "variants": variants,
             "images": images
@@ -166,4 +196,5 @@ def process_form():
 print(app.url_map)
 
 if __name__ == "__main__":
- app.run(debug=True)
+    print("Running locally")
+    app.run(debug=True)
