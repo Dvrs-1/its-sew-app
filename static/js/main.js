@@ -171,9 +171,9 @@ subscribeBtn.name = 'submit';
 
 footerSubscribeForm.append(emailToSubscribe, subscribeBtn);
 if(footer){
-  const div = document.createElement('div');
-  div.append(footerSubscribeForm, footerSocial);
-  footerContainer.append(footerHours, div);
+  const socialSubscribeGroup = document.createElement('div');
+  socialSubscribeGroup.append(footerSubscribeForm, footerSocial);
+  footerContainer.append(footerHours, socialSubscribeGroup);
   footer.appendChild(footerContainer);
 
 }

@@ -148,7 +148,7 @@ def get_products():
         result.append({
             "id": product["id"],
             "name": product["name"],
-            "categoryId": product["categoryId"],
+            "categoryId": product["categoryid"],
             "description": product["description"],
             "variants": variants,
             "images": images

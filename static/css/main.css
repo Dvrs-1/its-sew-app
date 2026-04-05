@@ -139,7 +139,6 @@ box-shadow: 0 5px 10px rgba(0,0,0,0.18);
 footer {
   background-color: var(--bg-secondary);
   border-top: 1px solid var(--border-soft);
-  color: var(--text-main);
   padding: var(--space-6) var(--space-4);
   position: relative;
   width: 100%;
