@@ -1,15 +1,21 @@
-print("THIS is server.py")
+import os
+from dotenv import load_dotenv
+load_dotenv
+
+
 from flask import Flask, request, jsonify, send_from_directory, render_template
 import json 
-import os
+import psycopg2
+from psycopg2.extras import RealDictCursor
+
+print("THIS is server.py")
+print("DB_NAME:", os.environ.get("DB_NAME"))
+print("DB_USER:", os.environ.get("DB_USER"))
 
 app = Flask(__name__)  # <-- IMPORTANT: no static_folder override
 
 
-import psycopg2
-from psycopg2.extras import RealDictCursor
 
-import os
 
 from database.seed import get_document_by_slug
 
@@ -22,11 +28,11 @@ def get_db_connection():
     else:
         # Local development fallback
         return psycopg2.connect(
-            dbname="itssewregina_dev",
-            user="itssewregina_user",
-            password="burnTToast0!",
-            host="localhost",
-            port="5432",
+            dbname=os.environ.get("DB_NAME"),
+            user=os.environ.get("DB_USER"),
+            password=os.environ.get("DB_PASSWORD"),
+            host=os.environ.get("DB_HOST"),
+            port=os.environ.get("DB_PORT"),
             cursor_factory=RealDictCursor
         )
 
