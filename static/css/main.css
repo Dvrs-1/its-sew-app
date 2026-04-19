@@ -267,11 +267,12 @@ main {
 .navigation-menu {
   bottom: calc(80px + var(--space-3));
   display: none;
-  flex-direction: column;
   gap: var(--space-1);
-  position: fixed;
   right: var(--space-3);
-  z-index: 1000;
+  z-index: 1000;  
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 .navigation-menu li {
@@ -284,12 +285,6 @@ main {
 }
 
 
-nav ol,
-nav ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
 
 .show-navigation-btn{
   background-color: transparent;
@@ -365,12 +360,12 @@ p {
 /* ---------- Desktop Enhancements ---------- */
 @media (min-width: 769px) {
 
-  #top-nav {
+  .navigation-menu {
     display: flex;
   }
 
-  .hamburger-icon,
-  .navigation-menu {
+  .hamburger-icon
+ {
     display: none;
   }
 

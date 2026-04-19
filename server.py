@@ -53,10 +53,13 @@ def forum():
     return render_template("foru.html") 
 
 
+
+# Loads The Page (HTML Shell)
 @app.route("/documents/<slug>")
 def document_page(slug):
     return render_template("document.html")
 
+#loads actual documents from PostgreSQL = REQUIRED
 @app.route("/api/documents/<slug>", methods=["GET"])
 def fetch_document(slug):
     try:

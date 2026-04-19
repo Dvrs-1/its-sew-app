@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>{% block title %}Its Sew Regina{% endblock %}</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='css/cartstyles.css') }}" rel="stylesheet">
+ 
+
+
+
+  {% block head %}{% endblock %}
+</head>
+
+<body>
+
+  {% include "_nav.html" %}
+
+  <main>
+
+        <div id="users-card">
+    <button id="open-cart"  aria-haspopup="dialog" aria-controls="cart-modal">Open cart
+    </button>
+  
+    <div id="modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <div class="modal-content" role="group">
+        <button id="close-modal" class="close" aria-label="Close Modal">&times;</button>
+        <h2 id="modal-title" tabindex="-1"></h2>
+        <div id="modal-view-container" role="region" aria-labelledby="modal-title">
+        </div>
+        <div class="modal-actions">
+        </div>
+      </div>
+    </div>
+      <div id="cart-total"></div>
+  </div>
+  
+    {% block content %}
+    {% endblock %}
+  </main>
+
+  <footer class="footer"></footer>
+
+  <div class="hero-group-container"></div>
+  {% block scripts %}
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/cart.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/modal.js') }}"></script>
+
+  {% endblock %}
+
+</body>
+</html>

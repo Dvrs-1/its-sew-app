@@ -1,74 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>Its Sew Regina - home</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="/static/css/index.css?v=2026-04-15" rel="stylesheet">
-  <script type="module" src="/static/js/index.js?v=2026-04-15" defer></script>
-  <script src="https://kit.fontawesome.com/668995576d.js" crossorigin="anonymous"></script>
-  <style>
-  
-  
-</style>
-</head>
+{% extends "base.html" %}
 
-<body>
-  <header>
-
-<div class="bvn-logobar">
-  <a href="/" >
-    <img class="logo" src="/static/images/itssewlogoedited.webp" alt="Its Sew Regina Home" >
-  </a>
-  <!--Business Name-->
-  <h1 >Its Sew Regina</h1>
-  <!-- Live region for announcements -->
-  
-  <nav aria-label="Main navigation" class="menu-mobile">
-    
-    <ul class="navigation-menu" role="main-menu">
-      <li><a href="/">Home</a></li>
-      <li><a href="/gallery">Gallery</a></li>
-      <li><a href="/aboutus">About Us</a></li>
-      <li><a href="/forum">For You</a></li>
-    </ul>
-    
-    <ol id="top-nav" >
-      <li><a href="/">Home</a></li>
-      <li><a href="/gallery">Gallery</a></li>
-      <li><a href="/aboutus">About Us</a></li>
-      <li><a href="/forum">For you</a></li>
-      
-    </ol>
-  </nav>
-</div>
-  <div id="status-region" 
-  class="visualy-hidden" 
-  aria-live="polite "
-  aria-atomic="true"></div>
+{% block title %}Home - Its Sew Regina{% endblock %}
 
 
-</header>
-  <main>
-  
- <div class="home-layout">
-    <!-- Cart Modal -->
-    <div id="users-card">
-    <button id="open-cart"  aria-haspopup="dialog" aria-controls="cart-modal">Open cart
-    </button>
-  
-    <div id="modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-      <div class="modal-content" role="group">
-        <button id="close-modal" class="close" aria-label="Close Modal">&times;</button>
-        <h2 id="modal-title" tabindex="-1"></h2>
-        <div id="modal-view-container" role="region" aria-labelledby="modal-title">
-        </div>
-        <div class="modal-actions">
-        </div>
-      </div>
-    </div>
-      <div id="cart-total"></div>
-  </div>
+{% block head %}
+<link href="{{ url_for('static', filename='css/index.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+
+<div class="home-layout">
+
+
 
 
 
@@ -76,7 +20,7 @@
 
     <div class="special-items-container">
       <figure class="special-product">
-   <img src="/static/images/categories/sportsgroupdemo.webp" alt="">
+   <img src="{{ url_for('static', filename='images/categories/sportsgroupdemo.webp') }}" alt="">
       </figure>
       <figcaption class="special-product-caption">
         <h3>Sports Collection</h3>
@@ -147,26 +91,26 @@
   <button id="close-category" >Close</button>
           <div class="category">
             <a
-            href="/gallery"><img class="tree-category" src="/static/images/products/afroculturelgb1.1.webp" alt="click here for birch tree description"></a>
+            href="/gallery"><img class="tree-category" src="{{ url_for('static', filename='images/products/afroculturelgb1.1.webp') }}" alt="click here for birch tree description"></a>
             <a
-              href="/gallery"><img class="tree-category" src="/static/images/products/tanafrolgb2.1.webp" alt="click here for maple trees description"></a>
-              <a href="/gallery"><img  class="tree-category" src="/static/images/products/afroculturelgb1.1.webp" alt="click here for apple trees description"></a>
+              href="/gallery"><img class="tree-category" src="{{ url_for('static', filename='images/products/tanafrolgb2.1.webp') }}" alt="click here for maple trees description"></a>
+              <a href="/gallery"><img  class="tree-category" src="{{ url_for('static', filename='images/products/afroculturelgb1.1.webp') }}" alt="click here for apple trees description"></a>
             </div>
             <div class="category">
               <a
-              href="/gallery"><img class="plant-category" src="/static/images/products/steelersps1.1.webp" alt="click here for string of peerls plant description"></a>
+              href="/gallery"><img class="plant-category" src="{{ url_for('static', filename='images/products/steelersps1.1.webp') }}" alt="click here for string of peerls plant description"></a>
               <a
-              href="/gallery"><img class="plant-category" src="/static/images/products/cowboyslgplw2.1.webp" alt="click here for the spider plant description"></a>
+              href="/gallery"><img class="plant-category" src="{{ url_for('static', filename='images/products/cowboyslgplw2.1.webp') }}" alt="click here for the spider plant description"></a>
               <a
-              href="/gallery"><img class="plant-category" src="/static/images/categories/sportspsdemo2.webp" alt="click here for aloe plants description"></a>
+              href="/gallery"><img class="plant-category" src="{{ url_for('static', filename='images/categories/sportspsdemo2.webp') }}" alt="click here for aloe plants description"></a>
           </div>
           <div class="category">
             <a
-            href="/gallery"><img class="equipment-category" src="/static/images/products/afroculturelgb1.1.webp" alt="click here for wwatering can description"></a>
+            href="/gallery"><img class="equipment-category" src="{{ url_for('static', filename='images/products/afroculturelgb1.1.webp') }}" alt="click here for wwatering can description"></a>
             <a
-            href="/gallery"><img class="equipment-category" src="/static/images/categories/smlpillowdemo1.1.webp" alt="click here for birdhouse's description"></a>
+            href="/gallery"><img class="equipment-category" src="{{ url_for('static', filename='images/categories/smlpillowdemo1.1.webp') }}" alt="click here for birdhouse's description"></a>
             <a
-            href="/gallery"><img class="equipment-category" src="/static/images/products/cowboysps1.1.webp" alt="click here for potting soil description"></a>
+            href="/gallery"><img class="equipment-category" src="{{ url_for('static', filename='images/products/cowboysps1.1.webp') }}" alt="click here for potting soil description"></a>
           </div>
           <button id="category-gallery" onclick="location.href='/gallery'">See gallery</button>
           
@@ -182,13 +126,13 @@
       <div class="bundle">
 
         <figure class="bundle-deal">
-          <img src="/static/images/products/tanafrolgb2.1.webp"
+          <img src="{{ url_for('static', filename='images/products/tanafrolgb2.1.webp')}}"
           alt="Custom made tan afro culture womens carry bag" >
           <figcaption>Afro Culture</figcaption>
         </figure>
         
         <figure class="bundle-deal">
-          <img src="/static/images/products/afroculturelgb1.1.webp"
+          <img src="{{ url_for('static', filename='images/products/afroculturelgb1.1.webp')}}"
           alt="Custom made afro culture carry bag " >
           <figcaption>Afro Culture</figcaption>
           
@@ -213,27 +157,24 @@
 
 
 <div id="modal-status-region" role="status" aria-live="polite" class="visually-hidden"></div>
+
+<div id="documents-container">
 <a href="documents/terms-of-service">Terms of Service</a>
 <a href="documents/privacy-policy">Privacy Policy</a>
-</main>
-
-<footer class="footer">
-
-
-
-</footer>
-<div class="hero-group-container">
-  
 </div>
 
-<script src="/static/js/carousel.js?v=2026-04-15"></script>
-<script src="/static/js/cart.js?v=2026-04-15" media="print"></script>
-<script src="/static/js/modal.js?v=2026-04-15" media="print"></script>
-<script src="/static/js/main.js?v=2026-04-15"></script>
+
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+
+<script src="{{ url_for('static', filename='js/carousel.js') }}"></script>
+<script type="module" src="{{ url_for('static', filename='js/index.js') }}"></script>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-
-</body>
-
+{% endblock %}
 
 
-</html>
+
+
+

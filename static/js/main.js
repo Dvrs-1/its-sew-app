@@ -5,13 +5,6 @@
 var cartItems = JSON.parse(sessionStorage.getItem("cartItems")) || [];
 
 
-// link to rel for common styles
-var link = document.createElement('link');
-link.rel = 'stylesheet';
-link.type = 'text/css';
-link.href = '/static/css/main.css?v=2026-03-07'; 
-
-document.head.appendChild(link)
 
 
 
@@ -19,7 +12,8 @@ document.head.appendChild(link)
 
 document.addEventListener('DOMContentLoaded', function() {
 
-
+const sourceNav = document.querySelector('.navigation-menu');
+const links = sourceNav.querySelectorAll('a');
 
   // Hero group navigation elements
 
@@ -71,29 +65,23 @@ document.addEventListener('DOMContentLoaded', function() {
         }
       });
 
-      
-
       const heroGroupContainer = document.querySelector('.hero-group-container');
 
-      if(heroGroupContainer){
-      const heroGroupNav = document.createElement('div');
-      heroGroupNav.className = "hero-group-navigation";
+if (heroGroupContainer && sourceNav) {
+  const heroGroupNav = document.createElement('div');
+  heroGroupNav.className = "hero-group-navigation";
 
-      const homeButton = document.createElement('a');
-      homeButton.href = '/';
-      homeButton.innerHTML = `<i class="fa-solid fa-house"></i><span>Home</span>`;
-      const galleryLink = document.createElement('a');
-      galleryLink.href = '/gallery';
-      galleryLink.innerText = 'Gallery';
-      const aboutUsLink = document.createElement('a');
-      aboutUsLink.href = '/aboutus';
-      aboutUsLink.innerText = "About Us"
+  links.forEach(link => {
+    const newLink = document.createElement('a');
+    newLink.href = link.href;
+    newLink.textContent = link.textContent;
 
-      heroGroupNav.append(homeButton,galleryLink,aboutUsLink,hamburgerButton);
+    heroGroupNav.appendChild(newLink);
+  });
+  heroGroupNav.appendChild(hamburgerButton);
 
-      heroGroupContainer.appendChild(heroGroupNav);
-
-      };
+  heroGroupContainer.appendChild(heroGroupNav);
+}
 
 
 

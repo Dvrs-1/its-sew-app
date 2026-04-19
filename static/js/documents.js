@@ -7,21 +7,26 @@ const titleTag = document.getElementById("doc-title");
 
 // Fetch document
 fetch(`/api/documents/${slug}`)
-    .then(res => res.json())
-    .then(data => {
-        if (data.error) {
-            root.innerHTML = "<p>Document not found.</p>";
-            return;
-        }
+  .then(res => {
+    if (!res.ok) {
+      throw new Error(`HTTP ${res.status}`);
+    }
+    return res.json();
+  })
+  .then(data => {
+    if (!data) return;
 
-        // Set title + heading
-        heading.textContent = data.title;
-        titleTag.textContent = data.title;
+    if (heading) heading.textContent = data.title;
+    if (titleTag) titleTag.textContent = data.title;
 
-        // Inject HTML content
-        root.innerHTML = data.content;
-    })
-    .catch(err => {
-        console.error("Error loading document:", err);
-        root.innerHTML = "<p>Failed to load document.</p>";
-    });
+    if (root) {
+      root.innerHTML = data.content;
+    }
+  })
+  .catch(err => {
+    console.error("Document load failed:", err);
+
+    if (root) {
+      root.innerHTML = "<p>Failed to load document.</p>";
+    }
+  });
