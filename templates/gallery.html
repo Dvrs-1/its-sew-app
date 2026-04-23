@@ -1,63 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+{% extends "base.html" %}
 
-<head>
-  <title>Its Sew Regina - Gallery</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="/static/css/gallery.css?v=2026-04-15" rel="stylesheet">
-
-  <style>
-  .navigation-menu{
-    display: none;
-  }
-  </style>
-</head>
-
-<body>
-
-  <header>
-    <div class="bvn-logobar">
-      <a href="/" class="logo">
-        <img class="logo" src="/static/images/itssewlogoedited.webp" alt="Its Sew Regina Home" >
-      </a>
-      <!--Business Name-->
-  <h1 >Its Sew Regina</h1>
-  <!-- Live region for announcements -->
+  {% block title %}Gallery - Its Sew Regina{% endblock %}
   
-  <nav aria-label="Main navigation" class="menu-mobile">
-    
-    <ul class="navigation-menu" role="main-menu">
-      <li><a href="/">Home</a></li>
-      <li><a href="/gallery">Gallery</a></li>
-      <li><a href="/aboutus">About Us</a></li>
-      <li><a href="/forum">For You</a></li>
-    </ul>
-    
+ {% block head %}
+ <link href="{{ url_for('static', filename='css/gallery.css') }}" rel="stylesheet">
+ {% endblock %}
 
-  </nav>
-</div>
 
-</header>
-  <main>
-  
-
-    <div id="users-card">
-    <button id="open-cart"  aria-haspopup="dialog" aria-controls="cart-modal">Open cart
-    </button>
-  
-    <div id="modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-      <div class="modal-content" role="group">
-        <button id="close-modal" class="close" aria-label="Close Modal">&times;</button>
-        <h2 id="modal-title" tabindex="-1"></h2>
-        <div id="modal-view-container" role="region" aria-labelledby="modal-title">
-        </div>
-        <div class="modal-actions">
-        </div>
-      </div>
-    </div>
-      <div id="cart-total"></div>
-  </div>
+{% block content %}
     
     <div class="product-gallery container">
       
@@ -122,51 +73,13 @@
     
     
   </div>
+
+  {% endblock %}
+
+  {% block scripts %}
+  {{ super() }}
     
-    
 
-
-  
-</main>
-
-<div class="hero-group-container">
-  
-</div>
-
-
-<footer>
- 
-  <a href="#" onclick="window.open('https://www.sitelock.com/verify.php?site=itssewregina.com','SiteLock','width=600,height=600,left=160,top=170');" >
-    <img class="img-fluid" alt="SiteLock" title="SiteLock" src="https://shield.sitelock.com/shield/itssewregina.com" /></a>
-  <div id="modal-status-region" role="status" aria-live="polite" class="visually-hidden"></div>
-  <div id="social-links">
-    <a
-    href="http://facebook.com/html"><img aria-label="follow us on face book page"  class="social1" src="/static/images/SVG/facebook.svg"></a>
-    <a
-      href="http://linkedin.com/html"><img aria-label="connect to our linked in profile "class="social2" src="/static/images/SVG/linkedin.svg"></a>
-    <a
-    href="http://pinterest.com/html"><img aria-label="click here to find our pinterest account " class="social3" src="/static/images/SVG/pinterest.svg"></a>
-  </div>
-  <nav class="footer-nav">
-    <ol>
-      <li><a href="/">Home</a></li>
-      <li><a href="/gallery">Gallery</a></li>
-      <li><a href="/aboutus">About Us</a></li>
-      <li><a href="/forum">For you</a></li>
-    </ol>
-    <form class="footer-subscribe" action="">
-      <input type="email" name="email" id="emailToSubscribe" autocomplete="off" />
-      <input class="subscribe-btn" type="submit" for="submit" name="submit"_parent>
-    </form>
-  </nav>
-</footer>
-  <script src="/static/js/cart.js?v=2026-04-15" media="print"></script>
-  <script src="/static/js/modal.js"></script>
-  <script src="/static/js/main.js"></script>
-  <script src="/static/js/carousel.js"></script>
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
   <script src="https://kit.fontawesome.com/668995576d.js" crossorigin="anonymous"></script>
-</body>
-
-
-</html>
+  {% endblock %}
