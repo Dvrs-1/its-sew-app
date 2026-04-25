@@ -57,16 +57,26 @@ from flask import current_app
 from sqlalchemy import engine_from_config, pool
 
 def run_migrations_online():
-    connectable = current_app.extensions['migrate'].db.engine
+   
+import os
+from sqlalchemy import create_engine
+from sqlalchemy import pool
 
-    with connectable.connect() as connection:
-        context.configure(
+DATABASE_URL = os.environ.get("DATABASE_URL")
+
+connectable = create_engine(
+    DATABASE_URL,
+    poolclass=pool.NullPool,
+)
+
+with connectable.connect() as connection:
+    context.configure(
             connection=connection,
             target_metadata=current_app.extensions['migrate'].db.metadata
         )
 
-        with context.begin_transaction():
-            context.run_migrations()
+with context.begin_transaction():
+     context.run_migrations()
 
 
 if context.is_offline_mode():
