@@ -18,8 +18,8 @@ app = Flask(__name__)
 # -------------------------
 # Configure database for SQLAlchemy (REQUIRED for migrations)
 # -------------------------
-from flask_sqlalchemy import SQLAlchemy
-from flask_migrate import Migrate
+
+
 
 database_url = os.environ.get("DATABASE_URL")
 
@@ -36,9 +36,7 @@ else:
 
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
-# Initialize extensions AFTER config
-db = SQLAlchemy(app)
-migrate = Migrate(app, db)
+
 
 # -------------------------
 # Existing DB connection (psycopg2)
