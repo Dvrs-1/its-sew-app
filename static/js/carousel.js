@@ -2,11 +2,7 @@ const productsPromise = fetch('/api/products').then(r => r.json());
 const categoriesPromise = fetch('/api/categories').then(r => r.json());
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Load carousel styles once
-  const link = document.createElement('link');
-  link.rel = 'stylesheet';
-  link.href = '/static/css/carousel.css?v=2026-03-07';
-  document.head.appendChild(link);
+
   
   Promise.all([productsPromise, categoriesPromise])
   .then(([products]) => {
@@ -84,14 +80,23 @@ function createProductCard(product) {
     priceOnSlide.innerHTML = `$${price?.toFixed(2)}`;
     
     slideOption.append(priceOnSlide, showMoreBtn);
+  
     
     slide.innerHTML = `
     <div class="slide-media">
-    <img src="${primaryImage?.url || product.image}" alt="${primaryImage?.alt || ''}">
+    <img src="${primaryImage?.url || product.image}" 
+     alt="${primaryImage?.alt || ''}"
+     loading="lazy"
+     decoding="async"
+     width="400"
+     height="500"
+     >
     </div>
     <h4>${product.name}</h4>
     `;
     
+
+
     slide.append(slideOption);
     
     return slide;
@@ -152,6 +157,7 @@ function initCarousel(carousel, products) {
 
   
   populateCarousel(track, products, categoryId);
+  track.classList.add('ready')
 
   let activeIndex = getActiveIndex();
   
@@ -218,6 +224,58 @@ function initCarousel(carousel, products) {
 
     return closestIndex;
   }
+
+
+  // ---------- AUTO PLAY ----------
+
+function startAutoPlay() {
+  return setInterval(() => {
+    const slides = getSlides();
+    const nextIndex = (activeIndex + 1) % slides.length;
+    scrollToSlide(nextIndex);
+  }, 4000 + Math.random() * 2000); // 4–6 seconds random
+}
+
+let autoPlayInterval;
+let userInteracting = false;
+let interactionTimeout;
+
+function startAutoPlay() {
+  return setInterval(() => {
+    if (userInteracting) return;
+
+    const slides = getSlides();
+    const nextIndex = (activeIndex + 1) % slides.length;
+    scrollToSlide(nextIndex);
+  }, 4000 + Math.random() * 2000);
+}
+
+function stopAutoPlay() {
+  clearInterval(autoPlayInterval);
+}
+
+function markUserInteraction() {
+  userInteracting = true;
+
+  clearTimeout(interactionTimeout);
+
+  interactionTimeout = setTimeout(() => {
+    userInteracting = false;
+  }, 3000); // wait 3 seconds after last interaction
+}
+
+// ---------- INIT ----------
+autoPlayInterval = startAutoPlay();
+
+// ---------- USER EVENTS ----------
+carousel.addEventListener('mouseenter', stopAutoPlay);
+carousel.addEventListener('mouseleave', () => {
+  autoPlayInterval = startAutoPlay();
+});
+
+carousel.addEventListener('scroll', markUserInteraction);
+carousel.addEventListener('pointerdown', markUserInteraction);
+carousel.addEventListener('touchstart', markUserInteraction);
 
   function updateSlideClasses() {
     const slides = getSlides();

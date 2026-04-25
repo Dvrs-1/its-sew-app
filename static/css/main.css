@@ -27,6 +27,7 @@
   --brand-blonde: #f3e6e3;
   --brand-green: #6fbf8f;
   --brand-pink: #e06aa3;
+  --brand-brown: #5f3936;
 
   --shadow-soft: 0 8px 20px rgba(0,0,0,0.4);
 
@@ -105,6 +106,9 @@ box-shadow: 0 5px 10px rgba(0,0,0,0.18);
 .container {
   max-width: var(--container-max);
   width: 100%;
+}
+.carousel-container h3{
+  float: right;
 }
 
 
@@ -338,10 +342,13 @@ h2 {
 }
 
 h3 {
-  color: var(--brand-pink);
-  font-size: 2rem;
+  color: var(--brand-brown);
+  font-size: 1.2rem;
   font-weight: 500;
   letter-spacing: 1px;
+  margin: 0px;
+  margin-bottom: 2px;
+  font-weight: bold;
 }
 
 h4 {

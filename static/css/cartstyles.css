@@ -233,6 +233,7 @@ button:focus, .close:focus {
   gap: 10px;
   justify-content: space-between;
   margin: 3px;
+  margin-bottom: 20px;
   max-width: fit-content;
   padding: 10px;
 }

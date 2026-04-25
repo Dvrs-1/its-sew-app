@@ -11,8 +11,11 @@ config = context.config
 
 # Interpret the config file for Python logging.
 # This line sets up loggers basically.
-if config.config_file_name is not None:
-    fileConfig(config.config_file_name)
+from logging.config import fileConfig
+import os
+
+config_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), "alembic.ini")
+fileConfig(config_path)
 
 # add your model's MetaData object here
 # for 'autogenerate' support
@@ -50,22 +53,16 @@ def run_migrations_offline() -> None:
         context.run_migrations()
 
 
-def run_migrations_online() -> None:
-    """Run migrations in 'online' mode.
+from flask import current_app
+from sqlalchemy import engine_from_config, pool
 
-    In this scenario we need to create an Engine
-    and associate a connection with the context.
-
-    """
-    connectable = engine_from_config(
-        config.get_section(config.config_ini_section, {}),
-        prefix="sqlalchemy.",
-        poolclass=pool.NullPool,
-    )
+def run_migrations_online():
+    connectable = current_app.extensions['migrate'].db.engine
 
     with connectable.connect() as connection:
         context.configure(
-            connection=connection, target_metadata=target_metadata
+            connection=connection,
+            target_metadata=current_app.extensions['migrate'].db.metadata
         )
 
         with context.begin_transaction():

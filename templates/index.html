@@ -6,6 +6,7 @@
 
 {% block head %}
 <link href="{{ url_for('static', filename='css/index.css') }}" rel="stylesheet">
+<link rel="preload" as="image" href="{{ url_for('static', filename='images/categories/sportsgroupdemo.webp') }}">
 {% endblock %}
 
 {% block content %}
@@ -17,19 +18,47 @@
 
 
     <h3 id="special-header">One of each</h3>
+    <div class="hero-slideshow">
 
-    <div class="special-items-container">
+    <div class="hero-slide active">
       <figure class="special-product">
-   <img src="{{ url_for('static', filename='images/categories/sportsgroupdemo.webp') }}" alt="">
+   <img src="{{ url_for('static', filename='images/categories/sportsgroupdemo.webp') }}" 
+    width="800"
+    height="500"
+    alt="Sports collection"
+    loading="eager"
+    fetchpriority="high"
+   >
       </figure>
       <figcaption class="special-product-caption">
         <h3>Sports Collection</h3>
         <p>One of a kind custom sports design</p>
-        <a href="/gallery" id="linkgallery">see More</a>
-        <span class="price" id="special-price">$21.02</span>
       </figcaption>
-   
+    </div>
+    <div class="hero-slide">
+      <figure class="special-product">
+   <img src="{{ url_for('static', filename='images/categories/sportspsdemo2.webp') }}" alt="">
+      </figure>
+      <figcaption class="special-product-caption">
+        <h3>Sports Collection</h3>
+        <p>One of a kind custom sports design</p>
+      </figcaption>
+    </div>
 
+      <div class="hero-slide">
+      <figure class="special-product">
+   <img src="{{ url_for('static', filename='images/categories/smlpillowdemo1.1.webp') }}" alt="">
+      </figure>
+      <figcaption class="special-product-caption">
+        <h3>Sports Collection</h3>
+        <p>One of a kind custom sports design</p>
+      </figcaption>
+    </div>
+    
+    <a href="/gallery" id="linkgallery">see More</a>
+
+   
+   
     
     
   </div>
@@ -169,9 +198,7 @@
 {% block scripts %}
 {{ super() }}
 
-
 <script type="module" src="{{ url_for('static', filename='js/index.js') }}"></script>
-<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 {% endblock %}
 
 

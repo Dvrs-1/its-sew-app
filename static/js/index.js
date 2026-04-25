@@ -114,7 +114,32 @@ document.addEventListener('DOMContentLoaded', function(){
     });
   });
   
-  
+
+// ---------- HERO SLIDESHOW ----------
+function initHeroSlideshow() {
+  const slides = document.querySelectorAll('.hero-slide');
+  if (!slides.length) return;
+
+  let index = 0;
+
+  setInterval(() => {
+    slides[index].classList.remove('active');
+    index = (index + 1) % slides.length;
+    slides[index].classList.add('active');
+  }, 5000);
+}
+
+
+initHeroSlideshow();
+  let interval;
+
+function startHero(slides) {
+  return setInterval(() => {
+    slides[index].classList.remove('active');
+    index = (index + 1) % slides.length;
+    slides[index].classList.add('active');
+  }, 8000);
+}
   });
   
   

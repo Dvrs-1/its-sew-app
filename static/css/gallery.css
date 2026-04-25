@@ -1,13 +1,12 @@
 /* Base styles (shared) */
 
 body{
-  background-color: #BDD4DA;
-  color: #0d0d0ef2;
   height: 100%;
   margin: 0;
   max-width: 100vw;
   overflow-x: hidden;
 }
+
 
 figure.product-media{
   align-items: center;

@@ -1,83 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+{% extends "base.html" %}
 
-<head>
-  <title>Its Sew Regina - About Us</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="/static/css/aboutus.css?v=2026-04-15" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/dompurify@3.0.6/dist/purify.min.js"></script>
-  <script src="static/js/aboutus.js?v=2026-04-15" defer></script>
-  <style>
-      .navigation-menu{
-    display: none;
-  }
-  </style>
-</head>
+{% block title %}About - Its Sew Regina{% endblock %}
 
-<body>
+{% block head %}
+<link href="{{ url_for('static', filename='css/aboutus.css') }}" rel="stylesheet">
+ {% endblock %}
 
- 
 
-    <header>
-      
-    <div class="bvn-logobar">
-      <a href="/" class="logo">
-        <img class="logo" src="/static/images/itssewlogoedited.webp" alt="Its Sew Regina Home" >
-      </a>
-      <!--Business Name-->
-      <h1 >Its Sew Regina</h1>
-      <!-- Live region for announcements -->
-      
-      <nav aria-label="Main navigation" class="menu-mobile">
-        
-        <ul class="navigation-menu" role="main-menu">
-          <li><a href="/">Home</a></li>
-          <li><a href="/gallery">Gallery</a></li>
-          <li><a href="/aboutus">About Us</a></li>
-          <li><a href="/forum">For You</a></li>
-        </ul>
+  {% block content %}
   
-      </nav>
-    </div>
-    
-    
-  </header>
-
-
-  <main>
-
-
-    <!-- Cart Modal -->
-    <div id="users-card">
-   
-    <button id="open-cart" aria-haspopup="dialog" aria-controls="cart-modal">
-Open Cart
-</button>
-    <!-- Cart Modal -->
-    <div id="modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-
-      <div class="modal-content" role="group">
-        <button id="close-modal" class="close" aria-label="Close Modal">&times;</button>
-        <h2 id="modal-title" tabindex="-1"></h2>
-        <div id="modal-status-region" role="status" aria-live="polite" class="visually-hidden"></div>
-        <div id="modal-view-container" role="region" aria-labelledby="modal-title">
-        </div>
-        <div class="modal-actions">
-        </div>
-      </div>
-    </div>
-    <div id="cart-total"></div>
-  </div>
-
-
-
-
-
-
+  <div id="about-container">
   
-
-
+  
     <h2 class="h1">Here's the latest news!</h2>
 
 
@@ -128,63 +63,13 @@ Open Cart
       
     </form>
     
+{% endblock %}
 
-    <div class="hero-group-container">
+{% block scripts %}
+{{ super() }}
 
-    </div>
+   
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.0.6/dist/purify.min.js"></script>
+<script type="module" src="{{ url_for('static', filename='js/aboutus.js') }}"></script>
 
-  </main>
-
-  <footer>
-    <div class="container" id="footer-container">
-      <div class="footer-row" id="hourstable">
-        <h3>Hours of Operation</h3>
-        <table id="hours-table">
-          <tr>
-            <th colspan="3">Hours of Operation</th>
-          </tr>
-          <tr>
-            <th>Days</th>
-            <th>Open</th>
-            <th>Close</th>
-          </tr>
-          <tr>
-            <td>Mon-Friday</td>
-            <td>9 a.m</td>
-            <td>6 p.m</td>
-          </tr>
-          <tr>
-            <td>Sat-Sun</td>
-            <td>10 a.m</td>
-            <td>5 p.m</td>
-          </tr>
-        </table>
-      </div>
-      <div id="social-links">
-        <a href="http://facebook.com/html"><img class="social1" src="/static/images/SVG/facebook.svg"></a>
-        <a href="http://linkedin.com/html"><img class="social2" src="/static/images/SVG/linkedin.svg"></a>
-        <a href="http://pinterest.com/html"><img class="social3" src="/static/images/SVG/pinterest.svg"></a>
-      </div>
-      <nav class="footer-nav">
-        <ol>
-          <a href="/">Home</a>
-          <a href="/gallery">Gallery</a>
-          <a href="/aboutus">About Us</a>
-          <a href="/forum">For you</a>
-        </ol>
-      </nav>
-      <form class="footer-subscribe" action="">
-        <input type="email" name="email" id="emailToSubscribe"  autocomplete="email">
-        <input class="subscribe-btn" type="submit" for="submit" name="submit"_parent>
-
-      </form>
-    </div>
-  </footer>
-  <script src="/static/js/modal.js"></script>
-  <script src="/static/js/cart.js"></script>
-  <script src="/static/js/main.js"></script>
-  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-  <script src="https://kit.fontawesome.com/668995576d.js" crossorigin="anonymous"></script>
-</body>
-
-</html>
+{% endblock %}

@@ -2,9 +2,7 @@ import os
 from dotenv import load_dotenv
 load_dotenv()
 
-
-from flask import Flask, request, jsonify, send_from_directory, render_template
-import json 
+from flask import Flask, request, jsonify, render_template
 import psycopg2
 from psycopg2.extras import RealDictCursor
 
@@ -12,21 +10,47 @@ print("THIS is server.py")
 print("DB_NAME:", os.environ.get("DB_NAME"))
 print("DB_USER:", os.environ.get("DB_USER"))
 
-app = Flask(__name__)  # <-- IMPORTANT: no static_folder override
+# -------------------------
+# Create app (ONLY ONCE)
+# -------------------------
+app = Flask(__name__)
 
+# -------------------------
+# Configure database for SQLAlchemy (REQUIRED for migrations)
+# -------------------------
+from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
 
+database_url = os.environ.get("DATABASE_URL")
 
+if database_url:
+    app.config["SQLALCHEMY_DATABASE_URI"] = database_url
+else:
+    app.config["SQLALCHEMY_DATABASE_URI"] = (
+        f"postgresql://{os.environ.get('DB_USER')}:"
+        f"{os.environ.get('DB_PASSWORD')}@"
+        f"{os.environ.get('DB_HOST')}:"
+        f"{os.environ.get('DB_PORT')}/"
+        f"{os.environ.get('DB_NAME')}"
+    )
 
+app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+
+# Initialize extensions AFTER config
+db = SQLAlchemy(app)
+migrate = Migrate(app, db)
+
+# -------------------------
+# Existing DB connection (psycopg2)
+# -------------------------
 from database.seed import get_document_by_slug
 
 def get_db_connection():
     database_url = os.environ.get("DATABASE_URL")
 
     if database_url:
-        # Production (Render)
         return psycopg2.connect(database_url, cursor_factory=RealDictCursor)
     else:
-        # Local development fallback
         return psycopg2.connect(
             dbname=os.environ.get("DB_NAME"),
             user=os.environ.get("DB_USER"),
@@ -36,6 +60,9 @@ def get_db_connection():
             cursor_factory=RealDictCursor
         )
 
+# -------------------------
+# Routes
+# -------------------------
 @app.route("/")
 def home():
     return render_template("index.html")
@@ -50,25 +77,19 @@ def about():
 
 @app.get("/forum")
 def forum():
-    return render_template("foru.html") 
+    return render_template("foru.html")
 
-
-
-# Loads The Page (HTML Shell)
 @app.route("/documents/<slug>")
 def document_page(slug):
     return render_template("document.html")
 
-#loads actual documents from PostgreSQL = REQUIRED
 @app.route("/api/documents/<slug>", methods=["GET"])
 def fetch_document(slug):
     try:
         document = get_document_by_slug(slug)
 
         if not document:
-            return jsonify({
-                "error": "Document not found"
-            }), 404
+            return jsonify({"error": "Document not found"}), 404
 
         return jsonify({
             "slug": document["slug"],
@@ -80,10 +101,7 @@ def fetch_document(slug):
 
     except Exception as e:
         print("DOCUMENT ERROR:", e)
-        return jsonify({
-            "error": "Internal server error"
-        }), 500
-
+        return jsonify({"error": "Internal server error"}), 500
 
 
 @app.get("/api/categories")
@@ -107,12 +125,12 @@ def get_categories():
 
     return jsonify(categories)
 
+
 @app.get("/api/products")
 def get_products():
     conn = get_db_connection()
     cur = conn.cursor(cursor_factory=RealDictCursor)
 
-    # Get products
     cur.execute("""
         SELECT p.id, p.name, p.description, c.slug AS categoryId
         FROM products p
@@ -120,14 +138,11 @@ def get_products():
     """)
     products = cur.fetchall()
 
-    print("DEBUG products:", products)
-
     result = []
 
     for product in products:
         product_id = product["id"]
 
-        # Variants
         cur.execute("""
             SELECT id, sku, size, price, inventory
             FROM product_variants
@@ -138,7 +153,6 @@ def get_products():
         for v in variants:
             v["price"] = float(v["price"])
 
-        # Images
         cur.execute("""
             SELECT variant_id AS "variantId",
                    url,
@@ -163,30 +177,28 @@ def get_products():
             "images": images
         })
 
-
     cur.close()
     conn.close()
+
     return jsonify(result)
+
 
 import html
 
-
 @app.route("/api/process", methods=["POST"])
-
 def process_form():
     data = request.get_json(silent=True)
 
     if not data:
         return jsonify({"status": "error", "message": "Invalid JSON"}), 400
 
-    # Sanitize (equivalent to htmlspecialchars)
     name = html.escape(data.get("name", ""))
     email = html.escape(data.get("email", ""))
     phone = html.escape(data.get("phone", ""))
     feedback = html.escape(data.get("feedback", ""))
     custom_order = bool(data.get("customOrder", False))
 
-    response = {
+    return jsonify({
         "status": "success",
         "data": {
             "name": name,
@@ -195,11 +207,7 @@ def process_form():
             "feedback": feedback,
             "customOrder": custom_order
         }
-    }
-
-    return jsonify(response), 200
-
-
+    }), 200
 
 
 print(app.url_map)

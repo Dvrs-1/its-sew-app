@@ -1,75 +1,23 @@
-
-
-
 <!DOCTYPE html>
-<html lang="en">
-<head>
+{% extends "base.html" %}
+
+{% block title %}For You - Its Sew Regina{% endblock %}
+
+
+{% block head %}
+
+{% endblock %}
+
+{% block content %}
+
   <title>Its Sew Regina - for u</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <link href="/static/css/index.css?v=2026-04-15" rel="stylesheet">
   
-  <script src="https://kit.fontawesome.com/668995576d.js" crossorigin="anonymous"></script>
-  <style>
-      .navigation-menu{
-    display: none;
-  }
-    
-  </style>
-</head>
-<body>
-  
-  
-  <main>
-  
-   
-  <header>
-    
-    <div class="bvn-logobar">
-      <a href="/" >
-        <img class="logo" src="/static/images/itssewlogoedited.webp" alt="Its Sew Regina Home" >
-      </a>
-      <!--Business Name-->
-      <h1 >Its Sew Regina</h1>
-      <!-- Live region for announcements -->
-      
-      <nav aria-label="Main navigation" class="menu-mobile">
-        
-        <ul class="navigation-menu" role="main-menu">
-          <li><a href="/">Home</a></li>
-          <li><a href="/gallery">Gallery</a></li>
-          <li><a href="/aboutus">About Us</a></li>
-          <li><a href="/forum">For You</a></li>
-        </ul>
 
-      </nav>
-    </div>
-    <div id="status-region" 
-    class="visualy-hidden" 
-    aria-live="polite "
-    aria-atomic="true"></div>
-    
-    
-  </header>
-    
-    
-    <!-- Cart Modal -->
-    <div id="users-card">
-      <button id="open-cart"  aria-haspopup="dialog" aria-controls="cart-modal">Open cart
-      </button>
-      <!-- Cart Modal -->
-      <div id="modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-      <div class="modal-content" role="group">
-        <button id="close-modal" class="close" aria-label="Close Modal">&times;</button>
-        <h2 id="modal-title" tabindex="-1"></h2>
-        <div id="modal-view-container" role="region" aria-labelledby="modal-title">
-        </div>
-        <div class="modal-actions">
-        </div>
-      </div>
-    </div>
-    <div id="cart-total"></div>
-  </div>
+  
+  
+  
   <section class="special-products-container">
     <div data-product-id="101"></div>
 <div data-product-id="102"></div>
@@ -77,48 +25,18 @@
 </section>
 
 
-<div class="hero-group"></div>
+{% endblock %}
 
-<div class="hero-group-container">
-  
-</div>
+{% block scripts %}
+{{ super() }}
 
 
-</main>
-<footer>
+{% endblock %}
+
+
+
+
+
  
-  <a href="#" onclick="window.open('https://www.sitelock.com/verify.php?site=itssewregina.com','SiteLock','width=600,height=600,left=160,top=170');" >
-    <img class="img-fluid" alt="SiteLock" title="SiteLock" src="https://shield.sitelock.com/shield/itssewregina.com" /></a>
-  <div id="modal-status-region" role="status" aria-live="polite" class="visually-hidden"></div>
-  <div id="social-links">
-    <a
-    href="http://facebook.com/html"><img aria-label="follow us on face book page"  class="social1" src="/static/images/SVG/facebook.svg"></a>
-    <a
-      href="http://linkedin.com/html"><img aria-label="connect to our linked in profile "class="social2" src="/static/images/SVG/linkedin.svg"></a>
-    <a
-    href="http://pinterest.com/html"><img aria-label="click here to find our pinterest account " class="social3" src="/static/images/SVG/pinterest.svg"></a>
-  </div>
-  <nav class="footer-nav">
-    <ol>
-      <li><a href="/">Home</a></li>
-      <li><a href="/gallery">Gallery</a></li>
-      <li><a href="/aboutus">About Us</a></li>
-      <li><a href="/forum">For you</a></li>
-    </ol>
-    <form class="footer-subscribe" action="">
-      <input type="email" name="email" id="emailToSubscribe" autocomplete="off" />
-      <input class="subscribe-btn" type="submit" for="submit" name="submit"_parent>
-    </form>
-  </nav>
-</footer>
-  </div>
-  <script src="/static/js/carousel.js"></script>
-  <script src="/static/js/cart.js?v=2026-03-07" media="print"></script>
-  <script src="/static/js/modal.js?v=2026-03-07" media="print"></script>
-  <script src="/static/js/main.js?v=2026-03-07"></script>
-  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
   
-  
-  </body>
-  
-  </html>

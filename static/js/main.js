@@ -161,7 +161,7 @@ footerSubscribeForm.append(emailToSubscribe, subscribeBtn);
 if(footer){
   const socialSubscribeGroup = document.createElement('div');
   socialSubscribeGroup.append(footerSubscribeForm, footerSocial);
-  footerContainer.append(footerHours, socialSubscribeGroup);
+  footerContainer.append(socialSubscribeGroup);
   footer.appendChild(footerContainer);
 
 }
