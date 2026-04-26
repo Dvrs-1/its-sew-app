@@ -15,11 +15,6 @@ print("DB_USER:", os.environ.get("DB_USER"))
 # -------------------------
 app = Flask(__name__)
 
-# -------------------------
-# Configure database for SQLAlchemy (REQUIRED for migrations)
-# -------------------------
-
-
 
 database_url = os.environ.get("DATABASE_URL")
 
