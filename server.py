@@ -115,7 +115,7 @@ def get_products():
         cur.execute("""
             SELECT p.id, p.name, p.description, c.slug AS categoryId
             FROM products p
-            LEFT JOIN categories c ON c.slug = p.category_id
+            LEFT JOIN categories c ON c.id = p.category_id
         """)
         products = cur.fetchall()
 
