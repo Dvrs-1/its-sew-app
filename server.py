@@ -1,6 +1,9 @@
 import os
-from dotenv import load_dotenv
-load_dotenv()
+
+
+if not os.getenv("DATABASE_URL"):
+    from dotenv import load_dotenv
+    load_dotenv()
 
 from flask import Flask, request, jsonify, render_template
 import psycopg2
@@ -16,23 +19,6 @@ print("DB_USER:", os.environ.get("DB_USER"))
 app = Flask(__name__)
 
 
-database_url = os.environ.get("DATABASE_URL")
-
-if database_url:
-    app.config["SQLALCHEMY_DATABASE_URI"] = database_url
-else:
-    app.config["SQLALCHEMY_DATABASE_URI"] = (
-        f"postgresql://{os.environ.get('DB_USER')}:"
-        f"{os.environ.get('DB_PASSWORD')}@"
-        f"{os.environ.get('DB_HOST')}:"
-        f"{os.environ.get('DB_PORT')}/"
-        f"{os.environ.get('DB_NAME')}"
-    )
-
-app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-
-
-
 # -------------------------
 # Existing DB connection (psycopg2)
 # -------------------------
@@ -41,6 +27,8 @@ from database.seed import get_document_by_slug
 def get_db_connection():
     database_url = os.environ.get("DATABASE_URL")
 
+    if database_url and database_url.startswith("postgres://"):
+        database_url = database_url.replace("postgres://", "postgresql://", 1)
     if database_url:
         return psycopg2.connect(database_url, cursor_factory=RealDictCursor)
     else:
@@ -164,7 +152,7 @@ def get_products():
         result.append({
             "id": product["id"],
             "name": product["name"],
-            "categoryId": product["categoryid"],
+            "categoryId": product["categoryId"],
             "description": product["description"],
             "variants": variants,
             "images": images
