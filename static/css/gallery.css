@@ -59,9 +59,6 @@ figure.product-media img {
   max-height: 200px; 
 }
 
-.product-gallery{
-  padding: var(--space-3);
-}
 
 .product-name {
   color: #00231C;

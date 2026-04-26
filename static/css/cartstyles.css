@@ -60,6 +60,7 @@ button:focus, .close:focus {
   padding-left: 5px;
   padding-right: 5px;
   width: 100%;
+  min-height: 20vh;
 }
 
 
@@ -141,10 +142,11 @@ button:focus, .close:focus {
   cursor: default;
   display: flex;
   flex-direction: column;
-  justify-content: center ;
+  justify-content: space-between;
   max-height:70vh;
   max-width: 520px;
   min-width: 240px;
+  min-height: 40vh;
   outline: none;
   padding: 10px;
   position: relative;
@@ -156,6 +158,9 @@ button:focus, .close:focus {
   max-width: 100%;
   overflow: hidden;
   width: 100%;
+}
+#modal-title{
+  align-self: center;
 }
 
 .modal-price{
@@ -235,5 +240,5 @@ button:focus, .close:focus {
   margin: 3px;
   margin-bottom: 20px;
   max-width: fit-content;
-  padding: 10px;
+  padding: 2px;
 }

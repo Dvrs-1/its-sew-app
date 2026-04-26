@@ -127,9 +127,10 @@ figure{
   margin-left: 10px;
 }
 
-.special-product-caption h3, p{
+.special-product-caption h3 p{
   margin: 0;
   padding: 0;
+  color: var(--brand-blonde);
 }
 
 .special-product-card{

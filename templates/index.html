@@ -18,11 +18,13 @@
 
 
     <h3 id="special-header">One of each</h3>
-    <div class="hero-slideshow">
+    <a href="/gallery" id="linkgallery">
 
-    <div class="hero-slide active">
+      <div class="hero-slideshow">
+        
+        <div class="hero-slide active">
       <figure class="special-product">
-   <img src="{{ url_for('static', filename='images/categories/sportsgroupdemo.webp') }}" 
+        <img src="{{ url_for('static', filename='images/categories/sportsgroupdemo.webp') }}" 
     width="800"
     height="500"
     alt="Sports collection"
@@ -31,17 +33,15 @@
    >
       </figure>
       <figcaption class="special-product-caption">
-        <h3>Sports Collection</h3>
-        <p>One of a kind custom sports design</p>
+        <p><strong>Phone Stands</strong><br>One of a kind custom sports design</p>
       </figcaption>
     </div>
     <div class="hero-slide">
       <figure class="special-product">
-   <img src="{{ url_for('static', filename='images/categories/sportspsdemo2.webp') }}" alt="">
+        <img src="{{ url_for('static', filename='images/categories/sportspsdemo2.webp') }}" alt="">
       </figure>
       <figcaption class="special-product-caption">
-        <h3>Sports Collection</h3>
-        <p>One of a kind custom sports design</p>
+        <p><strong>Sports Collection</strong><br>One of a kind custom sports design</p>
       </figcaption>
     </div>
 
@@ -50,27 +50,23 @@
    <img src="{{ url_for('static', filename='images/categories/smlpillowdemo1.1.webp') }}" alt="">
       </figure>
       <figcaption class="special-product-caption">
-        <h3>Sports Collection</h3>
-        <p>One of a kind custom sports design</p>
+        <p><strong>Pillow Colllection</strong><br>One of a kind custom sports design</p>
       </figcaption>
     </div>
-    
-    <a href="/gallery" id="linkgallery">see More</a>
-
-   
-   
-    
-    
   </div>
+</a>
   
   <article class="carousel-container">
+    
+      
+    
     <h3>Phone Stands</h3>
     <div class="carousel" 
       data-carousel 
       data-category="phone-stands"
       data-variant="hero"
->
-        <div class="carousel-track"></div>
+      >
+      <div class="carousel-track"></div>
       </div>
       <div class="carousel-dots" data-dots></div>
   </article>

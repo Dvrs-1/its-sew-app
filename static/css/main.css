@@ -28,6 +28,7 @@
   --brand-green: #6fbf8f;
   --brand-pink: #e06aa3;
   --brand-brown: #5f3936;
+  --pink-highlight:#d72a7ef1;
 
   --shadow-soft: 0 8px 20px rgba(0,0,0,0.4);
 
@@ -179,7 +180,6 @@ header {
   height: 100%;
   object-fit: cover;
   overflow: hidden;
-  padding: var(--space-1);
 }
 
 
@@ -326,11 +326,12 @@ h1 {
   align-self: center;
   color: var(--brand-pink);
   font-family: 'Playfair Display', Georgia, serif;
-  font-size: clamp(1.2rem, 7vw, 1.8rem);
+  font-size: clamp(1.1rem, 8vw, 1.8rem);
   font-weight: 500;
   letter-spacing: 0.04em;
   line-height: 1.2;
   padding-right: 5px;
+  margin: unset;
 }
 
 h2 {
@@ -339,11 +340,12 @@ h2 {
   font-weight: 500;
   letter-spacing: 0.04em;
   line-height: 1.25;
+  margin: unset;
 }
 
 h3 {
   color: var(--brand-brown);
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   font-weight: 500;
   letter-spacing: 1px;
   margin: 0px;

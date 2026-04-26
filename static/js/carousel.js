@@ -74,7 +74,7 @@ function createProductCard(product) {
     
     const showMoreBtn = document.createElement('button');
     showMoreBtn.className = 'show-more';
-    showMoreBtn.innerText = "Show More";
+    //showMoreBtn.innerText = "Show More";
     
     const priceOnSlide = document.createElement('p');
     priceOnSlide.innerHTML = `$${price?.toFixed(2)}`;
@@ -85,6 +85,7 @@ function createProductCard(product) {
     slide.innerHTML = `
     <div class="slide-media">
     <img src="${primaryImage?.url || product.image}" 
+     class="show-more"
      alt="${primaryImage?.alt || ''}"
      loading="lazy"
      decoding="async"
@@ -261,7 +262,7 @@ function markUserInteraction() {
 
   interactionTimeout = setTimeout(() => {
     userInteracting = false;
-  }, 3000); // wait 3 seconds after last interaction
+  }, 4000); // wait 3 seconds after last interaction
 }
 
 // ---------- INIT ----------
