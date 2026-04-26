@@ -106,62 +106,67 @@ def get_categories():
 
     return jsonify(categories)
 
-
 @app.get("/api/products")
 def get_products():
-    conn = get_db_connection()
-    cur = conn.cursor(cursor_factory=RealDictCursor)
-
-    cur.execute("""
-        SELECT p.id, p.name, p.description, c.slug AS categoryId
-        FROM products p
-        LEFT JOIN categories c ON c.id = p.category_id
-    """)
-    products = cur.fetchall()
-
-    result = []
-
-    for product in products:
-        product_id = product["id"]
+    try:
+        conn = get_db_connection()
+        cur = conn.cursor(cursor_factory=RealDictCursor)
 
         cur.execute("""
-            SELECT id, sku, size, price, inventory
-            FROM product_variants
-            WHERE product_id = %s
-        """, (product_id,))
-        variants = cur.fetchall()
+            SELECT p.id, p.name, p.description, c.slug AS categoryId
+            FROM products p
+            LEFT JOIN categories c ON c.id = p.category_id
+        """)
+        products = cur.fetchall()
 
-        for v in variants:
-            v["price"] = float(v["price"])
+        result = []
 
-        cur.execute("""
-            SELECT variant_id AS "variantId",
-                   url,
-                   alt,
-                   description,
-                   role,
-                   display_order AS "order"
-            FROM product_images
-            WHERE variant_id IN (
-                SELECT id FROM product_variants WHERE product_id = %s
-            )
-            ORDER BY variant_id, display_order
-        """, (product_id,))
-        images = cur.fetchall()
+        for product in products:
+            product_id = product["id"]
 
-        result.append({
-            "id": product["id"],
-            "name": product["name"],
-            "categoryId": product["categoryId"],
-            "description": product["description"],
-            "variants": variants,
-            "images": images
-        })
+            cur.execute("""
+                SELECT id, sku, size, price, inventory
+                FROM product_variants
+                WHERE product_id = %s
+            """, (product_id,))
+            variants = cur.fetchall()
 
-    cur.close()
-    conn.close()
+            for v in variants:
+                if v["price"] is not None:
+                    v["price"] = float(v["price"])
 
-    return jsonify(result)
+            cur.execute("""
+                SELECT variant_id AS "variantId",
+                       url,
+                       alt,
+                       description,
+                       role,
+                       display_order AS "order"
+                FROM product_images
+                WHERE variant_id IN (
+                    SELECT id FROM product_variants WHERE product_id = %s
+                )
+                ORDER BY variant_id, display_order
+            """, (product_id,))
+            images = cur.fetchall()
+
+            result.append({
+                "id": product["id"],
+                "name": product["name"],
+                "categoryId": product.get("categoryId"),  # SAFE ACCESS
+                "description": product["description"],
+                "variants": variants,
+                "images": images
+            })
+
+        cur.close()
+        conn.close()
+
+        return jsonify(result)
+
+    except Exception as e:
+        print("PRODUCTS ERROR:", e)
+        return jsonify({"error": str(e)}), 500
 
 
 import html
