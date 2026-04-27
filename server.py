@@ -113,7 +113,7 @@ def get_products():
         cur = conn.cursor(cursor_factory=RealDictCursor)
 
         cur.execute("""
-            SELECT p.id, p.name, p.description, c.slug AS categoryId
+            SELECT p.id, p.name, p.description, c.slug AS "categoryId"
             FROM products p
             LEFT JOIN categories c ON c.id = p.category_id
         """)
