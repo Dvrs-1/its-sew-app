@@ -158,23 +158,28 @@ def seed_categories(cur, categories):
         ))
 
 
-def get_category_id(cur, slug):
-    cur.execute("SELECT id FROM categories WHERE slug = %s;", (slug,))
-    row = cur.fetchone()
-    return row["id"] if row else None
-
+def build_category_map(cur):
+    cur.execute("SELECT id, slug FROM categories;")
+    rows = cur.fetchall()
+    return {row["slug"]: row["id"] for row in rows}
 
 def seed_tags(cur, tags):
     tag_ids = {}
+
     for tag in tags:
+        # Insert tag if it doesn't exist
         cur.execute("""
             INSERT INTO tags (name)
             VALUES (%s)
             ON CONFLICT (name) DO NOTHING;
         """, (tag,))
 
+        # Fetch its ID
         cur.execute("SELECT id FROM tags WHERE name = %s;", (tag,))
-        tag_ids[tag] = cur.fetchone()["id"]
+        row = cur.fetchone()
+
+        if row:
+            tag_ids[tag] = row["id"]
 
     return tag_ids
 
@@ -182,10 +187,19 @@ def seed_tags(cur, tags):
 def seed_products(cur, products):
     print("Seeding products...")
 
+    #  Build once (faster + safer)
+    category_map = build_category_map(cur)
+
     for product in products:
 
-        category_id = get_category_id(cur, product["categoryId"])
+        category_slug = product.get("categoryId")
 
+        if category_slug not in category_map:
+            raise ValueError(f"Category slug '{category_slug}' not found in categories table")
+
+        category_id = category_map[category_slug]
+
+        # --- PRODUCT ---
         cur.execute("""
             INSERT INTO products (id, name, description, category_id)
             VALUES (%s, %s, %s, %s)
@@ -237,12 +251,12 @@ def seed_products(cur, products):
                 variant["inventory"]
             ))
 
-        # Delete removed variants
-        cur.execute("""
-            DELETE FROM product_variants
-            WHERE product_id = %s
-            AND id NOT IN %s;
-        """, (product["id"], tuple(variant_ids)))
+        if variant_ids:
+            cur.execute("""
+                DELETE FROM product_variants
+                WHERE product_id = %s
+                AND id NOT IN %s;
+            """, (product["id"], tuple(variant_ids)))
 
         # --- IMAGES ---
         for variant in product["variants"]:
@@ -265,22 +279,19 @@ def seed_products(cur, products):
                         display_order = EXCLUDED.display_order;
                 """, (
                     variant["id"],
-                    img["url"] or img.get("src"),
+                    img["url"],
                     img.get("alt"),
                     img.get("description"),
                     img.get("role"),
                     img.get("order")
                 ))
 
-            # Delete removed images
             if image_urls:
                 cur.execute("""
                     DELETE FROM product_images
                     WHERE variant_id = %s
                     AND url NOT IN %s;
                 """, (variant["id"], tuple(image_urls)))
-
-
 def main():
     conn = get_connection()
     cur = conn.cursor(cursor_factory=RealDictCursor)

@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   
   Promise.all([productsPromise, categoriesPromise])
-  .then(([products]) => {
+  .then(([products, categories]) => {
     document
     .querySelectorAll('[data-carousel]')
     .forEach(carousel => {
