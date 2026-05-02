@@ -1,3 +1,8 @@
+.add-product-from-slide{
+  background-color: navy;
+  padding: 6px 7px;
+
+}
 article{
   align-items: center;
   border-bottom: 1px solid var(--brand-brown);
@@ -91,49 +96,6 @@ article{
   transform: translateY(-10px);
   width: 100%;
 }
-/* HERO CONTAINER */
-.hero-slideshow {
-  position: relative;
-  width: 100%;
-  height: 220px;
-  overflow: hidden;
-  border-radius: 10px;
-  aspect-ratio: 16 / 9;
-}
-
-/* EACH SLIDE */
-.hero-slide {
-  position: absolute;
-  inset: 0;
-  opacity: 0;
-  transition: opacity 0.8s ease-in-out;
-}
-
-/* ACTIVE SLIDE */
-.hero-slide.active {
-  opacity: 1;
-  z-index: 1;
-}
-
-/* IMAGE */
-.hero-slide img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-/* TEXT OVERLAY */
-.hero-slide figcaption {
-  align-items: center;
-  position: absolute;
-  bottom: 10px;
-  left: 10px;
-  color: white;
-  background: rgba(0,0,0,0.4);
-  padding: 8px 12px;
-  border-radius: 6px;
-  max-width: 80%;
-}
 
 /* CTA BUTTON */
 button.show-more{
@@ -150,7 +112,7 @@ button.show-more:hover{
 }
 
 .slide {
-  flex: 0 0 50%;
+  flex: 0 0 60%;
   margin-right: var(--space-2);
   opacity: 0.5;
   padding-bottom: var(--space-1);
@@ -259,14 +221,4 @@ button.show-more:hover{
 .carousel-btn.prev {
   left: 10px;
 }
-
-  .hero-slideshow {
-    height: 320px;
-  }
-
-  .hero-slide figcaption {
-    font-size: 1.2rem;
-
-  }
-
 }

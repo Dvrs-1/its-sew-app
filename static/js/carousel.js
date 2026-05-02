@@ -72,20 +72,60 @@ function createProductCard(product) {
     const slideOption = document.createElement('div');
     slideOption.className = 'slide-option';
     
-    const showMoreBtn = document.createElement('button');
-    showMoreBtn.className = 'show-more';
-    //showMoreBtn.innerText = "Show More";
+    const slidesCartBtn = document.createElement('button');
+    slidesCartBtn.className = 'add-product-from-slide';
+
+    slidesCartBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+
     
+    const variant = product.variants?.[0] || {
+    id: product.id,
+    price: product.price,
+    size: "Default"
+  };
+
+    handleAddToCart(product, variant);
+    });
+
+    function handleAddToCart(product, variant) {
+  const alreadyInCart =
+    Cart.getItems().some(item => item.id === String(variant.id));
+
+  if (alreadyInCart) {
+    const confirmDup = confirm(
+      `A "${product.name} ${product.categoryId}" is already in your cart.\nAdd another?`
+    );
+    if (!confirmDup) return;
+  }
+
+  const result = CartService.addVariant(product, variant);
+
+  if (result?.success) {
+    Toast.show(`${product.name} ${product.categoryId} added to cart`);
+  }
+}
+
+    const slideCartIconImg = document.createElement('i');
+    slideCartIconImg.innerHTML = `<i class="fa-solid fa-cart-arrow-down"></i>`;
+
+    slidesCartBtn.appendChild(slideCartIconImg)
+    
+   //fontawsoms cart button <i class="fa-solid fa-cart-arrow-down"></i>
+
+
+
     const priceOnSlide = document.createElement('p');
     priceOnSlide.innerHTML = `$${price?.toFixed(2)}`;
     
-    slideOption.append(priceOnSlide, showMoreBtn);
+    // append slide button options here i.e showMoreBtn
+    slideOption.append(priceOnSlide, slidesCartBtn);
   
     
     slide.innerHTML = `
     <div class="slide-media">
     <img src="${primaryImage?.url || product.image}" 
-     class="show-more"
+     class="expand-description"
      alt="${primaryImage?.alt || ''}"
      loading="lazy"
      decoding="async"

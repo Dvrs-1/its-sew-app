@@ -90,6 +90,89 @@ figure{
   padding: var(--space-1);
   width: 100%;
 }
+#hero-gallery-link{
+  display:block;
+  border-radius:16px;
+  overflow:hidden;
+  position: relative;
+}
+#hero-gallery-link:active {
+  transform: scale(0.97);
+}
+#hero-gallery-link:active .arrow {
+  transform: translate(4px);
+}
+
+.hero-cta{
+  align-items: center;
+  display: inline-flex;
+  font-style: 0.9rem;font-weight: 600;
+  gap: 6px;
+  opacity: 0.9;
+  margin-top: 8px;
+  transition: transform 0.2 ease;
+
+  .hero-cta .arrow{
+    transition: transform 0.2s ease;
+  }
+
+}
+
+/* HERO CONTAINER */
+.hero-slideshow {
+  position: relative;
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+  border-radius: 10px;
+  aspect-ratio: 16 / 9;
+  animation: heroHint 0.8 ease-out 1;
+}
+
+@keyframes heroHint{
+  0% { transform: scale(1);}
+  50% { transform: scale(0.96);}
+  100% { transform: scale(1);}
+}
+
+/* EACH SLIDE */
+.hero-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.8s ease-in-out;
+}
+
+/* ACTIVE SLIDE */
+.hero-slide.active {
+  opacity: 1;
+  z-index: 1;
+}
+
+/* IMAGE */
+.hero-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  animation: heroZoom 12s ease-in-out infinite alternate;
+}
+@keyframes heroZoom{
+from { transform: scale(1);}
+to{ transform: scale(1.05);}
+}
+
+/* TEXT OVERLAY */
+.hero-slide figcaption {
+  align-items: center;
+  position: absolute;
+  bottom: 50px;
+  left: 10px;
+  color: white;
+  background: rgba(0,0,0,0.4);
+  padding: 8px 12px;
+  border-radius: 6px;
+  max-width: 80%;
+}
 
 .home-layout {
   display: flex;
@@ -121,11 +204,20 @@ figure{
 }
 
 .special-product-caption{
-  align-items: flex-start;
-  display: flex;
-  flex-direction: column;
-  margin-left: 10px;
-}
+  
+  background: linear-gradient(
+    to top
+    rgba(0,0,0,0.65),
+    rgba(0,0,0,0.2),
+    transparent
+    );
+    bottom: 0;
+    color:white;
+    padding: 16px;
+    position: absolute;
+    width: 100%;
+    
+  }
 
 .special-product-caption h3 p{
   margin: 0;
@@ -203,6 +295,15 @@ figure{
 
   .starterpackage {
     max-width: 50vw
+  }
+
+    .hero-slideshow {
+    height: 320px;
+  }
+
+  .hero-slide figcaption {
+    font-size: 1.2rem;
+
   }
 
 }

@@ -17,8 +17,8 @@
 
 
 
-    <h3 id="special-header">One of each</h3>
-    <a href="/gallery" id="linkgallery">
+  <a href="/gallery" id="hero-gallery-link">
+      <h3 id="special-header">One of each</h3>
 
       <div class="hero-slideshow">
         
@@ -32,8 +32,19 @@
     fetchpriority="high"
    >
       </figure>
+      <figure>
+           <img src="{{ url_for('static', filename = 'images/categories/wristletctgry.webp')}}" alt="">
+         </figure>   
       <figcaption class="special-product-caption">
-        <p><strong>Phone Stands</strong><br>One of a kind custom sports design</p>
+        <div class="hero-text">
+          <strong>Wristlets</strong>
+          <span class="hero-sub">Custom Fabrics Avalible</span>
+
+          <div class="hero-cta">
+            <span>Explore</span>
+            <span class="arrow">→</span>
+          </div>
+        </div>
       </figcaption>
     </div>
     <div class="hero-slide">
@@ -41,7 +52,15 @@
         <img src="{{ url_for('static', filename='images/categories/sportspsdemo2.webp') }}" alt="">
       </figure>
       <figcaption class="special-product-caption">
-        <p><strong>Sports Collection</strong><br>One of a kind custom sports design</p>
+        <div class="hero-text">
+          <strong>Phone Stands</strong>
+          <span class="hero-sub">Sporst designs & more</span>
+
+          <div class="hero-cta">
+            <span>Explore</span>
+            <span class="arrow">→</span>
+          </div>
+        </div>
       </figcaption>
     </div>
 
@@ -50,7 +69,15 @@
    <img src="{{ url_for('static', filename='images/categories/smlpillowdemo1.1.webp') }}" alt="">
       </figure>
       <figcaption class="special-product-caption">
-        <p><strong>Pillow Colllection</strong><br>One of a kind custom sports design</p>
+        <div class="hero-text">
+          <strong>Pillow collection</strong>
+          <span class="hero-sub">Handmade Custom Pillows</span>
+
+          <div class="hero-cta">
+            <span>Explore</span>
+            <span class="arrow">→</span>
+          </div>
+        </div>
       </figcaption>
     </div>
   </div>

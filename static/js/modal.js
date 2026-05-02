@@ -124,21 +124,16 @@ document.addEventListener('DOMContentLoaded', () => {
        
   } 
  
-  
-  
-  
-  //Gallery+Card Button Event Delegation
-  
-  
+
   
   // show more button
  document.addEventListener("click", e => {
       
-      const button = e.target.closest(".show-more");
-      if(!button) return;
+      const expandProductDescription = e.target.closest(".expand-description");
+      if(!expandProductDescription) return;
       
       //Expandable Text on cards
-      const card = button.closest(".slide");
+      const card = expandProductDescription.closest(".slide");
     
       if(!card) return;
       showProductModal(card);
@@ -245,28 +240,28 @@ if (product.variants && product.variants.length > 1) {
   variantContainer.appendChild(label);
 
   product.variants.forEach(variant => {
-    const btn = document.createElement("button");
-    btn.textContent = variant.size;
-    btn.className = "variant-btn";
+    const variantBtn = document.createElement("button");
+    variantBtn.textContent = variant.size;
+    variantBtn.className = "variant-btn";
     
     if (variant === selectedVariant) {
-      btn.classList.add("active");
+      variantBtn.classList.add("active");
     }
     
-    btn.addEventListener("click", () => {
+    variantBtn.addEventListener("click", () => {
       selectedVariant = variant;
 
       // Update active state
       variantContainer.querySelectorAll(".variant-btn")
         .forEach(b => b.classList.remove("active"));
-      btn.classList.add("active");
+      variantBtn.classList.add("active");
 
       // Update price display
       priceDisplay.textContent = `$${variant.price.toFixed(2)}`;
       renderImagesForVariant();
     });
     
-    variantContainer.appendChild(btn);
+    variantContainer.appendChild(variantBtn);
   });
 }
 
@@ -276,29 +271,28 @@ addBtn.className = "modal-add-to-cart";
 
 addBtn.addEventListener("click", () => {
 
-    const confirmProduct = confirm(`Add one "${product.name}" cart?
-      `);
-      
-      if (!confirmProduct) return
+handleAddToCart(product, selectedVariant);
 
-const alreadyInCart =
-  Cart.getItems().some(item => item.id === selectedVariant.id);
+});
 
-if (alreadyInCart) {
-  const confirmAdd = confirm(
-    `There is already a "${product.name} - ${selectedVariant.size}" in your cart.\nAdd another?`
-  );
-  if (!confirmAdd) return;
+function handleAddToCart(product, variant) {
+  const alreadyInCart =
+    Cart.getItems().some(item => item.id === String(variant.id));
+
+  if (alreadyInCart) {
+    const confirmDup = confirm(
+      `"${product.name} ${product.categoryId} is already in your cart.\nAdd another?`
+    );
+    if (!confirmDup) return;
+  }
+
+  const result = CartService.addVariant(product, variant);
+
+  if (result?.success) {
+    Toast.show(`${product.name} ${product.categoryId} added to cart`);
+  }
+  
 }
-
-Cart.add({
-  id: selectedVariant.id,
-  name: `${product.name} - ${selectedVariant.size}`,
-  price: selectedVariant.price
-});
-
-closeModal();
-});
 
 const cartPriceContainer = document.createElement("div");
 cartPriceContainer.className = "cart-price-container"
@@ -314,35 +308,6 @@ openModal();
 const modal = document.getElementById("modal");
 
    
-  /*Gallery cards Add to cart button
-  if (e.target.classList.contains("add-to-cart-btn")) {
-    addToCartClick(e.target);
-  }
-  */
-  function addToCartClick(button) {
-    const galleryItem = button.closest(".gallery");
-    const id = galleryItem.dataset.id;
-  const product = productMap.get(id);
-
-  const alreadyInCart =
-    Cart.getItems().some(item => item.id === String(id));
-
-    const confirmProduct = confirm(`Add one "${product.name}" cart?
-      `);
-      
-      if (!confirmProduct) return
-
-  if (alreadyInCart) {
-    const confirmAdd = confirm(
-      `There is already a "${product.name}" in your cart.\nAdd another?`
-    );
-    if (!confirmAdd) return;
-  }
-
-  Cart.add(product);
- 
-}
- 
   
   // Clear Cart Button 
   if (clrCart) {
@@ -444,7 +409,7 @@ function setupCartModal() {
     
     modal.classList.remove("hidden");
     document.body.style.overflow = "hidden";
-    
+    let modalOpen = true;
     
     const title = modal.querySelector("#modal-title");
     if (title) title.focus();
@@ -458,6 +423,7 @@ function setupCartModal() {
 function closeModal() {
     modal.classList.add("hidden");
     document.body.style.overflow = "";
+    let modalOpen = false;
     console.log('Modal closed class=hidden')
     
     //makeAnnouncement("Modal view has been closed.")

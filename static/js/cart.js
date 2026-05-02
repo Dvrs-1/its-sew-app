@@ -36,9 +36,8 @@ const Cart = (() => {
         item.quantity > 0
       ) {
         normalized[id] = {
+          ...item,
           id,
-          name: item.name,
-          price: item.price,
           quantity: Math.floor(item.quantity)
         };
       }
