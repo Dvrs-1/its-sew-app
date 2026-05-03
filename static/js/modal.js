@@ -26,19 +26,18 @@ document.addEventListener('DOMContentLoaded', () => {
       console.error("Failed to load products", err);
     });
 
-
-
   const modalContainer = document.getElementById("modal-view-container");
+  const miniCart = document.getElementById("mini-cart");
+  const miniCartItems = document.getElementById("mini-cart-items");
+  const miniCartOpenBtn = document.getElementById("mini-cart-open");
+
+  let miniCartTimeout;
    
   // Storage helpers 
-
-
       const cartSummary = document.getElementById("cart-total");
 
       function updateCartTotals() {
         if (!cartSummary) return;
-      
-     
       
         if (Cart.isEmpty()) {
           cartSummary.textContent = "Empty $0.00";
@@ -48,23 +47,66 @@ document.addEventListener('DOMContentLoaded', () => {
         const { count, price} = Cart.totals();
       
         cartSummary.innerHTML = `
-          <p><strong>Items in Cart:</strong> ${count}</p>
-          <p><strong>Total Price:</strong> $${price.toFixed(2)}</p>
+        <p><strong>Total Price:</strong> $${price.toFixed(2)}</p>
         `;
-       
+        //<p><strong>Items in Cart:</strong> ${count}</p>
       }
 
       Cart.subscribe(() => {
+
+          if (miniCart && miniCart.classList.contains("show")) {
+          buildCartItems(miniCartItems);
+  }
         updateCartTotals();
       });
       updateCartTotals()
 
+ window.handleAddToCart = function(product, variant) {
+  const alreadyInCart =
+    Cart.getItems().some(item => item.id === String(variant.id));
+
+  if (alreadyInCart) {
+    const confirmDup = confirm(
+      `"${product.name}" is already in your cart.\nAdd another?`
+    );
+    if (!confirmDup) return;
+  }
+  
+  const result = CartService.addVariant(product, variant);
+  
+  if (result?.success) {
+    Toast.show(`${product.name} added to cart`);
+    animateCartIcon();
+    showMiniCart();
+  }
+};     
+
      
+miniCartOpenBtn?.addEventListener("click", () => {
+  hideMiniCart();
+  renderCartView(); // your existing modal function
+});
+document.addEventListener("click", (e) => {
+  if (!miniCart) return;
+
+const clickedInside =
+  miniCart.contains(e.target) ||
+  document.getElementById("open-cart")?.contains(e.target) ||
+  e.target.closest(".modal-add-to-cart") ||
+  e.target.closest(".add-product-from-slide");
+
+  if (!clickedInside) {
+    hideMiniCart();
+  }
+});
       const modalTitle = document.getElementById("modal-title");
 
       const openCartBtn = document.getElementById("open-cart");
       if(openCartBtn){
-      openCartBtn.addEventListener("click",renderCartView);
+      openCartBtn.addEventListener("click",() => {
+        hideMiniCart();
+        renderCartView();
+      });
     };
 
       const modalActions = document.querySelector('.modal-actions');
@@ -81,41 +123,50 @@ document.addEventListener('DOMContentLoaded', () => {
       cartModalActionBtnContainer.className = 'cart-modal-action-btn-container';
       
 
+      function buildCartItems(container) {
+  const items = Cart.getItems();
+
+  container.innerHTML = "";
+
+  if (items.length === 0) {
+    container.textContent = "Your cart is empty";
+    return;
+  }
+
+  items.forEach(item => {
+    const row = document.createElement("div");
+    row.className = "cart-item";
+
+    const label = document.createElement("span");
+    label.textContent = `${item.name} (${item.variant || ""}) x ${item.quantity}`;
+
+    const price = document.createElement("span");
+    price.textContent = `$${(item.price * item.quantity).toFixed(2)}`;
+
+    const btn = document.createElement("button");
+    btn.textContent = "Remove";
+    btn.dataset.id = item.id;
+    btn.className = "remove-item";
+
+    row.append(label, price, btn);
+    container.appendChild(row);
+  });
+}
+
       function renderCartView(){
         const items = Cart.getItems();
+  
 
         if (!modalContainer || !modalActions || !modalTitle) {
           console.warn("Cart modal elements missing on this page");
           return;
         }
         modalTitle.textContent = "Your Cart"
-        modalContainer.innerHTML = "";
+       
         modalActions.innerHTML = "";
 
-        if (items.length === 0) {
-          modalContainer.textContent = "Your cart is empty";
-        openModal();
-          return;
-        }
-        
-        items.forEach(item => {
-          const row = document.createElement("div");
-          row.className = "cart-item";
-      
-          const label = document.createElement("span");
-          label.textContent = `${item.name} x ${item.quantity}`;
-      
-          const price = document.createElement("span");
-          price.textContent = `$${(item.price * item.quantity).toFixed(2)}`;
-      
-          const btn = document.createElement("button");
-          btn.textContent = "Remove";
-          btn.dataset.id = item.id;
-          btn.className = "remove-item";
-      
-          row.append(label, price, btn);
-          modalContainer.appendChild(row);
-        });
+   
+        buildCartItems(modalContainer);
         cartModalActionBtnContainer.append(clrCart, orderNowBtn);
         modalActions.appendChild(cartModalActionBtnContainer);
        // updateCartTotals();
@@ -123,104 +174,228 @@ document.addEventListener('DOMContentLoaded', () => {
         openModal();
        
   } 
- 
 
-  
-  // show more button
- document.addEventListener("click", e => {
-      
-      const expandProductDescription = e.target.closest(".expand-description");
-      if(!expandProductDescription) return;
-      
-      //Expandable Text on cards
-      const card = expandProductDescription.closest(".slide");
+
+  function showMiniCart() {
+  if (!miniCart || !miniCartItems) return;
+
+  // reuse your extracted renderer
+  buildCartItems(miniCartItems);
+
+  miniCart.classList.remove("hidden");
+
+  void miniCart.offsetWidth;
+
+  requestAnimationFrame(() => {
+    miniCart.classList.add("show");
+  });
+
+  // reset timer
+  clearTimeout(miniCartTimeout);
+  miniCartTimeout = setTimeout(hideMiniCart, 3000);
+}
+
+function hideMiniCart() {
+  if (!miniCart) return;
+
+  miniCart.classList.remove("show");
+
+  setTimeout(() => {
+    miniCart.classList.add("hidden");
+  }, 200);
+}
+
+let lastCount = 0;
+
+function updateCartBadge() {
+  const badge = document.getElementById("cart-count");
+  if (!badge) return;
+
+  const { count } = Cart.totals();
+
+  // Hide when empty
+  if (count === 0) {
+    badge.style.display = "none";
+    lastCount = 0;
+    return;
+  }
+
+  // Show when not empty
+  badge.style.display = "inline-block";
+  badge.textContent = count;
+
+  // Animate only when increasing
+  if (count > lastCount) {
+    badge.classList.remove("bump");
+    void badge.offsetWidth;
+    badge.classList.add("bump");
+  }
+
+  lastCount = count;
+}
+  Cart.subscribe(() => {
+    updateCartBadge();
+  })
+updateCartBadge();
+
     
-      if(!card) return;
-      showProductModal(card);
-      console.log("show button pressed")
-      console.log("dataset id:", card.dataset.id)
-      
-    });
-      
-  
-    
-    
-    function showProductModal(card) {
+    window.showProductModal = function(card) {
       modalContainer.innerHTML = "";
       modalActions.innerHTML = "";
+      
+      const id = card.dataset.id;
+      const product = productMap.get(String(id));
+      if (!product) return;
+      modalTitle.textContent = product.name;
 
-  const id = card.dataset.id;
-  const product = productMap.get(String(id));
-  if (!product) return;
+      const productModal = document.createElement("div");
+      productModal.className = "product-modal-content";
 
-  modalTitle.textContent = product.name;
+      // === Main Image ===
+      const images = product.images || [];
+      let activeImages = images;
+      let touchStartX = 0;
+      let touchEndX = 0;
+      let currentIndex = 0;
+      
 
-  const productModal = document.createElement("div");
-  productModal.className = "product-modal-content";
 
-  // === Main Image ===
-  const mainImage = document.createElement("img");
-  mainImage.id = "modal-product-image";
-  mainImage.src = product.images?.[0]?.url || product.image;
-  mainImage.alt = product.images?.[0]?.alt || product.alt;
 
-  const imageWrapper = document.createElement("div");
-  imageWrapper.className = "modal-image-wrapper";
-  imageWrapper.appendChild(mainImage);
 
-  // === Description ===
-  const modalDesc = document.createElement("p");
-  modalDesc.id = "modal-product-description";
+function updateImage(index) {
+  const offset = index * -100;
+  imageTrack.style.transform = `translateX(${offset}%)`;
+
+  const img = activeImages[index];
+  if (!img) return;
+
   modalDesc.textContent =
-    product.images?.[0]?.description || product.description;
+    img.description || product.description;
+}
 
-    
-    // === Variant Selection ===
-    let selectedVariant = product.variants?.[0] || {
-  id: product.id,
-  size: product.size,
-  price: product.price
-};
+function handleSwipe() {
+const swipeDistance = touchEndX - touchStartX;
+
+// minimum distance to count as swipe
+if (Math.abs(swipeDistance) < 40) return;
+
+if (swipeDistance < 0) {
+// 👉 swipe left → next image
+currentIndex = (currentIndex + 1) % activeImages.length;
+} else {
+// 👉 swipe right → previous image
+currentIndex = (currentIndex - 1 + activeImages.length) % activeImages.length;
+}
+
+updateImage(currentIndex);
+}
+
+
+//image wrapper
+const imageWrapper = document.createElement("div");
+imageWrapper.className = "modal-image-wrapper";
+
+const imageTrack = document.createElement("div");
+imageTrack.className = "modal-image-track";
+
+imageWrapper.appendChild(imageTrack);
+
+
+
+let isSwiping = false;
+
+imageWrapper.addEventListener("touchstart", (e) => {
+  touchStartX = e.changedTouches[0].screenX;
+  isSwiping = false;
+});
+
+imageWrapper.addEventListener("touchend", (e) => {
+  touchEndX = e.changedTouches[0].screenX;
+  handleSwipe();
+});
+
+imageWrapper.addEventListener("touchmove", (e) => {
+  const moveX = e.changedTouches[0].screenX;
+  const deltaX = Math.abs(touchStartX - moveX);
+
+  if (deltaX > 10) {
+    isSwiping = true;
+  }
+
+  if (isSwiping && e.cancelable) {
+    e.preventDefault();
+  }
+}, { passive: false });
+
+
 // === Thumbnail Container ===
 const thumbContainer = document.createElement("div");
 thumbContainer.className = "modal-thumbnails";
 
+// === Variant Selection ===
+let selectedVariant = product.variants?.[0] || {
+id: product.id,
+size: product.size,
+price: product.price
+};
+
+
+// === Description ===
+const modalDesc = document.createElement("p");
+modalDesc.id = "modal-product-description";
+modalDesc.textContent =
+    product.images?.[0]?.description || product.description;
+
 function renderImagesForVariant() {
   thumbContainer.innerHTML = "";
-
+  
   const variantSpecific = product.images?.filter(
-  img => img.variantId === selectedVariant.id
-) || []
-
+    img => String(img.variantId) === String(selectedVariant.id)
+  ) || []
+  
   const imagesForVariant = variantSpecific.length > 0
   ? variantSpecific
   : product.images?.filter(img => !img.variantId) || [];
+  
+  activeImages = imagesForVariant;
+  currentIndex = 0;
 
   if (imagesForVariant.length === 0) return;
 
   // Set main image to first matching image
-  mainImage.src = imagesForVariant[0].url;
-  mainImage.alt = imagesForVariant[0].alt;
-  modalDesc.textContent =
-    imagesForVariant[0].description || product.description;
+  
+  imageTrack.innerHTML = "";
+  
+  imagesForVariant.forEach(imgObj => {
+    const img = document.createElement("img");
+    img.src = imgObj.url;
+    img.alt = imgObj.alt;
+    img.className = "modal-track-image";
+    
+    imageTrack.appendChild(img);
+  });
+  updateImage(0);
+
+  modalDesc.textContent = 
+  imagesForVariant[0].description || product.description;
 
   imagesForVariant.forEach(imgObj => {
-    const thumb = document.createElement("img");
-    thumb.src = imgObj.url;
-    thumb.alt = imgObj.alt;
-    thumb.className = "modal-thumb";
+  const thumb = document.createElement("img");
 
-    thumb.addEventListener("click", () => {
-      mainImage.src = imgObj.url;
-      mainImage.alt = imgObj.alt;
-      modalDesc.textContent =
-      imgObj.description || product.description;
-    });
-    
-    thumbContainer.appendChild(thumb);
+  thumb.src = imgObj.url;       
+  thumb.alt = imgObj.alt;          
+  thumb.className = "modal-thumb";
+
+  thumb.addEventListener("click", () => {
+    currentIndex = imagesForVariant.indexOf(imgObj);
+    updateImage(currentIndex);
+  });
+
+  thumbContainer.appendChild(thumb);
   });
 }
 renderImagesForVariant();
+updateImage(0);
 
 
 
@@ -275,24 +450,7 @@ handleAddToCart(product, selectedVariant);
 
 });
 
-function handleAddToCart(product, variant) {
-  const alreadyInCart =
-    Cart.getItems().some(item => item.id === String(variant.id));
 
-  if (alreadyInCart) {
-    const confirmDup = confirm(
-      `"${product.name} ${product.categoryId} is already in your cart.\nAdd another?`
-    );
-    if (!confirmDup) return;
-  }
-
-  const result = CartService.addVariant(product, variant);
-
-  if (result?.success) {
-    Toast.show(`${product.name} ${product.categoryId} added to cart`);
-  }
-  
-}
 
 const cartPriceContainer = document.createElement("div");
 cartPriceContainer.className = "cart-price-container"
@@ -364,7 +522,7 @@ Cart.clear()
 
 
 
-modalContainer.addEventListener("click", (e) => {
+document.addEventListener("click", (e) => {
 
 const btn = e.target.closest(".remove-item");
 if(!btn) return;

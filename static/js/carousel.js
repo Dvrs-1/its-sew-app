@@ -83,34 +83,21 @@ function createProductCard(product) {
     id: product.id,
     price: product.price,
     size: "Default"
+
   };
+  
+  handleAddToCart(product, variant);
+});
 
-    handleAddToCart(product, variant);
-    });
 
-    function handleAddToCart(product, variant) {
-  const alreadyInCart =
-    Cart.getItems().some(item => item.id === String(variant.id));
+const slideCartIconImg = document.createElement('i');
+slideCartIconImg.innerHTML = `<i class="fa-solid fa-cart-arrow-down"></i>`;
 
-  if (alreadyInCart) {
-    const confirmDup = confirm(
-      `A "${product.name} ${product.categoryId}" is already in your cart.\nAdd another?`
-    );
-    if (!confirmDup) return;
-  }
+slidesCartBtn.appendChild(slideCartIconImg)
 
-  const result = CartService.addVariant(product, variant);
-
-  if (result?.success) {
-    Toast.show(`${product.name} ${product.categoryId} added to cart`);
-  }
-}
-
-    const slideCartIconImg = document.createElement('i');
-    slideCartIconImg.innerHTML = `<i class="fa-solid fa-cart-arrow-down"></i>`;
-
-    slidesCartBtn.appendChild(slideCartIconImg)
-    
+slide.addEventListener("click", () => {
+  showProductModal(slide)
+});
    //fontawsoms cart button <i class="fa-solid fa-cart-arrow-down"></i>
 
 

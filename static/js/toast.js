@@ -34,3 +34,12 @@ const Toast = (() => {
     return { show };
 
 })();
+
+function animateCartIcon() {
+ const icon = document.querySelector("#open-cart i");
+  if (!icon) return;
+
+  icon.classList.remove("cart-animate");
+  void icon.offsetWidth;
+  icon.classList.add("cart-animate");
+}
