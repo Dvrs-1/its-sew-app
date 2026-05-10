@@ -153,26 +153,22 @@ const clickedInside =
   });
 }
 
+//Cart view in MODAL
       function renderCartView(){
         const items = Cart.getItems();
   
-
         if (!modalContainer || !modalActions || !modalTitle) {
           console.warn("Cart modal elements missing on this page");
           return;
         }
         modalTitle.textContent = "Your Cart"
-       
         modalActions.innerHTML = "";
 
-   
         buildCartItems(modalContainer);
         cartModalActionBtnContainer.append(clrCart, orderNowBtn);
         modalActions.appendChild(cartModalActionBtnContainer);
        // updateCartTotals();
-
         openModal();
-       
   } 
 
 
@@ -190,9 +186,9 @@ const clickedInside =
     miniCart.classList.add("show");
   });
 
-  // reset timer
+  //Timer that sets timeout for mini-cart pop up @add
   clearTimeout(miniCartTimeout);
-  miniCartTimeout = setTimeout(hideMiniCart, 3000);
+  miniCartTimeout = setTimeout(hideMiniCart, 8000);
 }
 
 function hideMiniCart() {
