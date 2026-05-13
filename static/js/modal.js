@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let miniCartTimeout;
    
-  // Storage helpers 
+  //User Card Cart Summmary
       const cartSummary = document.getElementById("cart-total");
 
       function updateCartTotals() {
@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
         cartSummary.innerHTML = `
         <p><strong>Total Price:</strong> $${price.toFixed(2)}</p>
         `;
-        //<p><strong>Items in Cart:</strong> ${count}</p>
+      
       }
 
       Cart.subscribe(() => {
@@ -122,41 +122,42 @@ const clickedInside =
       const cartModalActionBtnContainer = document.createElement("div");
       cartModalActionBtnContainer.className = 'cart-modal-action-btn-container';
       
-
+      
+      // innital Cart item builder, only source of truth for product
       function buildCartItems(container) {
-  const items = Cart.getItems();
-
-  container.innerHTML = "";
-
-  if (items.length === 0) {
-    container.textContent = "Your cart is empty";
-    return;
-  }
-
-  items.forEach(item => {
-    const row = document.createElement("div");
-    row.className = "cart-item";
-
-    const label = document.createElement("span");
-    label.textContent = `${item.name} (${item.variant || ""}) x ${item.quantity}`;
-
-    const price = document.createElement("span");
-    price.textContent = `$${(item.price * item.quantity).toFixed(2)}`;
-
-    const btn = document.createElement("button");
-    btn.textContent = "Remove";
-    btn.dataset.id = item.id;
-    btn.className = "remove-item";
-
-    row.append(label, price, btn);
-    container.appendChild(row);
-  });
-}
-
-//Cart view in MODAL
-      function renderCartView(){
         const items = Cart.getItems();
-  
+      
+        container.innerHTML = "";
+      
+        if (items.length === 0) {
+          container.textContent = "Your cart is empty";
+          return;
+        }
+      
+        items.forEach(item => {
+          const row = document.createElement("div");
+          row.className = "cart-item";
+      
+          const label = document.createElement("span");
+          label.textContent = `${item.name} (${item.variant || ""}) x ${item.quantity}`;
+          
+          const price = document.createElement("span");
+          price.textContent = `$${(item.price * item.quantity).toFixed(2)}`;
+      
+          const btn = document.createElement("button");
+          btn.textContent = "Remove";
+          btn.dataset.id = item.id;
+          btn.className = "remove-item";
+      
+          row.append(label, price, btn);
+          container.appendChild(row);
+        });
+      }
+
+      //Cart view in MODAL
+      function renderCartView(){
+        //const items = Cart.getItems(); EXIT!
+        
         if (!modalContainer || !modalActions || !modalTitle) {
           console.warn("Cart modal elements missing on this page");
           return;
@@ -171,6 +172,8 @@ const clickedInside =
         openModal();
   } 
 
+  
+
 
   function showMiniCart() {
   if (!miniCart || !miniCartItems) return;
@@ -179,13 +182,10 @@ const clickedInside =
   buildCartItems(miniCartItems);
 
   miniCart.classList.remove("hidden");
-
   void miniCart.offsetWidth;
-
   requestAnimationFrame(() => {
     miniCart.classList.add("show");
   });
-
   //Timer that sets timeout for mini-cart pop up @add
   clearTimeout(miniCartTimeout);
   miniCartTimeout = setTimeout(hideMiniCart, 8000);
@@ -193,34 +193,31 @@ const clickedInside =
 
 function hideMiniCart() {
   if (!miniCart) return;
-
   miniCart.classList.remove("show");
-
   setTimeout(() => {
     miniCart.classList.add("hidden");
   }, 200);
 }
 
-let lastCount = 0;
+
+//incrementCounter for cartIcon,AnimatesOnAdd
 
 function updateCartBadge() {
+  let lastCount = 0;
   const badge = document.getElementById("cart-count");
   if (!badge) return;
 
   const { count } = Cart.totals();
-
-  // Hide when empty
+//OnlyShows when not Zero
   if (count === 0) {
     badge.style.display = "none";
     lastCount = 0;
     return;
   }
-
-  // Show when not empty
   badge.style.display = "inline-block";
   badge.textContent = count;
 
-  // Animate only when increasing
+  //Bump Animation when Item is added
   if (count > lastCount) {
     badge.classList.remove("bump");
     void badge.offsetWidth;
@@ -472,7 +469,7 @@ const modal = document.getElementById("modal");
       if (confirmClear)
 
       Cart.clear();
-      renderCartView();
+      //renderCartView(); EXIT!
       closeModal();
     });
   }
