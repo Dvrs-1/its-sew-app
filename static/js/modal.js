@@ -37,7 +37,8 @@ document.addEventListener('DOMContentLoaded', () => {
       const cartSummary = document.getElementById("cart-total");
 
       function updateCartTotals() {
-        if (!cartSummary) return;
+        if (!cartSummary) 
+          return;
       
         if (Cart.isEmpty()) {
           cartSummary.textContent = "Empty $0.00";
@@ -49,14 +50,13 @@ document.addEventListener('DOMContentLoaded', () => {
         cartSummary.innerHTML = `
         <p><strong>Total Price:</strong> $${price.toFixed(2)}</p>
         `;
-      
       }
 
       Cart.subscribe(() => {
 
           if (miniCart && miniCart.classList.contains("show")) {
           buildCartItems(miniCartItems);
-  }
+          }
         updateCartTotals();
       });
       updateCartTotals()
@@ -108,7 +108,7 @@ const clickedInside =
         renderCartView();
       });
     };
-
+    // Modal action buttons container
       const modalActions = document.querySelector('.modal-actions');
       
       const clrCart = document.createElement('button');
@@ -123,12 +123,11 @@ const clickedInside =
       cartModalActionBtnContainer.className = 'cart-modal-action-btn-container';
       
       
-      // innital Cart item builder, only source of truth for product
+      // innital Cart Item Renderer, used for both mini-cart and modal cart to avoid code duplication
       function buildCartItems(container) {
         const items = Cart.getItems();
       
         container.innerHTML = "";
-      
         if (items.length === 0) {
           container.textContent = "Your cart is empty";
           return;
@@ -153,6 +152,7 @@ const clickedInside =
           container.appendChild(row);
         });
       }
+
 
       //Cart view in MODAL
       function renderCartView(){
@@ -229,27 +229,39 @@ function updateCartBadge() {
   Cart.subscribe(() => {
     updateCartBadge();
   })
-updateCartBadge();
-
+  updateCartBadge();
+  
+  
+  window.showProductModal = function(card) {
+    modalContainer.innerHTML = "";
+    modalActions.innerHTML = "";
     
-    window.showProductModal = function(card) {
-      modalContainer.innerHTML = "";
-      modalActions.innerHTML = "";
-      
-      const id = card.dataset.id;
-      const product = productMap.get(String(id));
-      if (!product) return;
-      modalTitle.textContent = product.name;
+    const id = card.dataset.id;
+    const product = productMap.get(String(id));
+    if (!product) return;
+    modalTitle.textContent = product.name;
+    
+    const productModal = document.createElement("div");
+    productModal.className = "product-modal-content";
+    
+    // === Main Image ===
+    const images = product.images || [];
+    
+    const modalState = {
+      currentIndex:0,
+      activeImages: images,
+      selectedVariant: product.variants?.[0] || {
+        id: product.id,
+        size: product.size,
+        price: product.price
+      }
+    };
 
-      const productModal = document.createElement("div");
-      productModal.className = "product-modal-content";
 
-      // === Main Image ===
-      const images = product.images || [];
-      let activeImages = images;
+      modalState.activeImages = images;
       let touchStartX = 0;
       let touchEndX = 0;
-      let currentIndex = 0;
+      modalState.currentIndex = 0;
       
 
 
@@ -259,28 +271,30 @@ function updateImage(index) {
   const offset = index * -100;
   imageTrack.style.transform = `translateX(${offset}%)`;
 
-  const img = activeImages[index];
-  if (!img) return;
+  const img = modalState.activeImages[index];
+  if (!img)
+     return;
 
   modalDesc.textContent =
     img.description || product.description;
 }
 
+
+
+
 function handleSwipe() {
 const swipeDistance = touchEndX - touchStartX;
-
 // minimum distance to count as swipe
-if (Math.abs(swipeDistance) < 40) return;
-
+if (Math.abs(swipeDistance) < 40) 
+  return;
 if (swipeDistance < 0) {
-// 👉 swipe left → next image
-currentIndex = (currentIndex + 1) % activeImages.length;
+//  swipe left → next image
+modalState.currentIndex = (modalState.currentIndex + 1) % modalState.activeImages.length;
 } else {
-// 👉 swipe right → previous image
-currentIndex = (currentIndex - 1 + activeImages.length) % activeImages.length;
+//  swipe right → previous image
+modalState.currentIndex = (modalState.currentIndex - 1 + modalState.activeImages.length) % modalState.activeImages.length;
 }
-
-updateImage(currentIndex);
+updateImage(modalState.currentIndex);
 }
 
 
@@ -326,10 +340,10 @@ const thumbContainer = document.createElement("div");
 thumbContainer.className = "modal-thumbnails";
 
 // === Variant Selection ===
-let selectedVariant = product.variants?.[0] || {
-id: product.id,
-size: product.size,
-price: product.price
+modalState.selectedVariant = product.variants?.[0] || {
+  id: product.id,
+  size: product.size,
+  price: product.price
 };
 
 
@@ -343,15 +357,15 @@ function renderImagesForVariant() {
   thumbContainer.innerHTML = "";
   
   const variantSpecific = product.images?.filter(
-    img => String(img.variantId) === String(selectedVariant.id)
+    img => String(img.variantId) === String(modalState.selectedVariant.id)
   ) || []
   
   const imagesForVariant = variantSpecific.length > 0
   ? variantSpecific
   : product.images?.filter(img => !img.variantId) || [];
   
-  activeImages = imagesForVariant;
-  currentIndex = 0;
+  modalState.activeImages = imagesForVariant;
+  modalState.currentIndex = 0;
 
   if (imagesForVariant.length === 0) return;
 
@@ -380,8 +394,8 @@ function renderImagesForVariant() {
   thumb.className = "modal-thumb";
 
   thumb.addEventListener("click", () => {
-    currentIndex = imagesForVariant.indexOf(imgObj);
-    updateImage(currentIndex);
+    modalState.currentIndex = imagesForVariant.indexOf(imgObj);
+    updateImage(modalState.currentIndex);
   });
 
   thumbContainer.appendChild(thumb);
@@ -394,7 +408,7 @@ updateImage(0);
 
 const priceDisplay = document.createElement("p");
 priceDisplay.className = "modal-price";
-priceDisplay.textContent = `$${selectedVariant?.price?.toFixed(2)}`;
+priceDisplay.textContent = `$${modalState.selectedVariant?.price?.toFixed(2)}`;
 
 const variantContainer = document.createElement("div");
 variantContainer.className = "modal-variants";
