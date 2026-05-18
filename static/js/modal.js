@@ -205,8 +205,8 @@ function hideMiniCart() {
 function updateCartBadge() {
   let lastCount = 0;
   const badge = document.getElementById("cart-count");
-  if (!badge) return;
-
+  if (!badge) 
+    return;
   const { count } = Cart.totals();
 //OnlyShows when not Zero
   if (count === 0) {
@@ -223,9 +223,9 @@ function updateCartBadge() {
     void badge.offsetWidth;
     badge.classList.add("bump");
   }
-
   lastCount = count;
 }
+
   Cart.subscribe(() => {
     updateCartBadge();
   })
@@ -247,6 +247,7 @@ function updateCartBadge() {
     // === Main Image ===
     const images = product.images || [];
     
+
     const modalState = {
       currentIndex:0,
       activeImages: images,
@@ -254,227 +255,263 @@ function updateCartBadge() {
         id: product.id,
         size: product.size,
         price: product.price
-      }
-    };
-
-
-      modalState.activeImages = images;
-      let touchStartX = 0;
-      let touchEndX = 0;
-      modalState.currentIndex = 0;
-      
-
-
-
-
-function updateImage(index) {
-  const offset = index * -100;
-  imageTrack.style.transform = `translateX(${offset}%)`;
-
-  const img = modalState.activeImages[index];
-  if (!img)
-     return;
-
-  modalDesc.textContent =
-    img.description || product.description;
-}
-
-
-
-
-function handleSwipe() {
-const swipeDistance = touchEndX - touchStartX;
-// minimum distance to count as swipe
-if (Math.abs(swipeDistance) < 40) 
-  return;
-if (swipeDistance < 0) {
-//  swipe left → next image
-modalState.currentIndex = (modalState.currentIndex + 1) % modalState.activeImages.length;
-} else {
-//  swipe right → previous image
-modalState.currentIndex = (modalState.currentIndex - 1 + modalState.activeImages.length) % modalState.activeImages.length;
-}
-updateImage(modalState.currentIndex);
-}
-
-
-//image wrapper
-const imageWrapper = document.createElement("div");
-imageWrapper.className = "modal-image-wrapper";
-
-const imageTrack = document.createElement("div");
-imageTrack.className = "modal-image-track";
-
-imageWrapper.appendChild(imageTrack);
-
-
-
-let isSwiping = false;
-
-imageWrapper.addEventListener("touchstart", (e) => {
-  touchStartX = e.changedTouches[0].screenX;
-  isSwiping = false;
-});
-
-imageWrapper.addEventListener("touchend", (e) => {
-  touchEndX = e.changedTouches[0].screenX;
-  handleSwipe();
-});
-
-imageWrapper.addEventListener("touchmove", (e) => {
-  const moveX = e.changedTouches[0].screenX;
-  const deltaX = Math.abs(touchStartX - moveX);
-
-  if (deltaX > 10) {
-    isSwiping = true;
-  }
-
-  if (isSwiping && e.cancelable) {
-    e.preventDefault();
-  }
-}, { passive: false });
-
-
-// === Thumbnail Container ===
-const thumbContainer = document.createElement("div");
-thumbContainer.className = "modal-thumbnails";
-
-// === Variant Selection ===
-modalState.selectedVariant = product.variants?.[0] || {
-  id: product.id,
-  size: product.size,
-  price: product.price
-};
-
-
-// === Description ===
-const modalDesc = document.createElement("p");
-modalDesc.id = "modal-product-description";
-modalDesc.textContent =
-    product.images?.[0]?.description || product.description;
-
-function renderImagesForVariant() {
-  thumbContainer.innerHTML = "";
-  
-  const variantSpecific = product.images?.filter(
-    img => String(img.variantId) === String(modalState.selectedVariant.id)
-  ) || []
-  
-  const imagesForVariant = variantSpecific.length > 0
-  ? variantSpecific
-  : product.images?.filter(img => !img.variantId) || [];
-  
-  modalState.activeImages = imagesForVariant;
-  modalState.currentIndex = 0;
-
-  if (imagesForVariant.length === 0) return;
-
-  // Set main image to first matching image
-  
-  imageTrack.innerHTML = "";
-  
-  imagesForVariant.forEach(imgObj => {
-    const img = document.createElement("img");
-    img.src = imgObj.url;
-    img.alt = imgObj.alt;
-    img.className = "modal-track-image";
+      }  
+    };  
     
-    imageTrack.appendChild(img);
-  });
-  updateImage(0);
-
-  modalDesc.textContent = 
-  imagesForVariant[0].description || product.description;
-
-  imagesForVariant.forEach(imgObj => {
-  const thumb = document.createElement("img");
-
-  thumb.src = imgObj.url;       
-  thumb.alt = imgObj.alt;          
-  thumb.className = "modal-thumb";
-
-  thumb.addEventListener("click", () => {
-    modalState.currentIndex = imagesForVariant.indexOf(imgObj);
-    updateImage(modalState.currentIndex);
-  });
-
-  thumbContainer.appendChild(thumb);
-  });
-}
-renderImagesForVariant();
-updateImage(0);
-
-
-
-const priceDisplay = document.createElement("p");
-priceDisplay.className = "modal-price";
-priceDisplay.textContent = `$${modalState.selectedVariant?.price?.toFixed(2)}`;
-
-const variantContainer = document.createElement("div");
-variantContainer.className = "modal-variants";
-
-if (product.variants && product.variants.length > 1) {
-  
-  
-  
-  const label = document.createElement("p");
-  label.textContent = "Select Size:";
-  variantContainer.appendChild(label);
-
-  product.variants.forEach(variant => {
+    //image wrapper
+    const imageWrapper = document.createElement("div");
+    imageWrapper.className = "modal-image-wrapper";
+    
+    const imageTrack = document.createElement("div");
+    imageTrack.className = "modal-image-track";
+    imageWrapper.appendChild(imageTrack);
+    
+    
+    // === Thumbnail Container ===
+    const thumbContainer = document.createElement("div");
+    thumbContainer.className = "modal-thumbnails";
+    
+    // === Description ===
+    const modalDesc = document.createElement("p");
+    modalDesc.id = "modal-product-description";
+    modalDesc.textContent =
+    product.images?.[0]?.description || product.description;
+    
+    
+    const priceDisplay = document.createElement("p");
+    priceDisplay.className = "modal-price";
+    priceDisplay.textContent = `$${modalState.selectedVariant?.price?.toFixed(2)}`;
+    
+    const variantContainer = document.createElement("div");
+    variantContainer.className = "modal-variants";
+    
+    
+    if (product.variants && product.variants.length > 1) {
+      
+    
+    
+    const label = document.createElement("p");
+    label.textContent = "Select Size:";
+    variantContainer.appendChild(label);
+    
+    product.variants.forEach(variant => {
     const variantBtn = document.createElement("button");
     variantBtn.textContent = variant.size;
     variantBtn.className = "variant-btn";
     
-    if (variant === selectedVariant) {
+    if (variant === modalState.selectedVariant) {
       variantBtn.classList.add("active");
     }
     
     variantBtn.addEventListener("click", () => {
-      selectedVariant = variant;
-
+      modalState.selectedVariant = variant;
+    
       // Update active state
       variantContainer.querySelectorAll(".variant-btn")
-        .forEach(b => b.classList.remove("active"));
+      .forEach(b => b.classList.remove("active"));
       variantBtn.classList.add("active");
-
+      
       // Update price display
       priceDisplay.textContent = `$${variant.price.toFixed(2)}`;
-      renderImagesForVariant();
+      carousel.renderImagesForVariant();
     });
     
     variantContainer.appendChild(variantBtn);
   });
 }
-
-const addBtn = document.createElement("button");
-addBtn.textContent = "Add To Cart";
-addBtn.className = "modal-add-to-cart";
-
-addBtn.addEventListener("click", () => {
-
-handleAddToCart(product, selectedVariant);
-
-});
+function createImageCarousel(){
 
 
+  function next() {
+    modalStatte.currentIndex = (modalState.currentIndex + 1) 
+    % modalState.activeImages.length;
 
-const cartPriceContainer = document.createElement("div");
-cartPriceContainer.className = "cart-price-container"
+    updateImage(modalState.currentIndex);
+  }
+  function previous() {
+    modalState.currentIndex = 
+    (modalState.currentIndex - 1 + modalState.activeImages.length) 
+    % modalState.activeImages.length;
+    
+  updateImage(modalState.currentIndex);
+  }
 
-cartPriceContainer.append(addBtn,priceDisplay)
+  function goTo(index){
+    modalState.currentIndex = index;
 
-productModal.append(imageWrapper, variantContainer, cartPriceContainer, thumbContainer, modalDesc );
-modalContainer.append(productModal);
+    updateImage(modalState.currentIndex);
+  }
+  return {
+    updateImage,
+    renderImagesForVariant,
+    next,
+    previous,
+    goTo
+  };
+  
+  function updateImage(index) {
+    const offset = index * -100;
+    imageTrack.style.transform = `translateX(${offset}%)`;
+    
+    const img = modalState.activeImages[index];
+    if (!img)
+      return;  
+    
+    modalDesc.textContent =
+    img.description || product.description;
+  };
+  
+   function renderImagesForVariant() {
+    thumbContainer.innerHTML = "";
+      
+      const variantSpecific = product.images?.filter(
+        img => String(img.variantId) === String(modalState.selectedVariant.id)
+      ) || []  
+      
+      const imagesForVariant = variantSpecific.length > 0
+      ? variantSpecific
+      : product.images?.filter(img => !img.variantId) || [];
+      
+      modalState.activeImages = imagesForVariant;
+      modalState.currentIndex = 0;
+      
+      if (imagesForVariant.length === 0) return;
+    
+      // Set main image to first matching image
+      
+      imageTrack.innerHTML = "";
+      
+      imagesForVariant.forEach(imgObj => {
+        const img = document.createElement("img");
+        img.src = imgObj.url;
+        img.alt = imgObj.alt;
+        img.className = "modal-track-image";
+        
+        imageTrack.appendChild(img);
+      });    
+      updateImage(0);
+
+      modalDesc.textContent = 
+      imagesForVariant[0].description || product.description;
+      
+      imagesForVariant.forEach((imgObj, index) => {
+      const thumb = document.createElement("img");  
+      
+      thumb.src = imgObj.url;       
+      thumb.alt = imgObj.alt;          
+      thumb.className = "modal-thumb";
+      
+      thumb.addEventListener("click", () => {
+       goTo(index);
+      });  
+      
+      thumbContainer.appendChild(thumb);
+    });
+  }  
+
+  
+  return {
+    updateImage,
+    renderImagesForVariant
+  };  
+}       
+  const carousel = createImageCarousel();
+
+  carousel.renderImagesForVariant();
+
+  setupSwipeHandlers(imageWrapper);
+  
+/*
+
+  this is the function that controls the ability
+  to swipe through the variants in the modal,
+  not the carousel that displays the products
+  */   
+ function handleSwipe(direction) {
+   if (direction === "left") {
+     carousel.next();
+    } else if (direction === "right") {
+      carousel.previous();
+    }      
+  }    
+  
+
+  function setupSwipeHandlers(wrapper){
+    
+    let touchStartX = 0;
+    let isSwiping = false;
+    let touchEndX = 0;
+    
+    wrapper.addEventListener("touchstart", (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+      isSwiping = false;
+    });      
+    
+    wrapper.addEventListener("touchend", (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      const swipeDistance = touchEndX - touchStartX;
+      // minimum distance to count as swipe
+      if (Math.abs(swipeDistance) < 40) 
+        return;      
+      if (swipeDistance < 0) {
+      //  swipe left → next image      
+     handleSwipe("left");   
+    } else {
+      //  swipe right → previous image    
+      handleSwipe("right");  
+    }  
+    
+  });      
+  
+  wrapper.addEventListener("touchmove", (e) => {
+    const moveX = e.changedTouches[0].screenX;
+    const deltaX = Math.abs(touchStartX - moveX);
+      
+      if (deltaX > 10) {
+        isSwiping = true;
+      }      
+      
+      if (isSwiping && e.cancelable) {
+        e.preventDefault();
+      }      
+    }, { passive: false });      
+    
+  };         
+ 
+
+    
+  const addBtn = document.createElement("button");
+  addBtn.textContent = "Add To Cart";
+  addBtn.className = "modal-add-to-cart";
+  
+  addBtn.addEventListener("click", () => {
+  
+  handleAddToCart(product, modalState.selectedVariant);
+  
+  });
+   
+
+  const cartPriceContainer = document.createElement("div");
+  cartPriceContainer.className = "cart-price-container"
+  
+  cartPriceContainer.append(addBtn,priceDisplay)
+  
+  productModal.append(imageWrapper, variantContainer, cartPriceContainer, thumbContainer, modalDesc );
+  modalContainer.append(productModal);
+
+
+
+
 console.log("Products", product)
 openModal();
-}
 
+setupSwipeHandlers(imageWrapper);
+}  
 const modal = document.getElementById("modal");
 
    
-  
-  // Clear Cart Button 
+
+// Clear Cart Button 
   if (clrCart) {
     clrCart.addEventListener('click', () => {
       const confirmClear = confirm(`Are you sure you would like to Clear your entire cart?
@@ -521,8 +558,6 @@ function processOrder() {
 
   // Clear cart after ordering
 Cart.clear()
-  //sessionStorage.removeItem("cartItems");
-  //cart = {}; 
   renderCartView(); // refresh cart display
   closeModal();
 }
@@ -648,76 +683,8 @@ function closeModal() {
     });
   }
   
+  
+
+
+
 });
-
-
-/* 
-// starter package Logic
-
-const addStarterPackage = document.querySelector('.add-starter-package');
-if (addStarterPackage) {
-    addStarterPackage.addEventListener('click', () => {
-      const starterPackage = addStarterPackage.dataset.id;
-      const gardenStarter = [
-        { id: '438', name: 'Potting Soil', price: 5.37 },
-    { id: '439', name: 'Watering Can', price: 17.99 },
-    { id: '434', name: 'Aloe Plant', price: 13.78 }
-  ];
-  
-  const starterPackageDeal = {
-    id: starterPackage,
-    name: 'Starter Package Deal',
-    price: gardenStarter.reduce((sum, item) => sum + item.price, 0) * 0.9,
-    isBundle: true,
-    items: gardenStarter
-  };
-  
-  addToCart(starterPackageDeal);
-  alert('The Garden Starter Package has been added to the cart!');
-  });
-  }
-
-  setupCartModal();
-
-
-  //bundle cart button
-
-      const bundleCartButton = document.querySelector('.add-bundle');
-      if (bundleCartButton) {
-        bundleCartButton.addEventListener('click', () => {
-          const specialBundle = bundleCartButton.dataset.id;
-          const bundledItems = [
-            { id: '438', name: 'Potting Soil', price: 5.37 },
-        { id: '439', name: 'Watering Can', price: 17.99 }
-      ];
-      
-      const bundleSpecial = {
-        id: specialBundle,
-        name: 'Special Combo Deal',
-        price: bundledItems.reduce((sum, item) => sum + item.price, 0) * 0.9,
-        isBundle: true,
-        items: bundledItems
-      };
-      
-      addToCart(bundleSpecial);
-      alert('Your combo deal has been added to the cart!');
-    });
-  }
-
-
-        // === 5. Bundle Button Handler ===
-
-  //  Add to cart 
-  function addToCart(product) {
-    if (cart[product.id]) {
-      cart[product.id].quantity++;
-    } else {
-      cart[product.id] = { ...product, quantity: 1 };
-    
-    }
-  
-    renderCart();
-    updateCartTotals();
-  }
-
-*/
