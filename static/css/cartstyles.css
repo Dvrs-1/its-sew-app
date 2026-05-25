@@ -1,3 +1,11 @@
+@media (prefers-reduced-motion: reduce) {
+  .modal-content {
+    transition: none;
+  }
+  .modal-image-track {
+    transition: none;
+  }
+}
 /*region for screen reader announcements*/
 .sr-only {
   height: 1px;

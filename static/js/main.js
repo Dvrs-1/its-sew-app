@@ -12,6 +12,20 @@ var cartItems = JSON.parse(sessionStorage.getItem("cartItems")) || [];
 
 document.addEventListener('DOMContentLoaded', function() {
 
+document.addEventListener('keydown', (e) => {
+  if(e.key === 'Escape') {
+    mainMenu.hidden = true;
+    hamburgerButton.setAttribute('aria-expanded', 'false');
+    returnFocusTo(hamburgerButton);
+
+    const openModals = document.querySelectorAll('.modal:not(.hidden)');
+    openModals.forEach(modal => {
+      modal.classList.add('hidden');
+    });
+
+  }
+});
+
 const sourceNav = document.querySelector('.navigation-menu');
 const links = sourceNav.querySelectorAll('a');
 
@@ -28,6 +42,7 @@ const links = sourceNav.querySelectorAll('a');
        console.log('menutoggle')
       }
         const hamburgerButton = document.createElement('button');
+        hamburgerButton.type = 'button'
         hamburgerButton.className = 'show-navigation-btn navigation-hero';
       
         const iconImage = document.createElement('i');
@@ -38,32 +53,36 @@ const links = sourceNav.querySelectorAll('a');
        // menuToggle.appendChild(hamburgerButton);
         hamburgerButton.id = "newHamburger"
        
-      
+        hamburgerButton.setAttribute("aria-expanded", "false");
+        hamburgerButton.setAttribute("aria-controls", "main-navigation");
+        hamburgerButton.setAttribute("aria-label", "Open navigation menu");
       
       //Hamburger Menu event Toggling
       
       const mainMenu = document.querySelector('.navigation-menu');
+      mainMenu.id = "main-navigation";
       
       hamburgerButton.addEventListener('click', function(event) {
         event.preventDefault(); 
        
-      
-    
-        if (hamburgerButton) {
-          mainMenu.classList.toggle("show");
-          mainMenu.classList.toggle("hidden");
-          console.log("Menu is now visible");
-         // makeAnouncement('Navigation menu open')
-      
-         hamburgerButton.setAttribute("aria-expanded", "true");
-          toggleAriaExpanded(hamburgerButton, mainMenu)
-     
+        const isOpen =   toggleAriaExpanded(hamburgerButton, mainMenu);
+
+        if (isOpen) {
+        moveFocusInto(mainMenu);
         } else {
-          console.log("Menu is now hidden");//check console
-         // makeAnouncement('Navigation menu closed')
-    
+        returnFocusTo(hamburgerButton)
         }
+
+        mainMenu.classList.toggle("show", isOpen);
+        mainMenu.classList.toggle("hidden", !isOpen);
+        
+        announce(
+          isOpen
+          ? "Navigation menu opened"
+          : "Navigation menu closed"
+        );
       });
+
 
       const heroGroupContainer = document.querySelector('.hero-group-container');
 
@@ -96,7 +115,7 @@ if (heroGroupContainer && sourceNav) {
       hoursTable.id = "hours-table";
       hoursTable.innerHTML =`
        <table id="hours-table">
-         <tr><th colspan="3">Hours of Operation</th></tr>
+         <tr><caption>Hours of Operation</caption></tr>
          <tr>
          <th>Days</th><th>Open</th><th>Close</th>
          </tr>
@@ -151,17 +170,27 @@ emailToSubscribe.type = 'email';
 emailToSubscribe.id = 'emailToSubscribe';
 emailToSubscribe.autocomplete = 'off';
 
+const emailLabel = document.createElement('label');
+emailLabel.setAttribute('for', 'emailToSubscribe');
+emailLabel.textContent = "Email address";
+
 const subscribeBtn = document.createElement('input');
 subscribeBtn.type = 'submit';
 subscribeBtn.name = 'submit';
+subscribeBtn.value = 'Subscribe';
+subscribeBtn.setAttribute('aria-label', 'Subscribe to newsletter');
 
 
 
-footerSubscribeForm.append(emailToSubscribe, subscribeBtn);
+footerSubscribeForm.append(
+  emailLabel, 
+  emailToSubscribe, 
+  subscribeBtn);
+
 if(footer){
   const socialSubscribeGroup = document.createElement('div');
   socialSubscribeGroup.append(footerSubscribeForm, footerSocial);
-  footerContainer.append(socialSubscribeGroup);
+  footerContainer.append(socialSubscribeGroup, footerHours);
   footer.appendChild(footerContainer);
 
 }
@@ -250,6 +279,7 @@ if(footer){
   region.textContent = "";      // clear
   requestAnimationFrame(() => { // let DOM settle
     region.textContent = message;
+    console.log("Announcement:", message);
   });
 }
 
@@ -261,6 +291,7 @@ if(footer){
 
   carousel.setAttribute("tabindex", "0");
   carousel.setAttribute("role", "region");
+  carousel.setAttribute("aria-label", "Featured products");
   carousel.setAttribute("aria-roledescription", "carousel");
 
   carousel.addEventListener("keydown", (e) => {
