@@ -1,75 +1,104 @@
-<!DOCTYPE html>
-{% extends "base.html" %}
-
-{% block title %}About - Its Sew Regina{% endblock %}
-
+<!doctype html>
+{% extends "base.html" %} {% block title %}About - Its Sew Regina{% endblock %}
 {% block head %}
-<link href="{{ url_for('static', filename='css/aboutus.css') }}" rel="stylesheet">
- {% endblock %}
+<link
+  href="{{ url_for('static', filename='css/aboutus.css') }}"
+  rel="stylesheet"
+/>
+{% endblock %} {% block content %}
 
+<div id="about-container">
+  <h2 class="h1">Here's the latest news!</h2>
 
-  {% block content %}
-  
-  <div id="about-container">
-  
-  
-    <h2 class="h1">Here's the latest news!</h2>
+  <h3 class="h3">About Its Sew Regina</h3>
+  <p id="aboutus">
+    This is a website aims to provide a platform for artists in the cummunity
+    that apply custom designs to various products and to provide the community
+    acces to those products, some artists having limited inventories unable to
+    have exposure on larger websites can be accomidated here<br />
+    As the client focuses on sustainability and creativity in its operations,
+    the primary goal of the website is to enhance visibility in the local
+    market, foster community engagement, and facilitate customer inquiries and
+    orders.<br />
+    Its target audience comprises local sewing enthusiasts and homeowners
+    seeking high-quality custom designed products.
+  </p>
 
-
-    <h3 class="h3">About Its Sew Regina </h3>
-    <p id="aboutus">This is a website aims to provide a platform for artists in the cummunity that 
-      apply custom designs to various products and to provide the community acces to those products, 
-      some artists having limited inventories unable to have exposure on larger websites can be 
-      accomidated here<br> As the client focuses on sustainability and creativity in its operations, 
-      the primary goal of the website is to enhance visibility in the local market,
-       foster community engagement, and facilitate customer inquiries and orders.<br> 
-       Its target audience comprises local sewing enthusiasts and homeowners seeking high-quality 
-       custom designed products.
-    </p>
-
-
-
-
+  <fieldset>
     <legend>Contact Us</legend>
 
-    <form id="custom-order-form"  class="subToNewsletter" id="subToNewsletter" autocomplete="off">
+    <form id="custom-order-form" class="subToNewsletter">
       <div>
         <div id="session-storage-submission"></div>
-        <div id="result"></div>
+        <div 
+        id="result"
+        aria-live="polite"
+        aria-atomic="true">
+      </div>
 
+        <label for="name">Name:</label>
+        <input 
+        id="name"
+        name="name"  
+        type="text"
+        autocomplete="name"
+        aria-describedby="result">
+        <br />
+        <p id="name-error" class="form-error"aria-live="polite"></p>
+     
 
+        <label for="email">E-Mail:</label>
+        <input
+          name="email"
+          id="email"
+          type="email"
+          autocomplete="email"
+          aria-describedby="email-error"
+        /><br />
+         <p id="email-error" class="form-error"aria-live="polite"></p>
 
-        <label for="name">Name:
-      <input  name="name" id="name" type="text" autocomplete="off"  ></label><br />
+      
 
-        <label for="email">E-Mail:   
-      <input  name="email" id="email"type="email" required autocomplete="off" ></label><br />
-
-        <label for="phone">Phone: 
-      <input type="tel" name="phone" id="phone"  pattern="[0-9]{10}" minlength="10" maxlength="10" placeholder="123-456-7890"  aria-label="3-digit area code" autocomplete="off" ></label><br />
+        <label for="phone">Phone:</label>
+        <input
+          aria-describedby="phone-hint"
+          type="tel"
+          inputmode="numeric"
+          name="phone"
+          id="phone"
+          autocomplete="tel"
+          pattern="[0-9]{10}"
+          minlength="10"
+          maxlength="10"
+          
+        /><br />
+        <p id="phone-hint">Please enter a 10-digit phone number.</p>
 
         <label for="feedback">Feedback/Order information:</label>
-        <textarea name="feedback" id="feedback" rows="5" cols="25"required>  </textarea><br />
-        <label>Custom Order: 
-          <input type="checkbox" name="customOrder" id="custom-order" /></label><br />
-        <br />
+        <textarea
+          name="feedback"
+          id="feedback"
+          rows="5"
+          cols="25"
+        ></textarea
+        ><br />
 
+        <label for="custom-order">Custom Order:
+        <input type="checkbox"id="custom-order"/>
+        </label>
 
-
-        <input type="submit" name="submit" value="Submit"  />
-        <input id="clear-form"type="reset" value="Clear Form" />
-        
+        <input type="submit" name="submit" value="Submit" />
+        <input id="clear-form" type="reset" value="Clear Form" />
       </div>
-      
     </form>
-    
-{% endblock %}
+  </fieldset>
+  {% endblock %} {% block scripts %} {{ super() }}
 
-{% block scripts %}
-{{ super() }}
+  <script src="https://cdn.jsdelivr.net/npm/dompurify@3.0.6/dist/purify.min.js"></script>
+  <script
+    type="module"
+    src="{{ url_for('static', filename='js/aboutus.js') }}"
+  ></script>
 
-   
-    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.0.6/dist/purify.min.js"></script>
-<script type="module" src="{{ url_for('static', filename='js/aboutus.js') }}"></script>
-
-{% endblock %}
+  {% endblock %}
+</div>

@@ -180,9 +180,15 @@ subscribeBtn.name = 'submit';
 subscribeBtn.value = 'Subscribe';
 subscribeBtn.setAttribute('aria-label', 'Subscribe to newsletter');
 
+const emailError = document.createElement("p");
+  emailError.id = "subscribe-email-error";
+  emailError.className = "footer-form-error";
+  emailError.setAttribute("aria-live", "polite");
+
 
 
 footerSubscribeForm.append(
+  emailError,
   emailLabel, 
   emailToSubscribe, 
   subscribeBtn);
@@ -208,7 +214,8 @@ if(footer){
 
         // Basic validation if empty
         if (rawEmail === "") {
-          alert('Please enter an email to subscribe with!');
+          emailError.textContent = "Email address is required.";;
+          emailInput.setAttribute("aria-invalid", "true");
           emailInput.focus();
           return;
         }
@@ -216,7 +223,8 @@ if(footer){
         // Pattern validation for email format
         const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailPattern.test(rawEmail)) {
-          alert('Please enter a valid email address!');
+          emailError.textContent = "Please enter a valid email address.";
+          emailInput.setAttribute("aria-invalid", "true");
           emailInput.focus();
           return;
         }
@@ -229,6 +237,7 @@ if(footer){
         sessionStorage.setItem("subscribedEmail", JSON.stringify(subscribedEmail));
 
         alert(`Subscription saved for: ${sanitizedEmail}`);
+        emailInput.removeAttribute("aria-invalid");
         emailInput.value = "";
       });
     }

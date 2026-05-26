@@ -16,7 +16,6 @@ document.addEventListener("DOMContentLoaded", () => {
       products.forEach((product) => {
         productMap.set(String(product.id), product);
       });
-
     })
     .catch((err) => {
       console.error("Failed to load products", err);
@@ -148,8 +147,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   //Cart view in MODAL
   function renderCartView() {
-   
-
     if (!modalContainer || !modalActions || !modalTitle) {
       console.warn("Cart modal elements missing on this page");
       return;
@@ -160,7 +157,8 @@ document.addEventListener("DOMContentLoaded", () => {
     buildCartItems(modalContainer);
     cartModalActionBtnContainer.append(clrCart, orderNowBtn);
     modalActions.appendChild(cartModalActionBtnContainer);
-  
+
+    lastFocusedElement = document.activeElement;
     openModal();
   }
 
@@ -174,6 +172,7 @@ document.addEventListener("DOMContentLoaded", () => {
     void miniCart.offsetWidth;
     requestAnimationFrame(() => {
       miniCart.classList.add("show");
+      miniCart.setAttribute("aria-hidden", "false");
     });
     //Timer that sets timeout for mini-cart pop up @add
     clearTimeout(miniCartTimeout);
@@ -185,6 +184,7 @@ document.addEventListener("DOMContentLoaded", () => {
     miniCart.classList.remove("show");
     setTimeout(() => {
       miniCart.classList.add("hidden");
+      miniCart.setAttribute("aria-hidden", "true");
     }, 200);
   }
 
@@ -218,7 +218,9 @@ document.addEventListener("DOMContentLoaded", () => {
   });
   updateCartBadge();
 
-  //Product Modal 
+  //Product Modal
+  let activeModalKeyHandler = null;
+
   window.showProductModal = function (card) {
     modalContainer.innerHTML = "";
     modalActions.innerHTML = "";
@@ -234,10 +236,12 @@ document.addEventListener("DOMContentLoaded", () => {
     //Product Modal ARIA
     productModal.setAttribute("role", "dialog");
     productModal.setAttribute("aria-modal", "true");
-    productModal.setAttribute("aria-label", `Details and purchase options for ${product.name}`);
+    productModal.setAttribute(
+      "aria-label",
+      `Details and purchase options for ${product.name}`,
+    );
     productModal.setAttribute("aria-labelledby", "modal-title");
     productModal.setAttribute("aria-describedby", "modal-product-description");
-
 
     // === Main Image ===
     const images = product.images || [];
@@ -257,7 +261,6 @@ document.addEventListener("DOMContentLoaded", () => {
       },
     };
 
-   
     const imageWrapper = document.createElement("div");
     imageWrapper.className = "modal-image-wrapper";
 
@@ -268,38 +271,53 @@ document.addEventListener("DOMContentLoaded", () => {
     // === Thumbnail Container ===
     const thumbContainer = document.createElement("div");
     thumbContainer.className = "modal-thumbnails";
-    
+
     // === Description ===
     const modalDesc = document.createElement("p");
     modalDesc.id = "modal-product-description";
     modalDesc.textContent =
-    product.images?.[0]?.description || product.description;
-    
+      product.images?.[0]?.description || product.description;
+
     const priceDisplay = document.createElement("p");
     priceDisplay.className = "modal-price";
     priceDisplay.textContent = `$${modalState.selectedVariant?.price?.toFixed(2)}`;
-    
+
     /*
     === Image Carousel Subsystem (modal) ===
     --Manages image display and navigation within the product modal.--
     --Thumbnail syncing and active image state.--
     */
-   function createImageCarousel() {
-     
-     function updateImage(index) {
-       const offset = index * -100;
-       imageTrack.style.transform = `translateX(${offset}%)`;
-       
-       const img = modalState.activeImages[index];
-       if (!img) return;
-       
-       modalDesc.textContent = img.description || product.description;
+    function createImageCarousel() {
+      function updateImage(index) {
+        const offset = index * -100;
+        imageTrack.style.transform = `translateX(${offset}%)`;
+
+        const img = modalState.activeImages[index];
+        if (!img) return;
+
+        modalDesc.textContent = img.description || product.description;
       }
-      
+
+     
+      activeModalKeyHandler = function (e) {
+        if (modal.classList.contains("hidden")) return;
+
+        if (e.key === "Escape") {
+          closeModal();
+        }
+
+        if (e.key === "ArrowRight") {
+          carousel.next();
+        }
+
+        if (e.key === "ArrowLeft") {
+          carousel.previous();
+        }
+      };
 
       function renderImagesForVariant() {
         thumbContainer.innerHTML = "";
-        
+
         const variantSpecific =
           product.images?.filter(
             (img) =>
@@ -307,20 +325,21 @@ document.addEventListener("DOMContentLoaded", () => {
           ) || [];
 
         const imagesForVariant =
-        variantSpecific.length > 0
+          variantSpecific.length > 0
             ? variantSpecific
             : product.images?.filter((img) => !img.variantId) || [];
-            
-            modalState.activeImages = imagesForVariant;
+
+        modalState.activeImages = imagesForVariant;
         modalState.currentIndex = 0;
 
         if (imagesForVariant.length === 0) return;
 
         // Set main image to first matching image
-        
+
         imageTrack.innerHTML = "";
 
-        /* creates images for carousel track based on variant selection, 
+        /* creates images for image track  FOR moal to use
+        based on variant selection, 
         if no variant specific images exist, 
         defaults to all product images without variantId
         */
@@ -333,17 +352,21 @@ document.addEventListener("DOMContentLoaded", () => {
           imageTrack.appendChild(img);
         });
         updateImage(0);
-        
-        // renders immages as thumbnails for modal
-        imagesForVariant.forEach((imgObj, index) => {
+
+/* === THUMBNAIL CREATION ===
+ renders images as thumbnails IN modal*/
+          imagesForVariant.forEach((imgObj, index) => {
           const thumb = document.createElement("img");
           thumb.tabIndex = 0;
-          thumb.setAttribute("role", "button");
+          thumb.setAttribute(
+            "aria-label", 
+            `View image ${index +1} of ${imagesForVariant.length}`
+          );
 
           thumb.src = imgObj.url;
           thumb.alt = imgObj.alt;
           thumb.className = "modal-thumb";
-          
+
           thumb.addEventListener("click", () => {
             goTo(index);
           });
@@ -358,7 +381,7 @@ document.addEventListener("DOMContentLoaded", () => {
           thumbContainer.appendChild(thumb);
         });
       }
-
+      
       function next() {
         modalState.currentIndex =
         (modalState.currentIndex + 1) % modalState.activeImages.length;
@@ -367,15 +390,24 @@ document.addEventListener("DOMContentLoaded", () => {
       }
       function previous() {
         modalState.currentIndex =
-          (modalState.currentIndex - 1 + modalState.activeImages.length) %
-          modalState.activeImages.length;
-          
+        (modalState.currentIndex - 1 + modalState.activeImages.length) %
+        modalState.activeImages.length;
+        
         updateImage(modalState.currentIndex);
       }
-
+      
       function goTo(index) {
-        modalState.currentIndex = index;
         
+        modalState.currentIndex = index;
+
+        const thumbs = thumbContainer.querySelectorAll(".modal-thumb");
+
+        thumbs.forEach((thumb, i) => {
+          thumb.setAttribute("aria-current", 
+            i === index ? "true" : "false"
+          );
+        });
+       
         updateImage(modalState.currentIndex);
       }
 
@@ -411,7 +443,10 @@ document.addEventListener("DOMContentLoaded", () => {
           variantBtn.classList.add("active");
         }
 
-        variantBtn.setAttribute("aria-pressed", variant === modalState.selectedVariant);
+        variantBtn.setAttribute(
+          "aria-pressed",
+          variant === modalState.selectedVariant,
+        );
 
         variantBtn.addEventListener("click", () => {
           modalState.selectedVariant = variant;
@@ -421,10 +456,8 @@ document.addEventListener("DOMContentLoaded", () => {
             .querySelectorAll(".variant-btn")
             .forEach((b) => b.classList.remove("active"));
 
-          variantContainer
-            .querySelectorAll(".variant-btn")
-            .forEach((b) => {
-             b.setAttribute("aria-pressed", "false");
+          variantContainer.querySelectorAll(".variant-btn").forEach((b) => {
+            b.setAttribute("aria-pressed", "false");
           });
           variantBtn.classList.add("active");
           variantBtn.setAttribute("aria-pressed", "true");
@@ -497,32 +530,14 @@ document.addEventListener("DOMContentLoaded", () => {
         { passive: false },
       );
     }
-    
-     function handleModalKeys(e){
-      if (productModal.classList.contains("hidden")) 
-        return;
-
-      if (e.key === "Escape") {
-        closeModal();
-      }
-      
-      if (e.key === "ArrowRight"){
-        carousel.next();
-      }
-
-      if (e.key === "ArrowLeft"){
-        carousel.previous();
-      }
-    }
 
     const carousel = createImageCarousel();
 
-    document.addEventListener("keydown", handleModalKeys);
-
+    document.addEventListener("keydown", activeModalKeyHandler);
+   
     carousel.renderImagesForVariant();
-    
-    setupSwipeHandlers(imageWrapper);
 
+    setupSwipeHandlers(imageWrapper);
 
     const addBtn = document.createElement("button");
     addBtn.textContent = "Add To Cart";
@@ -553,6 +568,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     setupSwipeHandlers(imageWrapper);
   };
+
   const modal = document.getElementById("modal");
 
   // Clear Cart Button
@@ -647,27 +663,26 @@ document.addEventListener("DOMContentLoaded", () => {
 
   //When Modal Is Open -ARIA
   function openModal() {
-   
     modal.classList.remove("hidden");
     document.body.style.overflow = "hidden";
-    let modalOpen = true;
-    
+
     const title = modal.querySelector("#modal-title");
     if (title) title.focus();
     console.log("Modal Open");
-
-    return;
     
-    closeModalBtn.focus();
+    return;
   }
 
   function closeModal() {
     modal.classList.add("hidden");
     document.body.style.overflow = "";
-    let modalOpen = false;
+
     console.log("Modal closed class=hidden");
 
-    //makeAnnouncement("Modal view has been closed.")
+    if (activeModalKeyHandler) {
+      document.removeEventListener("keydown", activeModalKeyHandler);
+    }
+    activeModalKeyHandler = null;
 
     if (lastFocusedElement) lastFocusedElement.focus();
   }
@@ -701,11 +716,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const focusableSelectors = `
     button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])
     `;
-    const focusableEls = modal.querySelectorAll(focusableSelectors);
-    const firstEl = focusableEls[0];
-    const lastEl = focusableEls[focusableEls.length - 1];
-
+    
     modal.addEventListener("keydown", (e) => {
+
+      const focusableEls = modal.querySelectorAll(focusableSelectors);
+      const firstEl = focusableEls[0];
+      const lastEl = focusableEls[focusableEls.length - 1];
+
       if (modal.classList.contains("hidden")) return;
       if (e.key === "Tab") {
         if (e.shiftKey && document.activeElement === firstEl) {

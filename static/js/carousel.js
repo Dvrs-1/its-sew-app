@@ -140,6 +140,10 @@ function initCarousel(carousel, products) {
   carousel.nextElementSibling?.matches('[data-dots]')
   ? carousel.nextElementSibling
   : null;
+
+  carousel.tabIndex = 0;
+  carousel.setAttribute("role", "region");
+  carousel.setAttribute("aria-label", "Featured product carousel");
   
   const carouselContainer = carousel.closest('.carousel-container');
 
@@ -149,10 +153,13 @@ function initCarousel(carousel, products) {
     
     function appendButtons(){
       nextButton.className = 'carousel-btn next';
-      nextButton.innerHTML = `&#10095`
+      nextButton.innerHTML = `&#10095`;
+      nextButton.setAttribute("aria-label", "next-product");
       
       prevButton.className = 'carousel-btn prev';
       prevButton.innerHTML = `&#10094`
+      prevButton.setAttribute("aria-label", "previous-product");
+
       // ---------- BUTTONS ----------
       if (nextButton) {
         nextButton.addEventListener('click', () => {
@@ -255,15 +262,6 @@ function initCarousel(carousel, products) {
 
 
   // ---------- AUTO PLAY ----------
-
-function startAutoPlay() {
-  return setInterval(() => {
-    const slides = getSlides();
-    const nextIndex = (activeIndex + 1) % slides.length;
-    scrollToSlide(nextIndex);
-  }, 4000 + Math.random() * 2000); // 4–6 seconds random
-}
-
 let autoPlayInterval;
 let userInteracting = false;
 let interactionTimeout;
@@ -292,17 +290,40 @@ function markUserInteraction() {
   }, 4000); // wait 3 seconds after last interaction
 }
 
-// ---------- INIT ----------
-autoPlayInterval = startAutoPlay();
+// ---------- Autoplay init ----------
+const reducedMotion = window.matchMedia(
+  "(prefers-reduced-motion: reduce)"
+).matches;
+if(!reducedMotion) {
+  autoPlayInterval = startAutoPlay();
+}
+
 
 // ---------- USER EVENTS ----------
+carousel.addEventListener("keydown", (e) => {
+
+  if (e.key === "ArrowRight") {
+    scrollToSlide(activeIndex + 1);
+  }
+
+  if (e.key === "ArrowLeft") {
+    scrollToSlide(activeIndex - 1);
+  }
+
+});
+
+
 carousel.addEventListener('mouseenter', stopAutoPlay);
+
 carousel.addEventListener('mouseleave', () => {
+  stopAutoPlay();
   autoPlayInterval = startAutoPlay();
 });
 
 carousel.addEventListener('scroll', markUserInteraction);
+
 carousel.addEventListener('pointerdown', markUserInteraction);
+
 carousel.addEventListener('touchstart', markUserInteraction);
 
   function updateSlideClasses() {
@@ -327,6 +348,8 @@ carousel.addEventListener('touchstart', markUserInteraction);
 
     [...dotsContainer.children].forEach((dot, i) => {
       dot.classList.toggle('active', i === activeIndex);
+      dot.setAttribute("aria-selected", 
+        i === activeIndex ? "true" : "false");
     });
   }
 
@@ -337,6 +360,8 @@ carousel.addEventListener('touchstart', markUserInteraction);
 
     getSlides().forEach((_, i) => {
       const btn = document.createElement('button');
+      btn.setAttribute("aria-label", `Go to slide ${i + 1}`
+      );
 
       btn.addEventListener('click', () => {
         scrollToSlide(i);

@@ -3,13 +3,26 @@ document.addEventListener('DOMContentLoaded', function() {
   
 
   cleanupExpiredStorage();
-  const form = document.getElementById('custom-order-form');
+  const customOrderForm = document.getElementById('custom-order-form');
   const resultDiv = document.getElementById('result');
+  const nameError = document.getElementById('name-error');
+  const emailError = document.getElementById('email-error');
+  
+ 
 
 
   
-  form.addEventListener('submit', function (e) {
+  customOrderForm.addEventListener('submit', function (e) {
   e.preventDefault();
+
+ 
+  nameError.textContent = "";
+  emailError.textContent = "";
+  
+  const name = document.getElementById("name");
+  const email = document.getElementById("email");
+  name.removeAttribute("aria-invalid");
+  email.removeAttribute("aria-invalid");
 
   const rawName = document.getElementById("name").value.trim();
   const rawPhone = document.getElementById("phone").value;
@@ -17,8 +30,17 @@ document.addEventListener('DOMContentLoaded', function() {
   const rawFeedback = document.getElementById("feedback").value.trim();
   const customOrder = document.getElementById("custom-order").checked;
 
-  if (!rawName || !rawEmail) {
-    alert('Please fill in both name and email fields.');
+  resultDiv.textContent = "";
+ 
+  if (rawName.length < 2) {
+    resultDiv.textContent = "";
+    name.setAttribute("aria-invalid", "true");
+    nameError.textContent = 'Please fill in  name field.';
+    return;
+  } if (!rawEmail) {
+    resultDiv.textContent = "";
+    email.setAttribute("aria-invalid", "true");
+    emailError.textContent = 'Please enter an email address.';
     return;
   }
 
@@ -29,6 +51,7 @@ document.addEventListener('DOMContentLoaded', function() {
     feedback: DOMPurify.sanitize(rawFeedback),
     customOrder: customOrder
   };
+  
 
   resultDiv.textContent = "Submitting…";
 
@@ -50,9 +73,9 @@ document.addEventListener('DOMContentLoaded', function() {
         throw new Error("Submission failed");
       }
 
-      // ✅ Server confirmed success — NOW we proceed
+      // Server confirmed success — NOW we proceed
       const keyValue = `user_${customerInfo.name}_${Date.now()}`;
-      setTimedStorage(keyValue, customerInfo, 5000);
+      setTimedStorage(keyValue, customerInfo, 10000);
 
       displaySubmissionResult(customerInfo);
       resultDiv.textContent = "";
@@ -146,11 +169,19 @@ const clearStorage = document.getElementById("clear-form");
 clearStorage.addEventListener('click',clearLocalStorage);
 
 function clearLocalStorage(){
+  
+  Object.keys(localStorage).forEach(key => {
+    if (key.startsWith("user_") || key.startsWith("subscribedEmail")) {
+      localStorage.removeItem(key);
+    }
+    if (key.endsWith("_expire")) {
+      localStorage.removeItem(key);
+    }
+  });
 
-  localStorage.removeItem('keyValue')
-  localStorage.removeItem('subscribedEmail')
-  localStorage.removeItem('user')
-  localStorage.removeItem('cartItems')
+  localStorage.removeItem("subscribedEmail");
+  localStorage.removeItem("user");
+  localStorage.removeItem("cartItems");
 
 }
 
